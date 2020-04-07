@@ -86,10 +86,13 @@
 <meta property="og:site_name" content="Make It Happen">
 <meta property="og:description" content="The key idea of binary search">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://starwp.github.io/2020/04/05/Binary-Search/rsa.png">
+<meta property="og:image" content="https://starwp.github.io/2020/04/05/Binary-Search/rsa.png">
 <meta property="article:published_time" content="2020-04-05T21:02:47.000Z">
-<meta property="article:modified_time" content="2020-04-06T04:34:03.604Z">
+<meta property="article:modified_time" content="2020-04-07T20:20:17.166Z">
 <meta property="article:author" content="Void Spirit">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://starwp.github.io/2020/04/05/Binary-Search/rsa.png">
 
 
 
@@ -363,8 +366,11 @@
 <h2 id="3-Template-for-binary-search"><a href="#3-Template-for-binary-search" class="headerlink" title="3. Template for binary search"></a>3. Template for binary search</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findPos</span><span class="params">(nums, target)</span>:</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> nums <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> len(nums) == <span class="number">0</span>:</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	<span class="comment">#</span></span><br><span class="line">	start, end = <span class="number">0</span>, len(nums) - <span class="number">1</span></span><br><span class="line">	<span class="keyword">while</span> start + <span class="number">1</span> &lt; end:</span><br><span class="line">		mid = start + (end - start) // <span class="number">2</span> <span class="comment"># for out of bounds </span></span><br><span class="line">		<span class="comment"># nums[mid] ==, &lt;, &gt;</span></span><br><span class="line">		<span class="keyword">if</span> nums[mid] == target:</span><br><span class="line">			<span class="keyword">return</span> mid</span><br><span class="line">		<span class="keyword">elif</span> nums[mid] &lt; target:</span><br><span class="line">			start = mid</span><br><span class="line">		<span class="keyword">else</span>: <span class="comment"># nums[mid] &gt; target </span></span><br><span class="line">			end = mid</span><br><span class="line">	<span class="comment"># nums[start], nums[end] ? target		 </span></span><br><span class="line">	<span class="keyword">if</span> nums[start] == target:</span><br><span class="line">		<span class="keyword">return</span> start</span><br><span class="line">	<span class="keyword">if</span> nums[end] == target:</span><br><span class="line">		<span class="keyword">return</span> end</span><br><span class="line">		</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure>
 <h2 id="4-Applications"><a href="#4-Applications" class="headerlink" title="4. Applications"></a>4. Applications</h2><ul>
 <li>example 1. the first/last position to be satisfied.  </li>
-<li>example 2.  search big sorted array with no end.</li>
+<li>example 2. search big sorted array with no end.</li>
+<li>example 3. search in rotated sorted array.</li>
 </ul>
+<p>Consider the problem 3. We observe that it is not a standard sorted array. However, it has a property indicating that we can cut in half. </p>
+<p> <img src="rsa.png" alt="rotated sorted array"><img src="rsa.png" alt="modified rotated sorted array"></p>
 
       
     </div>
