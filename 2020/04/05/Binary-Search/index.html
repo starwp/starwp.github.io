@@ -89,7 +89,7 @@
 <meta property="og:image" content="https://starwp.github.io/2020/04/05/Binary-Search/rsa.png">
 <meta property="og:image" content="https://starwp.github.io/2020/04/05/Binary-Search/mrsa.png">
 <meta property="article:published_time" content="2020-04-05T21:02:47.000Z">
-<meta property="article:modified_time" content="2020-04-09T01:01:33.179Z">
+<meta property="article:modified_time" content="2020-04-09T02:35:14.015Z">
 <meta property="article:author" content="Void Spirit">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://starwp.github.io/2020/04/05/Binary-Search/rsa.png">
@@ -369,6 +369,10 @@
 <li>example 2. search big sorted array with no end.</li>
 <li>example 3. search in rotated sorted array.</li>
 </ul>
+<p>Consider the problem 2. The idea is similar to exponential backofff. The code is given below.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">searchInBigSorted</span><span class="params">(ArrayReader, target)</span>:</span></span><br><span class="line">    </span><br><span class="line">    start = <span class="number">0</span></span><br><span class="line">    end = <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> start + <span class="number">1</span> &lt; end:</span><br><span class="line">        mid = (start + end) // <span class="number">2</span></span><br><span class="line">        val = ArrayReader[mid]</span><br><span class="line">        <span class="keyword">if</span> val &gt;= target:</span><br><span class="line">            end = mid</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            temp = start</span><br><span class="line">            start = mid</span><br><span class="line">            end = temp + (mid - temp) * <span class="number">4</span></span><br><span class="line">   </span><br><span class="line">    <span class="keyword">if</span> ArrayReader[start] == target:</span><br><span class="line">        <span class="keyword">return</span> start  </span><br><span class="line">    <span class="keyword">if</span> ArrayReader[end] == target:</span><br><span class="line">        <span class="keyword">return</span> end    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure>
+
+
 <p>Consider the problem 3. We observe that it is not a standard sorted array. However, it has a property indicating that we can cut it in half. This means that  <font color=Red>the orginial problem can be partitioned to two half problems that has the same property as the orginial one</font>.</p>
 <p>As it shown in Fig. 1(a), we can use the first element and last element to decide in which sorted part the current middle number is.  In particular, if it is mid&gt;end, it is in the 1st part. Otherwise, it is in the part I. Consider that the mid is in the 1st part I. It must satisfy mid&gt;target&gt;=start, it can follow the binary search to make end = mid. If mid is in the 2nd part, it must satisfy mid&lt;target&lt;=target so that it can follow the binary search to make start= mid.  </p>
 <table>
