@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="dicuss about divide and conquer, and binary tree">
+<meta name="description" content="Fleury&#39;s Algorithm for printing Eulerian Path">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Divide Conquer">
-<meta property="og:url" content="https://starwp.github.io/2020/04/08/Divide-Conquer/index.html">
+<meta property="og:title" content="Eulerian Path">
+<meta property="og:url" content="https://starwp.github.io/2020/05/03/Eulerian-Path/index.html">
 <meta property="og:site_name" content="Make It Happen">
-<meta property="og:description" content="dicuss about divide and conquer, and binary tree">
+<meta property="og:description" content="Fleury&#39;s Algorithm for printing Eulerian Path">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-09T03:22:00.000Z">
-<meta property="article:modified_time" content="2020-04-13T21:36:21.539Z">
+<meta property="article:published_time" content="2020-05-03T06:48:13.000Z">
+<meta property="article:modified_time" content="2020-05-03T06:49:15.514Z">
 <meta property="article:author" content="Void Spirit">
 <meta name="twitter:card" content="summary">
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://starwp.github.io/2020/04/08/Divide-Conquer/"/>
+  <link rel="canonical" href="https://starwp.github.io/2020/05/03/Eulerian-Path/"/>
 
 
 
 
 
-  <title>Divide Conquer | Make It Happen</title>
+  <title>Eulerian Path | Make It Happen</title>
   
 
 
@@ -242,7 +242,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://starwp.github.io/2020/04/08/Divide-Conquer/">
+    <link itemprop="mainEntityOfPage" href="https://starwp.github.io/2020/05/03/Eulerian-Path/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Void Spirit">
@@ -259,7 +259,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Divide Conquer</h1>
+          <h1 class="post-title" itemprop="name headline">Eulerian Path</h1>
         
 
         <div class="post-meta">
@@ -271,8 +271,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-08T23:22:00-04:00">
-                2020-04-08
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-03T02:48:13-04:00">
+                2020-05-03
               </time>
             
 
@@ -296,7 +296,7 @@
 
           
               <div class="post-description">
-                  dicuss about divide and conquer, and binary tree
+                  Fleury's Algorithm for printing Eulerian Path
               </div>
           
 
@@ -314,54 +314,7 @@
 
       
         <Contents>
-
-
-<h2 id="1-When-to-use-divide-and-conquer"><a href="#1-When-to-use-divide-and-conquer" class="headerlink" title="1 When to use divide and conquer?"></a>1 When to use divide and conquer?</h2><p>When the problem can be divided and the divided part can be solved based on the similar procedure, it is reasonable to use divide and conquer.  This also suggest that divide conquer can apply to some special data structures, like binary tree, which has the recursion structure. </p>
-<p>Typically, we can solve the following problems by employing divide and conquer.</p>
-<p>$$\begin{equation}\label{eq1}T(n) = 2T(n/2) + O(1) = O(n) \tag{1}<br>\end{equation}$$</p>
-<p>$$\begin{equation}\label{eq2}<br>T(n) = 2T(n/2) + O(n) = O(n \log n) \tag{2}<br>\end{equation}$$</p>
-<h2 id="2-Comparison-between-traverse-and-divide-conquer"><a href="#2-Comparison-between-traverse-and-divide-conquer" class="headerlink" title="2 Comparison between traverse and divide conquer"></a>2 Comparison between traverse and divide conquer</h2><ul>
-<li>2.1 both can be implemented by recursion</li>
-<li>2.2 result in parameter v.s. result in return value</li>
-<li>2.3 top down v.s. bottom up</li>
-</ul>
-<h2 id="3-How-to-solve-the-related-problems"><a href="#3-How-to-solve-the-related-problems" class="headerlink" title="3 How to solve the related problems?"></a>3 How to solve the related problems?</h2><h3 id="3-1-The-basic-application"><a href="#3-1-The-basic-application" class="headerlink" title="3.1 The basic application"></a>3.1 The basic application</h3><p>Suppose we define a problem $P(root)$ which computes a target value in a binary tree. The problem $P(root)$ can be solved by divide and conquer if we can employ the same function to solve the subproblem like $P(root.left)$ and $P(root.right)$ and then merge the results to get the target value for $P(root)$. The peusudo code is shown in below.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Problem</span><span class="params">(root)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># boundary conditions</span></span><br><span class="line">    left = Problem(root.left)</span><br><span class="line">    right = Problem(root.right)</span><br><span class="line">    <span class="keyword">return</span> Merge(left, right)</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-2-The-advanced-version"><a href="#3-2-The-advanced-version" class="headerlink" title="3.2 The advanced version"></a>3.2 The advanced version</h3><p>Similarly, suppose we define a problem $P(root)$ which computes a target value in a binary tree. The problem $P(root)$ actually can be solved by employing a different auxiliary function $P’(root.left)$ and $P’(root.right)$. This indicates that we should combine two problems $P(\cdot)$ and $P’(\cdot)$ together to solve the problem. The peusudo code is shown in below.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Problem</span><span class="params">(root)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># boundary conditions</span></span><br><span class="line">    left0, left1 = Problem(root.left)</span><br><span class="line">    right0, right1 = Problem(root.right)</span><br><span class="line">    <span class="keyword">return</span> Merge0(left0, right0), Merge1(left1, right1)</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-3-The-boundary-conditions"><a href="#3-3-The-boundary-conditions" class="headerlink" title="3.3 The boundary conditions"></a>3.3 The boundary conditions</h3><p>This needs a precise design. According to my experience so far, we summarize a few examples. </p>
-<pre><code>      root
-      /
-    node1
-    /
- node2
-  /
-None</code></pre><ul>
-<li>Case 1: If the $P(root)$ needs to return a value 3, the boundary condition is designed as: </li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Problem</span><span class="params">(root)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># boundary condition</span></span><br><span class="line">    <span class="keyword">if</span> root <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">		</span><br><span class="line">    <span class="comment"># return condition</span></span><br><span class="line">    <span class="keyword">return</span> Merge(left, right) + <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Case 2: If the $P(root)$ needs to return a value 2, the boundary condition is designed as:</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Problem</span><span class="params">(root)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># boundary condition</span></span><br><span class="line">    <span class="keyword">if</span> root <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">		</span><br><span class="line">    <span class="comment"># return condition</span></span><br><span class="line">    <span class="keyword">return</span> Merge(left, right) + <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+https://www.youtube.com/watch?v=8MpoO2zA2l4
 
       
     </div>
@@ -386,8 +339,8 @@ None</code></pre><ul>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/08/Selenium-WebDriver/" rel="next" title="Selenium WebDriver">
-                <i class="fa fa-chevron-left"></i> Selenium WebDriver
+              <a href="/2020/05/03/Cycle-Detection/" rel="next" title="Cycle Detection">
+                <i class="fa fa-chevron-left"></i> Cycle Detection
               </a>
             
           </div>
@@ -395,10 +348,6 @@ None</code></pre><ul>
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/04/13/Breadth-First-Search/" rel="prev" title="Breadth First Search">
-                Breadth First Search <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -450,17 +399,8 @@ None</code></pre><ul>
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -500,22 +440,6 @@ None</code></pre><ul>
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-When-to-use-divide-and-conquer"><span class="nav-text">1 When to use divide and conquer?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Comparison-between-traverse-and-divide-conquer"><span class="nav-text">2 Comparison between traverse and divide conquer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-How-to-solve-the-related-problems"><span class="nav-text">3 How to solve the related problems?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-The-basic-application"><span class="nav-text">3.1 The basic application</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-The-advanced-version"><span class="nav-text">3.2 The advanced version</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-The-boundary-conditions"><span class="nav-text">3.3 The boundary conditions</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
