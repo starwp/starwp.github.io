@@ -87,7 +87,7 @@
 <meta property="og:description" content="Cycle detection algorithms https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Cycle_detection. Given an array of n + 1 integers with each in [1, n], can you detect duplicates in O(1) space and O(n) time?">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-03T06:43:04.000Z">
-<meta property="article:modified_time" content="2020-05-05T06:30:24.315Z">
+<meta property="article:modified_time" content="2020-05-08T06:36:04.030Z">
 <meta property="article:author" content="Void Spirit">
 <meta name="twitter:card" content="summary">
 
@@ -317,7 +317,7 @@
 ## 1 Find the element that appear once
 
 <h3 id="1-1-Problem-statement"><a href="#1-1-Problem-statement" class="headerlink" title="1.1 Problem statement:"></a>1.1 Problem statement:</h3><p>Given an array of n + 1 integers with each in [1, n], can you detect duplicates in O(1) space and O(n) time?</p>
-<h3 id="1-2-Solution"><a href="#1-2-Solution" class="headerlink" title="1.2 Solution:"></a>1.2 Solution:</h3><p>As all the integers are ranged in [1, n], there must be at least one duplicate due to the pigeonhole principle. The trick is to treat each integer as an index of the input array, such that it points to another integer in the input i.e. treat it as a “pointer”.</p>
+<h3 id="1-2-Solution"><a href="#1-2-Solution" class="headerlink" title="1.2 Solution:"></a>1.2 Solution:</h3><p>As all the integers are ranged in [1, n], there must be at least one duplicate due to the pigeonhole principle. The trick is to treat each integer as an index of the input array, such that it points to another integer in the input i.e. treat it as a “pointer”. </p>
 <p>Then, we need to locate a starting point. In this case, if we consider the index starts from 0, the 1st integer cannot have any pointers going to it, since its position is smaller than any integers in the array. Of course, if the index starts from 1, it is intuitive to find the nth integer as the starting point as it is larger than any interger in the array. </p>
 <p>After that, we can use Floyd’s cycle-finding algorithm (Floyd’s Tortoise and Hare).  </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findDuplicate</span><span class="params">(nums)</span>:</span></span><br><span class="line">    </span><br><span class="line">    slow = <span class="number">0</span></span><br><span class="line">    slow = nums[slow]</span><br><span class="line">    fast = nums[slow]</span><br><span class="line">    <span class="keyword">while</span> slow != fast:</span><br><span class="line">        slow = nums[slow]</span><br><span class="line">        fast = nums[nums[fast]]</span><br><span class="line"></span><br><span class="line">    fast = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> slow != fast:</span><br><span class="line">        fast = nums[fast]</span><br><span class="line">        slow = nums[slow]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> slow</span><br></pre></td></tr></table></figure>
@@ -438,7 +438,7 @@
             
               <div class="site-state-item site-state-posts">
                 <a href="/archives">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
