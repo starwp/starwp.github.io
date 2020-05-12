@@ -79,17 +79,22 @@
 
 
 
-<meta name="description" content="Cycle detection algorithms https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Cycle_detection. Given an array of n + 1 integers with each in [1, n], can you detect duplicates in O(1) space and O(n) time?">
+<meta name="description" content="“Cycle detection algorithms. Given an array of n + 1 integers with each in [1, n], can you detect duplicates in O(1) space and O(n) time?”">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cycle Detection">
 <meta property="og:url" content="https://starwp.github.io/2020/05/03/Cycle-Detection/index.html">
 <meta property="og:site_name" content="Make It Happen">
-<meta property="og:description" content="Cycle detection algorithms https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Cycle_detection. Given an array of n + 1 integers with each in [1, n], can you detect duplicates in O(1) space and O(n) time?">
+<meta property="og:description" content="“Cycle detection algorithms. Given an array of n + 1 integers with each in [1, n], can you detect duplicates in O(1) space and O(n) time?”">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://miro.medium.com/max/1400/1*3SAWEV0Q5P8x2i6eY6ht1A.jpeg">
+<meta property="og:image" content="https://ichef.bbci.co.uk/images/ic/1280xn/p06sdj32.jpg">
+<meta property="og:image" content="https://m.media-amazon.com/images/M/MV5BZmM1MDdlMTItZTU2Mi00MmQ0LWE3OGUtMjZiOWEwZWUyMDAzXkEyXkFqcGdeQXVyNDgyODgxNjE@._V1_.jpg">
+<meta property="og:image" content="https://pic.leetcode-cn.com/9c5b49fc4678549f703bb997a9254e99a4d66f5ec0909f4aa2d88f14261673cc-file_1587171752327">
 <meta property="article:published_time" content="2020-05-03T06:43:04.000Z">
-<meta property="article:modified_time" content="2020-05-08T06:36:04.030Z">
+<meta property="article:modified_time" content="2020-05-12T02:09:10.510Z">
 <meta property="article:author" content="Void Spirit">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://miro.medium.com/max/1400/1*3SAWEV0Q5P8x2i6eY6ht1A.jpeg">
 
 
 
@@ -295,10 +300,6 @@
           
 
           
-              <div class="post-description">
-                  Cycle detection algorithms https://en.wikipedia.org/wiki/Cycle_detection. Given an array of n + 1 integers with each in [1, n], can you detect duplicates in O(1) space and O(n) time?
-              </div>
-          
 
         </div>
       </header>
@@ -313,13 +314,22 @@
       
 
       
-        <Contents>
-## 1 Find the element that appear once
+        <p>“<a href="https://en.wikipedia.org/wiki/Cycle_detection" target="_blank" rel="noopener">Cycle detection algorithms</a>. Given an array of n + 1 integers with each in [1, n], can you detect duplicates in O(1) space and O(n) time?”</p>
+<div class="group-picture"><div class="group-picture-container"><div class="group-picture-row"><div class="group-picture-column"  style="width: 33.333333333333336%;"><img src="https://miro.medium.com/max/1400/1*3SAWEV0Q5P8x2i6eY6ht1A.jpeg" class="" width="300"></div><div class="group-picture-column"  style="width: 33.333333333333336%;"><img src="https://ichef.bbci.co.uk/images/ic/1280xn/p06sdj32.jpg" class="" width="300"></div><div class="group-picture-column"  style="width: 33.333333333333336%;"><img src="https://m.media-amazon.com/images/M/MV5BZmM1MDdlMTItZTU2Mi00MmQ0LWE3OGUtMjZiOWEwZWUyMDAzXkEyXkFqcGdeQXVyNDgyODgxNjE@._V1_.jpg" class="" width="300"></div></div><div class="group-picture-row"></div></div></div>
 
-<h3 id="1-1-Problem-statement"><a href="#1-1-Problem-statement" class="headerlink" title="1.1 Problem statement:"></a>1.1 Problem statement:</h3><p>Given an array of n + 1 integers with each in [1, n], can you detect duplicates in O(1) space and O(n) time?</p>
+
+
+<a id="more"></a>
+<h2 id="1-Find-the-element-that-appear-once"><a href="#1-Find-the-element-that-appear-once" class="headerlink" title="1 Find the element that appear once"></a>1 Find the element that appear once</h2><h3 id="1-1-Problem-statement"><a href="#1-1-Problem-statement" class="headerlink" title="1.1 Problem statement:"></a>1.1 Problem statement:</h3><p>Given an array of n + 1 integers with each in [1, n], can you detect duplicates in O(1) space and O(n) time?</p>
 <h3 id="1-2-Solution"><a href="#1-2-Solution" class="headerlink" title="1.2 Solution:"></a>1.2 Solution:</h3><p>As all the integers are ranged in [1, n], there must be at least one duplicate due to the pigeonhole principle. The trick is to treat each integer as an index of the input array, such that it points to another integer in the input i.e. treat it as a “pointer”. </p>
 <p>Then, we need to locate a starting point. In this case, if we consider the index starts from 0, the 1st integer cannot have any pointers going to it, since its position is smaller than any integers in the array. Of course, if the index starts from 1, it is intuitive to find the nth integer as the starting point as it is larger than any interger in the array. </p>
 <p>After that, we can use Floyd’s cycle-finding algorithm (Floyd’s Tortoise and Hare).  </p>
+ <img src="https://pic.leetcode-cn.com/9c5b49fc4678549f703bb997a9254e99a4d66f5ec0909f4aa2d88f14261673cc-file_1587171752327" width = "800" alt="" align=center />
+
+
+
+<p>L: the distance between the starting point and the cycle start.<br>C: cycle length<br>C’: distance between where hare stays in the cycle and the cycle start.</p>
+<p>It holds that<br>$$\begin{equation}\label{eq1}<br>L = (N - 1) * C + (C - C’)<br>\end{equation}$$</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findDuplicate</span><span class="params">(nums)</span>:</span></span><br><span class="line">    </span><br><span class="line">    slow = <span class="number">0</span></span><br><span class="line">    slow = nums[slow]</span><br><span class="line">    fast = nums[slow]</span><br><span class="line">    <span class="keyword">while</span> slow != fast:</span><br><span class="line">        slow = nums[slow]</span><br><span class="line">        fast = nums[nums[fast]]</span><br><span class="line"></span><br><span class="line">    fast = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> slow != fast:</span><br><span class="line">        fast = nums[fast]</span><br><span class="line">        slow = nums[slow]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> slow</span><br></pre></td></tr></table></figure>
 
 <h3 id="1-3-Add-the-offset"><a href="#1-3-Add-the-offset" class="headerlink" title="1.3 Add the offset."></a>1.3 Add the offset.</h3><p>We can add the offset to this array, for example:</p>
@@ -475,7 +485,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-Problem-statement"><span class="nav-text">1.1 Problem statement:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Solution"><span class="nav-text">1.2 Solution:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-Add-the-offset"><span class="nav-text">1.3 Add the offset.</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Find-the-element-that-appear-once"><span class="nav-text">1 Find the element that appear once</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-Problem-statement"><span class="nav-text">1.1 Problem statement:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Solution"><span class="nav-text">1.2 Solution:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-Add-the-offset"><span class="nav-text">1.3 Add the offset.</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -568,9 +578,6 @@
 
 
 
-  
-  
-
 
 
 
@@ -608,16 +615,6 @@
   
   
     <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/three.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
   
 
 
@@ -729,5 +726,6 @@
 
   
 
+<script src="<%- config.root %>js/hexo_resize_image.js"></script>
 </body>
 </html>
