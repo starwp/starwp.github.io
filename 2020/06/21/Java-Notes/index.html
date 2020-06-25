@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="Good tool for web crawler. I actually use it to grade the homework, as the students sumbit their turing code. Selenium is really easy to use by just getting the id of the element.">
+<meta name="description" content="This records my Java notes">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Selenium WebDriver">
-<meta property="og:url" content="https://starwp.github.io/2020/04/08/Selenium-WebDriver/index.html">
+<meta property="og:title" content="Java Notes">
+<meta property="og:url" content="https://starwp.github.io/2020/06/21/Java-Notes/index.html">
 <meta property="og:site_name" content="Make It Happen">
-<meta property="og:description" content="Good tool for web crawler. I actually use it to grade the homework, as the students sumbit their turing code. Selenium is really easy to use by just getting the id of the element.">
+<meta property="og:description" content="This records my Java notes">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-08T05:34:17.000Z">
-<meta property="article:modified_time" content="2020-05-04T17:42:21.827Z">
+<meta property="article:published_time" content="2020-06-21T14:21:52.000Z">
+<meta property="article:modified_time" content="2020-06-25T06:16:40.880Z">
 <meta property="article:author" content="Void Spirit">
 <meta name="twitter:card" content="summary">
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://starwp.github.io/2020/04/08/Selenium-WebDriver/"/>
+  <link rel="canonical" href="https://starwp.github.io/2020/06/21/Java-Notes/"/>
 
 
 
 
 
-  <title>Selenium WebDriver | Make It Happen</title>
+  <title>Java Notes | Make It Happen</title>
   
 
 
@@ -242,7 +242,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://starwp.github.io/2020/04/08/Selenium-WebDriver/">
+    <link itemprop="mainEntityOfPage" href="https://starwp.github.io/2020/06/21/Java-Notes/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Void Spirit">
@@ -259,7 +259,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Selenium WebDriver</h1>
+          <h1 class="post-title" itemprop="name headline">Java Notes</h1>
         
 
         <div class="post-meta">
@@ -271,8 +271,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-08T01:34:17-04:00">
-                2020-04-08
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-21T10:21:52-04:00">
+                2020-06-21
               </time>
             
 
@@ -296,7 +296,7 @@
 
           
               <div class="post-description">
-                  Good tool for web crawler. I actually use it to grade the homework, as the students sumbit their turing code. Selenium is really easy to use by just getting the id of the element.
+                  This records my Java notes
               </div>
           
 
@@ -315,9 +315,41 @@
       
         <Contents>
 
+<h2 id="1-basic-operation"><a href="#1-basic-operation" class="headerlink" title="1. basic operation"></a>1. basic operation</h2><p>The first snippet is about the type of math operation.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">long</span> a = <span class="number">100000000L</span>;</span><br><span class="line"><span class="keyword">short</span> b = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">byte</span> c = <span class="number">8</span>;</span><br><span class="line">System.out.print(a + b);<span class="comment">// should be a long type</span></span><br><span class="line">System.out.print(b + c);<span class="comment">// should be an int type</span></span><br></pre></td></tr></table></figure>
 
-<p>The simple version of my code is shown in below.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.keys <span class="keyword">import</span> Keys</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">runOnineTuringMachine</span><span class="params">()</span>:</span></span><br><span class="line">    driver = webdriver.Chrome(<span class="string">'C:\chromedriver_win32\chromedriver.exe'</span>)  </span><br><span class="line">    driver.get(<span class="string">'http://morphett.info/turing/turing.html'</span>)</span><br><span class="line">    driver.maximize_window()</span><br><span class="line">    elem = driver.find_element_by_id(<span class="string">'InitialIput'</span>)</span><br><span class="line">    elem.clear()</span><br><span class="line">    elem.send_keys(<span class="string">'1100'</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">r'test_machine.txt'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        content = f.readlines()</span><br><span class="line">    content = [x.strip() <span class="keyword">for</span> x <span class="keyword">in</span> content <span class="keyword">if</span> len(x) != <span class="number">0</span>]</span><br><span class="line">    elem = driver.find_element_by_id(<span class="string">'Source'</span>)</span><br><span class="line">    elem.clear()</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">for</span> x  <span class="keyword">in</span> content:</span><br><span class="line">        elem.send_keys(x)</span><br><span class="line">        elem.send_keys(Keys.RETURN)</span><br><span class="line">    </span><br><span class="line">    elem = driver.find_element_by_id(<span class="string">'ResetButton'</span>)</span><br><span class="line">    elem.click()</span><br><span class="line">    elem = driver.find_element_by_id(<span class="string">'RunButton'</span>)</span><br><span class="line">    elem.click()</span><br><span class="line">    time.sleep(<span class="number">5</span>) </span><br><span class="line">    elem = driver.find_by_id(<span class="string">'ActiveTape'</span>)</span><br><span class="line">    text = elem.text</span><br><span class="line">    driver.quit()</span><br><span class="line">	<span class="keyword">return</span> text</span><br></pre></td></tr></table></figure>
+<p>Then, we take a look at the operation i++ and ++i.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> b = a++;</span><br><span class="line"><span class="keyword">int</span> c = ++a;</span><br><span class="line">System.out.print(b);<span class="comment">// should output 1  </span></span><br><span class="line">System.out.print(c);<span class="comment">// should output 3</span></span><br></pre></td></tr></table></figure>
+
+<p>For the string, it has a difference depends where we put it.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> b = <span class="number">20</span>;</span><br><span class="line">System.out.print(<span class="string">''</span> + a + b);<span class="comment">// should output string 1020 </span></span><br><span class="line">System.out.print(a + b + <span class="string">''</span>);<span class="comment">// should output string 30</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="2-Memory-Management"><a href="#2-Memory-Management" class="headerlink" title="2 Memory Management"></a>2 Memory Management</h1><p>The local primitive data type including int, float, char and others (8 in total) are stored in the stack memory. For example,</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">10</span>; <span class="comment">// the type, name, value of the variable is stored in the stack memory.</span></span><br></pre></td></tr></table></figure>
+
+<p>In addition, the local variables which are all used to store the references of the objects. These variables are also stored in the stack memory. However, the objects are stored in the heap memory. For instance,</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Integer a = <span class="keyword">new</span> Integer();<span class="comment">// the type, name, represented reference of the variable a is stored in the stack memory, but key word new makes the oject Integer() in the heap memory.</span></span><br></pre></td></tr></table></figure>
+
+<p>In addition, for the heap memory, there exists</p>
+<ol>
+<li>Young Generation</li>
+<li>Old Generation</li>
+<li>Permanent Generation</li>
+</ol>
+<p>img<a href="https://i.stack.imgur.com/eP0SJ.png" target="_blank" rel="noopener"></a></p>
+<p>Notice that the string objects (if not declared by new) should be stored in the string pool in the permanent memory in the heap, which causes the following:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String a = <span class="string">'abc'</span>;</span><br><span class="line">String b = <span class="string">'abc'</span>;</span><br><span class="line">System.out.println(a==b);<span class="comment">//should return True</span></span><br><span class="line"></span><br><span class="line">String c = <span class="keyword">new</span> String(<span class="string">'abc'</span>);</span><br><span class="line">String d = <span class="keyword">new</span> String(<span class="string">'abc'</span>);</span><br><span class="line">System.out.println(a==b);<span class="comment">//should return False</span></span><br></pre></td></tr></table></figure>
+
+<p>Please be careful that ‘’==’’ is a reference matching operator if the variables are not primitive data types.</p>
+<p>Reference:</p>
+<ol>
+<li><a href="https://www.sololearn.com/Discuss/482015/why-is-the-output-show-false" target="_blank" rel="noopener">https://www.sololearn.com/Discuss/482015/why-is-the-output-show-false</a></li>
+<li>[<a href="https://www.quora.com/Where-is-a-Java-string-stored#:~:text=The%20variables%20in%20the%20Java,reference%20variable%20in%20the%20stack.]" target="_blank" rel="noopener">https://www.quora.com/Where-is-a-Java-string-stored#:~:text=The%20variables%20in%20the%20Java,reference%20variable%20in%20the%20stack.]</a>(<a href="https://www.quora.com/Where-is-a-Java-string-stored#:~:text=The" target="_blank" rel="noopener">https://www.quora.com/Where-is-a-Java-string-stored#:~:text=The</a> variables in the Java,reference variable in the stack.)</li>
+<li><a href="https://stackoverflow.com/questions/22779145/java-primitive-data-type-on-stack-or-heap" target="_blank" rel="noopener">https://stackoverflow.com/questions/22779145/java-primitive-data-type-on-stack-or-heap</a></li>
+<li><a href="https://stackoverflow.com/questions/2129044/java-heap-terminology-young-old-and-permanent-generations" target="_blank" rel="noopener">https://stackoverflow.com/questions/2129044/java-heap-terminology-young-old-and-permanent-generations</a></li>
+<li><a href="https://stackoverflow.com/questions/41120129/java-stack-and-heap-memory-management" target="_blank" rel="noopener">https://stackoverflow.com/questions/41120129/java-stack-and-heap-memory-management</a></li>
+</ol>
+
       
     </div>
     
@@ -341,8 +373,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/05/Binary-Search/" rel="next" title="Binary Search">
-                <i class="fa fa-chevron-left"></i> Binary Search
+              <a href="/2020/06/18/MarkDown-Sheet/" rel="next" title="MarkDown Sheet">
+                <i class="fa fa-chevron-left"></i> MarkDown Sheet
               </a>
             
           </div>
@@ -351,8 +383,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/04/08/Divide-Conquer/" rel="prev" title="Divide Conquer">
-                Divide Conquer <i class="fa fa-chevron-right"></i>
+              <a href="/2020/06/25/Python-Note/" rel="prev" title="Python Note">
+                Python Note <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -405,8 +437,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -446,6 +487,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-basic-operation"><span class="nav-text">1. basic operation</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Memory-Management"><span class="nav-text">2 Memory Management</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

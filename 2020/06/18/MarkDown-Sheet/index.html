@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="Good tool for web crawler. I actually use it to grade the homework, as the students sumbit their turing code. Selenium is really easy to use by just getting the id of the element.">
+<meta name="description" content="markdwon syntax sheet">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Selenium WebDriver">
-<meta property="og:url" content="https://starwp.github.io/2020/04/08/Selenium-WebDriver/index.html">
+<meta property="og:title" content="MarkDown Sheet">
+<meta property="og:url" content="https://starwp.github.io/2020/06/18/MarkDown-Sheet/index.html">
 <meta property="og:site_name" content="Make It Happen">
-<meta property="og:description" content="Good tool for web crawler. I actually use it to grade the homework, as the students sumbit their turing code. Selenium is really easy to use by just getting the id of the element.">
+<meta property="og:description" content="markdwon syntax sheet">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-08T05:34:17.000Z">
-<meta property="article:modified_time" content="2020-05-04T17:42:21.827Z">
+<meta property="article:published_time" content="2020-06-19T03:42:10.000Z">
+<meta property="article:modified_time" content="2020-06-19T03:48:33.821Z">
 <meta property="article:author" content="Void Spirit">
 <meta name="twitter:card" content="summary">
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://starwp.github.io/2020/04/08/Selenium-WebDriver/"/>
+  <link rel="canonical" href="https://starwp.github.io/2020/06/18/MarkDown-Sheet/"/>
 
 
 
 
 
-  <title>Selenium WebDriver | Make It Happen</title>
+  <title>MarkDown Sheet | Make It Happen</title>
   
 
 
@@ -242,7 +242,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://starwp.github.io/2020/04/08/Selenium-WebDriver/">
+    <link itemprop="mainEntityOfPage" href="https://starwp.github.io/2020/06/18/MarkDown-Sheet/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Void Spirit">
@@ -259,7 +259,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Selenium WebDriver</h1>
+          <h1 class="post-title" itemprop="name headline">MarkDown Sheet</h1>
         
 
         <div class="post-meta">
@@ -271,8 +271,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-08T01:34:17-04:00">
-                2020-04-08
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-18T23:42:10-04:00">
+                2020-06-18
               </time>
             
 
@@ -296,7 +296,7 @@
 
           
               <div class="post-description">
-                  Good tool for web crawler. I actually use it to grade the homework, as the students sumbit their turing code. Selenium is really easy to use by just getting the id of the element.
+                  markdwon syntax sheet
               </div>
           
 
@@ -316,8 +316,57 @@
         <Contents>
 
 
-<p>The simple version of my code is shown in below.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.keys <span class="keyword">import</span> Keys</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">runOnineTuringMachine</span><span class="params">()</span>:</span></span><br><span class="line">    driver = webdriver.Chrome(<span class="string">'C:\chromedriver_win32\chromedriver.exe'</span>)  </span><br><span class="line">    driver.get(<span class="string">'http://morphett.info/turing/turing.html'</span>)</span><br><span class="line">    driver.maximize_window()</span><br><span class="line">    elem = driver.find_element_by_id(<span class="string">'InitialIput'</span>)</span><br><span class="line">    elem.clear()</span><br><span class="line">    elem.send_keys(<span class="string">'1100'</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">r'test_machine.txt'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        content = f.readlines()</span><br><span class="line">    content = [x.strip() <span class="keyword">for</span> x <span class="keyword">in</span> content <span class="keyword">if</span> len(x) != <span class="number">0</span>]</span><br><span class="line">    elem = driver.find_element_by_id(<span class="string">'Source'</span>)</span><br><span class="line">    elem.clear()</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">for</span> x  <span class="keyword">in</span> content:</span><br><span class="line">        elem.send_keys(x)</span><br><span class="line">        elem.send_keys(Keys.RETURN)</span><br><span class="line">    </span><br><span class="line">    elem = driver.find_element_by_id(<span class="string">'ResetButton'</span>)</span><br><span class="line">    elem.click()</span><br><span class="line">    elem = driver.find_element_by_id(<span class="string">'RunButton'</span>)</span><br><span class="line">    elem.click()</span><br><span class="line">    time.sleep(<span class="number">5</span>) </span><br><span class="line">    elem = driver.find_by_id(<span class="string">'ActiveTape'</span>)</span><br><span class="line">    text = elem.text</span><br><span class="line">    driver.quit()</span><br><span class="line">	<span class="keyword">return</span> text</span><br></pre></td></tr></table></figure>
+<h1 id="Markdown-Sheet"><a href="#Markdown-Sheet" class="headerlink" title="Markdown Sheet"></a>Markdown Sheet</h1><h2 id="Title"><a href="#Title" class="headerlink" title="Title"></a>Title</h2><p>title: # + ‘space’ + title</p>
+<p>second title: ## + ‘space’ + title </p>
+<h2 id="Font"><a href="#Font" class="headerlink" title="Font"></a>Font</h2><p>bold: <strong>bot sides with double star signs</strong></p>
+<p>italic: <em>both sides with one star sign</em></p>
+<p>bold + italic: <strong><em>both sides with three star signs</em></strong></p>
+<p>delete line: <del>both sides with double tilde signs</del></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><blockquote>
+<p>‘&gt;’  + ‘space’ + my references</p>
+</blockquote>
+<h2 id="Dividing-line"><a href="#Dividing-line" class="headerlink" title="Dividing line"></a>Dividing line</h2><hr>
+<hr>
+<ol>
+<li>three minus signs —</li>
+<li>three star signs ***</li>
+</ol>
+<h2 id="Figure"><a href="#Figure" class="headerlink" title="Figure"></a>Figure</h2><p> <img src="" alt=""></p>
+<h2 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h2><h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><ol>
+<li>number + ‘.’ + ‘space’</li>
+<li>eg</li>
+</ol>
+<ul>
+<li>unordered: ‘-‘ + ‘space’</li>
+<li>eg</li>
+</ul>
+<h2 id="Table"><a href="#Table" class="headerlink" title="Table"></a>Table</h2><ol>
+<li><p>insert by Typora</p>
+</li>
+<li><p>“eg1|eg2|eg3”</p>
+<p> “–|–|–”</p>
+<p>“eg1|eg2|eg3”</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>gender</th>
+<th>birth</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Jack</td>
+<td>Male</td>
+<td>2000</td>
+</tr>
+</tbody></table>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">​```python</span><br><span class="line"></span><br><span class="line">code stuff</span><br></pre></td></tr></table></figure>
+
+
+<p>to be continued</p>
+
       
     </div>
     
@@ -341,8 +390,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/05/Binary-Search/" rel="next" title="Binary Search">
-                <i class="fa fa-chevron-left"></i> Binary Search
+              <a href="/2020/05/11/Queue-Using-Stacks/" rel="next" title="Queue Using Stacks">
+                <i class="fa fa-chevron-left"></i> Queue Using Stacks
               </a>
             
           </div>
@@ -351,8 +400,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/04/08/Divide-Conquer/" rel="prev" title="Divide Conquer">
-                Divide Conquer <i class="fa fa-chevron-right"></i>
+              <a href="/2020/06/21/Java-Notes/" rel="prev" title="Java Notes">
+                Java Notes <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -405,8 +454,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -446,6 +504,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Markdown-Sheet"><span class="nav-text">Markdown Sheet</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Title"><span class="nav-text">Title</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Font"><span class="nav-text">Font</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dividing-line"><span class="nav-text">Dividing line</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Figure"><span class="nav-text">Figure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Link"><span class="nav-text">Link</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List"><span class="nav-text">List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Table"><span class="nav-text">Table</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code"><span class="nav-text">Code</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
