@@ -86,10 +86,12 @@
 <meta property="og:site_name" content="Make It Happen">
 <meta property="og:description" content="This records my Java notes">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.stack.imgur.com/eP0SJ.png">
 <meta property="article:published_time" content="2020-06-21T14:21:52.000Z">
-<meta property="article:modified_time" content="2020-06-25T06:16:40.880Z">
+<meta property="article:modified_time" content="2020-06-26T04:17:56.495Z">
 <meta property="article:author" content="Void Spirit">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.stack.imgur.com/eP0SJ.png">
 
 
 
@@ -336,7 +338,7 @@
 <li>Old Generation</li>
 <li>Permanent Generation</li>
 </ol>
-<p>img<a href="https://i.stack.imgur.com/eP0SJ.png" target="_blank" rel="noopener"></a></p>
+<p><img src="https://i.stack.imgur.com/eP0SJ.png" alt=""></p>
 <p>Notice that the string objects (if not declared by new) should be stored in the string pool in the permanent memory in the heap, which causes the following:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String a = <span class="string">'abc'</span>;</span><br><span class="line">String b = <span class="string">'abc'</span>;</span><br><span class="line">System.out.println(a==b);<span class="comment">//should return True</span></span><br><span class="line"></span><br><span class="line">String c = <span class="keyword">new</span> String(<span class="string">'abc'</span>);</span><br><span class="line">String d = <span class="keyword">new</span> String(<span class="string">'abc'</span>);</span><br><span class="line">System.out.println(a==b);<span class="comment">//should return False</span></span><br></pre></td></tr></table></figure>
 
@@ -460,7 +462,7 @@
             
               <div class="site-state-item site-state-posts">
                 <a href="/archives">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
