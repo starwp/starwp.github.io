@@ -86,13 +86,14 @@
 <meta property="og:site_name" content="Make It Happen">
 <meta property="og:description" content="The key idea of binary search">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://starwp.github.io/2020/06/25/Sliding-Window/image-20200626002425111.png">
-<meta property="og:image" content="https://starwp.github.io/2020/06/25/Sliding-Window/image-20200626002801747.png">
+<meta property="og:image" content="https://starwp.github.io/2020/06/25/Sliding-Window/image-20200706224309985.png">
+<meta property="og:image" content="https://starwp.github.io/2020/06/25/Sliding-Window/image-20200706232631967.png">
+<meta property="og:image" content="https://starwp.github.io/2020/06/25/Sliding-Window/image-20200706232800001.png">
 <meta property="article:published_time" content="2020-06-25T22:08:55.000Z">
-<meta property="article:modified_time" content="2020-06-26T04:37:53.614Z">
+<meta property="article:modified_time" content="2020-07-07T03:54:47.790Z">
 <meta property="article:author" content="Void Spirit">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://starwp.github.io/2020/06/25/Sliding-Window/image-20200626002425111.png">
+<meta name="twitter:image" content="https://starwp.github.io/2020/06/25/Sliding-Window/image-20200706224309985.png">
 
 
 
@@ -318,22 +319,67 @@
       
         <Contents>
 
-<h1 id="Template"><a href="#Template" class="headerlink" title="Template"></a>Template</h1><p>Here we present a template for sliding window problem.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def sliding_window(nums, window):</span><br><span class="line">    left, right, value &#x3D; 0, 0, 0</span><br><span class="line">    while right &lt; len(nums):</span><br><span class="line">    	value &#x3D; nums[right] # always consider ther right element</span><br><span class="line">    	right +&#x3D; 1</span><br><span class="line">    	while left - right &gt; window: #shrink the window for the specific condition</span><br><span class="line">    		temp &#x3D; nums[left]</span><br><span class="line">            left +&#x3D; 1</span><br></pre></td></tr></table></figure>
+<h1 id="Templates"><a href="#Templates" class="headerlink" title="Templates"></a>Templates</h1><p>Here we present a first template for sliding window problem.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def sliding_window(A, window):</span><br><span class="line">    left, right, value &#x3D; 0, 0, 0</span><br><span class="line">    while right &lt; len(A):</span><br><span class="line">    	value &#x3D; A[right] # always consider ther right element</span><br><span class="line">    	right +&#x3D; 1</span><br><span class="line">    	while left - right &gt; window: #shrink the window for the specific condition</span><br><span class="line">    		temp &#x3D; A[left]</span><br><span class="line">            left +&#x3D; 1</span><br></pre></td></tr></table></figure>
 
 
 
 <p>The sliding window technique can be used to some two pointer problems, which makes it easy to write the code.</p>
-<h1 id="Common-mistake"><a href="#Common-mistake" class="headerlink" title="Common mistake"></a>Common mistake</h1><ul>
-<li>The common mistake that I usually make is that, since I fix where to increment the index <strong>right</strong>, when going to the while loop for shrinking the size of the window, the index <strong>right</strong> should point to <strong>right+1</strong>. In this case, if we would like to use <strong>right</strong>, it has already been changed and is not the original one, especially when referring to the array index by watching out if we really want to looking at <strong>nums[right]</strong> or <strong>nums[right+1]</strong>.</li>
-</ul>
-<p><img src="image-20200626002425111.png" alt="image-20200626002425111"></p>
+<p>However, when dealing with complex sliding window problem, we might need to move left pointers in the outer loop rather the right pointers in the outer loop. We therefore have the the following template.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sliding_window</span><span class="params">(A, window, start)</span>:</span></span><br><span class="line">    cur_sum, min_len = <span class="number">0</span>, len(A)</span><br><span class="line">    <span class="keyword">for</span> left <span class="keyword">in</span> range(len(A)):</span><br><span class="line">        <span class="keyword">while</span> right &lt; len(A) <span class="keyword">and</span> cur_sum &lt; start:</span><br><span class="line">            cur_sum += A[right]</span><br><span class="line">        <span class="keyword">if</span> cur_sum &gt;= start:</span><br><span class="line">            min_len = min(min_len, right - left)</span><br><span class="line">        cur_sum -= A[left]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> min_len</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Common-mistake"><a href="#Common-mistake" class="headerlink" title="Common mistake"></a>Common mistake</h1><ol>
+<li>The common mistake that I usually make in the first template is that, since I fix where to increment the index <strong>right</strong>, when going to the while loop for shrinking the size of the window, the index <strong>right</strong> should point to <strong>right+1</strong>. In this case, if we would like to use <strong>right</strong>, it has already been changed and is not the original one, especially when referring to the array index by watching out if we really want to looking at <strong>nums[right]</strong> or <strong>nums[right+1]</strong>.</li>
+</ol>
+<p><img src="image-20200706224309985.png" alt="image-20200706224309985"></p>
 <ul>
 <li>The next point is that we should be careful with the <strong>left index</strong> in the <strong>second while</strong> loop</li>
-<li>To reasonably design where to compute the objective.</li>
+<li>To reasonably design where to compute the objective. As it shown in the figure, there might be two options to choose to put the object lines.</li>
 </ul>
-<p><img src="image-20200626002801747.png" alt="image-20200626002801747"></p>
-<p>As it show here, there might be three options.</p>
+<ol start="2">
+<li>To correctly use the second template, we need to be careful of the condition in the inner loop. Taking the question (Subarray Sum II) for example. </li>
+</ol>
+<ul>
+<li>We first consider to compute the minimal length for the subarray sum greater than or equal to the start value. This shows that if both cases are feasible (subarray sum &gt;= start), the correct index is <strong>right - 1</strong>.</li>
+</ul>
+<p><img src="image-20200706232631967.png" alt="image-20200706232631967"></p>
+<ul>
+<li><p>Then, we consider the end side.  </p>
+<ul>
+<li><p>Consider Case 1: right &gt;= len(A) </p>
+<ul>
+<li><p>If <strong>cur_sum &lt;= end</strong>, the feasible index can be <strong>right-1</strong>.  </p>
+</li>
+<li><p>If <strong>cur_sum &gt; end</strong>, the feasible index can be  <strong>right-2</strong>.</p>
+</li>
+</ul>
+</li>
+<li><p>Consider Case 2: cur_sum &gt; end</p>
+<ul>
+<li>The feasible index can only be <strong>right-2</strong></li>
+</ul>
+</li>
+</ul>
+<p><img src="image-20200706232800001.png" alt="image-20200706232800001"></p>
+</li>
+</ul>
+<p>Combining those two cases, we have the following code.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">subarraySumII</span><span class="params">(self, A, start, end)</span>:</span></span><br><span class="line">    </span><br><span class="line">    sum_right_min = sum_right_max = right_min = right_max = cnt = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> left <span class="keyword">in</span> range(len(A)):</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> right_min &lt; len(A) <span class="keyword">and</span> sum_right_min &lt; start:</span><br><span class="line">            sum_right_min += A[right_min]</span><br><span class="line">            right_min += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> right_max &lt; len(A) <span class="keyword">and</span> sum_right_max &lt;= end:</span><br><span class="line">            sum_right_max += A[right_max]</span><br><span class="line">            right_max += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># feasible condition of right_min</span></span><br><span class="line">        <span class="keyword">if</span> sum_right_min &gt;= start <span class="keyword">and</span> right_min &gt; left:</span><br><span class="line">            <span class="keyword">if</span> right_max &gt;= len(A) <span class="keyword">and</span> sum_right_max &lt;= end:</span><br><span class="line">                cnt += (right_max - <span class="number">1</span>) - (right_min - <span class="number">1</span>) + <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                cnt += (right_max - <span class="number">2</span>) - (right_min - <span class="number">1</span>) + <span class="number">1</span> </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> right_min &gt; left:</span><br><span class="line">            sum_right_min -= A[left]</span><br><span class="line">        <span class="keyword">if</span> right_max &gt; left:</span><br><span class="line">        	sum_right_max -= A[left]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> cnt</span><br></pre></td></tr></table></figure>
+
+
+
+<p>Of course, we can use some metric to optimize the logic but need to be careful enough.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">subarraySumII</span><span class="params">(self, A, start, end)</span>:</span></span><br><span class="line">    </span><br><span class="line">    sum_right_min = sum_right_max = right_min = right_max = cnt = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> left <span class="keyword">in</span> range(len(A)):</span><br><span class="line">        </span><br><span class="line">        right_max = max(left, right_max)</span><br><span class="line">        <span class="keyword">while</span> right_min &lt; len(A) <span class="keyword">and</span> sum_right_min &lt; start:</span><br><span class="line">            sum_right_min += A[right_min]</span><br><span class="line">            right_min += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> right_max &lt; len(A) <span class="keyword">and</span> sum_right_max + A[right_max] &lt;= end:</span><br><span class="line">            sum_right_max += A[right_max]</span><br><span class="line">            right_max += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> sum_right_min &gt;= start <span class="keyword">and</span> right_min &gt; left: </span><br><span class="line">            cnt += (right_max - <span class="number">1</span>) - (right_min - <span class="number">1</span>) + <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> right_min &gt; left:</span><br><span class="line">            sum_right_min -= A[left]</span><br><span class="line">        <span class="keyword">if</span> right_max &gt; left:</span><br><span class="line">        	sum_right_max -= A[left]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> cnt</span><br></pre></td></tr></table></figure>
+
+
+
+<p>Or the following code.</p>
+<p>def subarraySumII(self, A, start, end):</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">subarraySumII</span><span class="params">(self, A, start, end)</span>:</span></span><br><span class="line">    </span><br><span class="line">    sum_right_min = sum_right_max = right_min = right_max = cnt = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> left <span class="keyword">in</span> range(len(A)):</span><br><span class="line">        </span><br><span class="line">        right_min = max(left, right_min)</span><br><span class="line">        right_max = max(left, right_max)</span><br><span class="line">        <span class="keyword">while</span> right_min &lt; len(A) <span class="keyword">and</span> sum_right_min + A[right_min] &lt; start:</span><br><span class="line">            sum_right_min += A[right_min]</span><br><span class="line">            right_min += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> right_max &lt; len(A) <span class="keyword">and</span> sum_right_max + A[right_max] &lt;= end:</span><br><span class="line">            sum_right_max += A[right_max]</span><br><span class="line">            right_max += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> right_min &lt; len(A): <span class="comment"># or right_min &lt; right_max</span></span><br><span class="line">            cnt += (right_max - <span class="number">1</span>) - (right_min) + <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> right_min &gt; left:</span><br><span class="line">            sum_right_min -= A[left]</span><br><span class="line">        <span class="keyword">if</span> right_max &gt; left:</span><br><span class="line">        	sum_right_max -= A[left]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> cnt</span><br></pre></td></tr></table></figure>
+
+
 
       
     </div>
@@ -478,7 +524,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Template"><span class="nav-text">Template</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Common-mistake"><span class="nav-text">Common mistake</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Templates"><span class="nav-text">Templates</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Common-mistake"><span class="nav-text">Common mistake</span></a></li></ol></div>
             
 
           </div>
