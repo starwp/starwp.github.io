@@ -309,14 +309,14 @@
 
       
         
-          
-            <a id="more"></a>
-
-<h1 id="Template"><a href="#Template" class="headerlink" title="Template"></a>Template</h1><p>The following is the template for the disjoint set.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UnionFindSet</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__int__</span><span class="params">(self, n)</span></span></span><br><span class="line">    	self.parents = [i for i in range(n+1)]</span><br><span class="line">        self.ranks = [<span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n+<span class="number">1</span>)]</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">find</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        temp = x </span><br><span class="line">        <span class="keyword">while</span> x != self.parents[x]:</span><br><span class="line">            <span class="comment"># self.parents[x] = self.find[parents[x]] recursion path compression</span></span><br><span class="line">            self.parents[x] = self.parents[self.parents[x]]</span><br><span class="line">            x = self.parents[x]</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># iterative path compression</span></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">        while temp != x:</span></span><br><span class="line"><span class="string">            p = self.parents[temp]</span></span><br><span class="line"><span class="string">        	self.parents[temp] = x</span></span><br><span class="line"><span class="string">            temp = p</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">union</span><span class="params">(self, x, y)</span>:</span></span><br><span class="line">        rx, ry = self.find(x), self.find(y)</span><br><span class="line">        <span class="keyword">if</span> rx == ry: </span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">if</span> self.ranks[rx] &lt; self.ranks[ry]:</span><br><span class="line">            self.ranks[rx] = ry</span><br><span class="line">        <span class="keyword">elif</span> self.ranks[rx] &gt; self.ranks[ry]:</span><br><span class="line">            self.ranks[ry] = rx</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.ranks[ry] = rx</span><br><span class="line">            self.ranks[rx] += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
-
-
-          
+          <div class="group-picture"><div class="group-picture-container"><div class="group-picture-row"><div class="group-picture-column"  style="width: 50%;"><img src="https://www2.hawaii.edu/~suthers/courses/ics311f17/Notes/Topic-16/disjoint-set-union-alt.jpg" class="" width="450"></div><div class="group-picture-column"  style="width: 50%;"><img src="https://algocoding.files.wordpress.com/2014/09/uf3_path_compression.png" class="" width="400"></div></div><div class="group-picture-row"></div></div></div>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/07/07/Disjoint-Set/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -433,10 +433,10 @@
 
       
         
-          The key idea of binary search
+          <div class="group-picture"><div class="group-picture-container"><div class="group-picture-row"><div class="group-picture-column"  style="width: 50%;"><img src="https://images.patentswarm.com/US8976860B2/original.d66604dfa1230ffe00ddf7b59e632d726b86918f943bb6a6d6f0defcec1293e7.png" class="" width="300"></div><div class="group-picture-column"  style="width: 50%;"><img src="https://i.ytimg.com/vi/ShbRCjvB_yQ/maxresdefault.jpg" class="" width="400"></div></div><div class="group-picture-row"></div></div></div>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/06/25/Sliding-Window/">
+            <a class="btn" href="/2020/06/25/Sliding-Window/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
