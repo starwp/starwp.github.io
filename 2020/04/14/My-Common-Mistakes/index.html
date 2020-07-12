@@ -87,7 +87,7 @@
 <meta property="og:description" content="Mistakes">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-14T19:19:18.000Z">
-<meta property="article:modified_time" content="2020-06-16T03:27:20.651Z">
+<meta property="article:modified_time" content="2020-07-11T04:48:44.304Z">
 <meta property="article:author" content="Void Spirit">
 <meta name="twitter:card" content="summary">
 
@@ -322,20 +322,27 @@
 <h3 id="4-str-concatenation"><a href="#4-str-concatenation" class="headerlink" title="4. str concatenation"></a>4. str concatenation</h3><p>first build the list of strings, then use ‘’.join(ls) to get them.</p>
 <h3 id="5-how-to-sort-and-return-sorted-indexes"><a href="#5-how-to-sort-and-return-sorted-indexes" class="headerlink" title="5. how to sort and return sorted indexes?"></a>5. how to sort and return sorted indexes?</h3><p>Leetcode </p>
 <ol start="23">
-<li>Merge k Sorted Lists<br>mistake 1: didn’t think of the divide and conquer to merge the lists to improve the time complexity.<br>mistake 2: using heap, forget to update the list: like <pre><code class="python">head.next = node
-head = head.next <span class="comment">#update it to make it proceed to next        </span></code></pre>
+<li>Merge k Sorted Lists<br>mistake 1: didn’t think of the divide and conquer to merge the lists to improve the time complexity.<br>mistake 2: using heap, forget to update the list: like <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">head.next = node</span><br><span class="line">head = head.next <span class="comment">#update it to make it proceed to next</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
 </li>
 </ol>
 <ol start="53">
-<li>Maximum Subarray<br>mistake: overlook the order of dealing the cur_min and max_sum, max_min should be updated before updating cur_min<pre><code class="python"><span class="keyword">for</span> loop:
-    cur_sum += e
-    max_sum = max(max_sum, cur_sum - cur_min)
-    cur_min = min(cur_min, cur_sum)         </code></pre>
+<li>Maximum Subarray<br>mistake: overlook the order of dealing the cur_min and max_sum, max_min should be updated before updating cur_min<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> loop:</span><br><span class="line">    cur_sum += e</span><br><span class="line">    max_sum = max(max_sum, cur_sum - cur_min)</span><br><span class="line">    cur_min = min(cur_min, cur_sum)</span><br></pre></td></tr></table></figure>
+
+
 </li>
 </ol>
 <ol start="263">
 <li>Ugly Number<br>mistake: overlook the recursion depth</li>
 </ol>
+<h1 id="6-index-of-2D-Matrix"><a href="#6-index-of-2D-Matrix" class="headerlink" title="6 index of  2D Matrix"></a>6 index of  2D Matrix</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Matrix[i][j] <span class="comment">#right !!!!</span></span><br><span class="line">Matrix[i, j] <span class="comment">#wrong</span></span><br></pre></td></tr></table></figure>
+
+
+
 
       
     </div>
@@ -447,7 +454,7 @@ head = head.next <span class="comment">#update it to make it proceed to next    
             
               <div class="site-state-item site-state-posts">
                 <a href="/archives">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -484,7 +491,7 @@ head = head.next <span class="comment">#update it to make it proceed to next    
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-“-”"><span class="nav-text">1. “&#x3D;&#x3D;”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-ctrl-v"><span class="nav-text">2. ctrl + v.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-BFS"><span class="nav-text">3. BFS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-str-concatenation"><span class="nav-text">4. str concatenation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-how-to-sort-and-return-sorted-indexes"><span class="nav-text">5. how to sort and return sorted indexes?</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-“-”"><span class="nav-text">1. “&#x3D;&#x3D;”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-ctrl-v"><span class="nav-text">2. ctrl + v.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-BFS"><span class="nav-text">3. BFS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-str-concatenation"><span class="nav-text">4. str concatenation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-how-to-sort-and-return-sorted-indexes"><span class="nav-text">5. how to sort and return sorted indexes?</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-index-of-2D-Matrix"><span class="nav-text">6 index of  2D Matrix</span></a></div>
             
 
           </div>
