@@ -90,8 +90,9 @@
 <meta property="og:image" content="https://ichef.bbci.co.uk/images/ic/1280xn/p06sdj32.jpg">
 <meta property="og:image" content="https://m.media-amazon.com/images/M/MV5BZmM1MDdlMTItZTU2Mi00MmQ0LWE3OGUtMjZiOWEwZWUyMDAzXkEyXkFqcGdeQXVyNDgyODgxNjE@._V1_.jpg">
 <meta property="og:image" content="https://pic.leetcode-cn.com/9c5b49fc4678549f703bb997a9254e99a4d66f5ec0909f4aa2d88f14261673cc-file_1587171752327">
+<meta property="og:image" content="https://starwp.github.io/2020/05/03/Cycle-Detection/image-20200714174341849.png">
 <meta property="article:published_time" content="2020-05-03T06:43:04.000Z">
-<meta property="article:modified_time" content="2020-05-12T02:09:10.510Z">
+<meta property="article:modified_time" content="2020-07-14T21:44:02.357Z">
 <meta property="article:author" content="Void Spirit">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://miro.medium.com/max/1400/1*3SAWEV0Q5P8x2i6eY6ht1A.jpeg">
@@ -330,6 +331,7 @@
 
 <p>L: the distance between the starting point and the cycle start.<br>C: cycle length<br>C’: distance between where hare stays in the cycle and the cycle start.</p>
 <p>It holds that<br>$$\begin{equation}\label{eq1}<br>L = (N - 1) * C + (C - C’)<br>\end{equation}$$</p>
+<p><img src="image-20200714174341849.png" alt="image-20200714174341849"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findDuplicate</span><span class="params">(nums)</span>:</span></span><br><span class="line">    </span><br><span class="line">    slow = <span class="number">0</span></span><br><span class="line">    slow = nums[slow]</span><br><span class="line">    fast = nums[slow]</span><br><span class="line">    <span class="keyword">while</span> slow != fast:</span><br><span class="line">        slow = nums[slow]</span><br><span class="line">        fast = nums[nums[fast]]</span><br><span class="line"></span><br><span class="line">    fast = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> slow != fast:</span><br><span class="line">        fast = nums[fast]</span><br><span class="line">        slow = nums[slow]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> slow</span><br></pre></td></tr></table></figure>
 
 <h3 id="1-3-Add-the-offset"><a href="#1-3-Add-the-offset" class="headerlink" title="1.3 Add the offset."></a>1.3 Add the offset.</h3><p>We can add the offset to this array, for example:</p>
@@ -337,6 +339,9 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findDuplicate_offset</span><span class="params">(nums, offset)</span>:</span></span><br><span class="line">    </span><br><span class="line">    slow = <span class="number">0</span> + offset</span><br><span class="line">    slow = nums[slow - offset]</span><br><span class="line">    fast = nums[slow - offset]</span><br><span class="line">    <span class="keyword">while</span> slow != fast:</span><br><span class="line">        slow = nums[slow - offset]</span><br><span class="line">        fast = nums[nums[fast - offset] - offset]</span><br><span class="line"></span><br><span class="line">    fast = <span class="number">0</span> + offset</span><br><span class="line">    <span class="keyword">while</span> slow != fast:</span><br><span class="line">        fast = nums[fast - offset]</span><br><span class="line">        slow = nums[slow - offset]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> slow</span><br></pre></td></tr></table></figure>
 
 <p>reference: <a href="https://www.jasondavies.com/duplicates/" target="_blank" rel="noopener">https://www.jasondavies.com/duplicates/</a></p>
+<h2 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findDuplicate</span><span class="params">(nums)</span>:</span></span><br><span class="line">    </span><br><span class="line">    start = nums[<span class="number">0</span>] <span class="comment"># we can fix the start point</span></span><br><span class="line">    slow = nums[start]</span><br><span class="line">    find = nums[nums[start]]</span><br><span class="line">    <span class="keyword">while</span> slow != fast:</span><br><span class="line">        slow = nums[slow]</span><br><span class="line">        fast = nums[nums[fast]]</span><br><span class="line"></span><br><span class="line">    fast = start <span class="comment"># equal to start point</span></span><br><span class="line">    <span class="keyword">while</span> slow != fast:</span><br><span class="line">        fast = nums[fast]</span><br><span class="line">        slow = nums[slow]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> slow</span><br></pre></td></tr></table></figure>
+
+<p>For the duplicate problem, the start point can be that “start = nums[0]” or “start = 0”. If it is “start = nums[0]”, it indicates this is the second point along the path. Since the start point “0” has indegree equal to 0, the second point is also acceptable as the start point.</p>
 
       
     </div>
@@ -448,7 +453,7 @@
             
               <div class="site-state-item site-state-posts">
                 <a href="/archives">
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -485,7 +490,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Find-the-element-that-appear-once"><span class="nav-text">1 Find the element that appear once</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-Problem-statement"><span class="nav-text">1.1 Problem statement:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Solution"><span class="nav-text">1.2 Solution:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-Add-the-offset"><span class="nav-text">1.3 Add the offset.</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Find-the-element-that-appear-once"><span class="nav-text">1 Find the element that appear once</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-Problem-statement"><span class="nav-text">1.1 Problem statement:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Solution"><span class="nav-text">1.2 Solution:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-Add-the-offset"><span class="nav-text">1.3 Add the offset.</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Note"><span class="nav-text">Note</span></a></li></ol></div>
             
 
           </div>
