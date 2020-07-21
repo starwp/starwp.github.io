@@ -86,8 +86,11 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://miro.medium.com/max/684/0*3dS6Jw8NzzSD-mn8.jpg">
 <meta property="og:image" content="https://www.mathworks.com/matlabcentral/mlc-downloads/downloads/submissions/67486/versions/1/screenshot.png">
+<meta property="og:image" content="https://starwp.github.io/2020/07/08/Dynamic-Programming/image-20200721180707241.png">
+<meta property="og:image" content="https://starwp.github.io/2020/07/08/Dynamic-Programming/image-20200721183427683.png">
+<meta property="og:image" content="https://starwp.github.io/2020/07/08/Dynamic-Programming/image-20200721180235085.png">
 <meta property="article:published_time" content="2020-07-09T01:38:47.000Z">
-<meta property="article:modified_time" content="2020-07-12T16:28:35.746Z">
+<meta property="article:modified_time" content="2020-07-21T22:34:44.167Z">
 <meta property="article:author" content="Void Spirit">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://miro.medium.com/max/684/0*3dS6Jw8NzzSD-mn8.jpg">
@@ -319,6 +322,96 @@
 
 
 <a id="more"></a>
+
+<h1 id="Knapsack-Problems"><a href="#Knapsack-Problems" class="headerlink" title="Knapsack Problems"></a>Knapsack Problems</h1><p>The following discussion foucus on the series of knapsack problems.</p>
+<h2 id="Problem-1-Basic-Version"><a href="#Problem-1-Basic-Version" class="headerlink" title="Problem 1: Basic Version"></a>Problem 1: Basic Version</h2><p>Given <em>n</em> items with size Ai, an integer <em>m</em> denotes the size of a backpack, find the maximum size we can fit.</p>
+<p>We can solve the problem based on the last step induction method. That is, the last item is either considered in the maximum size or not. Additionaly, the size should be a key. Hence, we get the recurrence quation as follows:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][w] = max(dp[i<span class="number">-1</span>][w], dp[i<span class="number">-1</span>][w-A[w]] + A[w])</span><br></pre></td></tr></table></figure>
+
+<p>where dp[i][w] is defined as <strong>the maximum size we can fit by using the first i items and a backpack with the size of w</strong>. </p>
+<p><img src="image-20200721180707241.png" alt="image-20200721180707241"></p>
+<p>Then, the code is shown</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">knapsack_I</span><span class="params">(A, m)</span>:</span></span><br><span class="line">    dp = collections.defaultdict(int)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(A)):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(m + <span class="number">1</span>):</span><br><span class="line">            dp[i%<span class="number">2</span>,j] = dp[(i<span class="number">-1</span>)%<span class="number">2</span>,j]</span><br><span class="line">            <span class="keyword">if</span> j &gt;= A[i]: </span><br><span class="line">                dp[i%<span class="number">2</span>,j] = max(dp[i%<span class="number">2</span>,j], dp[(i<span class="number">-1</span>)%<span class="number">2</span>,j-A[i]] + A[i])</span><br><span class="line">    <span class="keyword">return</span> dp[(len(A)<span class="number">-1</span>)%<span class="number">2</span>, m]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Notice that since we define that dp[i][w] associates with w and the index j represents the size, we should loop j in <span style="color:red"><strong>[0, m]</strong></span>. </li>
+</ul>
+<h2 id="Problem-2-General-Version"><a href="#Problem-2-General-Version" class="headerlink" title="Problem 2: General Version"></a>Problem 2: General Version</h2><p>Given <code>n</code> items and a backpack with size <code>m</code>. Given array <code>A</code> representing the size of each item and array <code>V</code> representing the value of each item. What’s the maximum value can you put into the backpack?</p>
+<p>This one is similar to the basic version.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">knapsack_II</span><span class="params">(A, V, m)</span>:</span>        </span><br><span class="line">    dp = [[<span class="number">0</span>] * (m + <span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">2</span>)] </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(A)):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, m + <span class="number">1</span>):</span><br><span class="line">            dp[i%<span class="number">2</span>][j] = dp[(i<span class="number">-1</span>)%<span class="number">2</span>][j]</span><br><span class="line">            <span class="keyword">if</span> j &gt;= A[i]:</span><br><span class="line">                dp[i%<span class="number">2</span>][j] = max(dp[i%<span class="number">2</span>][j], dp[(i<span class="number">-1</span>)%<span class="number">2</span>][j-A[i]] + V[i])</span><br><span class="line">    <span class="keyword">return</span> dp[(len(A)<span class="number">-1</span>)%<span class="number">2</span>][m]</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Problem-3-Unbounded-Version"><a href="#Problem-3-Unbounded-Version" class="headerlink" title="Problem 3: Unbounded Version"></a>Problem 3: Unbounded Version</h2><p>Given <code>n</code> items and a backpack with size <code>m</code>. Given array <code>A</code> representing the size of each item and array <code>V</code> representing the value of each item. What’s the maximum value can you put into the backpack? (Each item has infinite number available)</p>
+<h4 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h4><p>Since the problem changes to the unlimited version, from the last step perspective, we consider all the items in the array in the last step</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[w] = max(dp[w<span class="number">-1</span>], dp[w-A[i] + V[i]] <span class="keyword">for</span> i <span class="keyword">in</span> range(len(A)) <span class="keyword">if</span> w &gt;= A[i])</span><br></pre></td></tr></table></figure>
+
+<p>where the defintion dp[i][w] represents that <strong>the maximum value obtained by using any kind of items with unliminted times to achieve the given target w</strong>. </p>
+<p><img src="image-20200721183427683.png" alt="image-20200721183427683"></p>
+<p>Therefore, the code is shown as</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">knapsack_III</span><span class="params">(A, V, m)</span>:</span>        </span><br><span class="line">    dp = [<span class="number">0</span>] * (m + <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">for</span> w <span class="keyword">in</span> range(<span class="number">1</span>, m + <span class="number">1</span>):</span><br><span class="line">        dp[w] = dp[w<span class="number">-1</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(A)):</span><br><span class="line">        	<span class="keyword">if</span> w &gt;= A[i]:</span><br><span class="line">            	dp[w] = max(dp[w], dp[w-A[i]] + V[i])</span><br><span class="line">    <span class="keyword">return</span> dp[m]</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2:"></a>Method 2:</h4><p>Since for any item, we might use <strong>different times</strong>. Assuming that we use it <strong>k</strong> times. Thus, the recurrence equation is shown that:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][w] = max(dp[i<span class="number">-1</span>][w-k*A[i]] + k*V[i] <span class="keyword">for</span> k <span class="keyword">in</span> range(large_number) <span class="keyword">if</span> w &gt;= k*A[i])</span><br></pre></td></tr></table></figure>
+
+<p>where the defintion dp[i][w] represents that <strong>the maximum value obtained by using first i items with unlimited times to achieve the given target w</strong>. However, the problem in above recurrence equation is that the parameter k increases the time complexity. Fortunately, we observe an interesting point that is </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][w-A[i]] = max(dp[i<span class="number">-1</span>][w-(k+<span class="number">1</span>)*A[i]] + k*V[i] <span class="keyword">for</span> k <span class="keyword">in</span> range(large_number) <span class="keyword">if</span> w &gt;= k*A[i])</span><br></pre></td></tr></table></figure>
+
+<p>with the equation above, the recurrence equation can be transfomed to </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][w] = max(dp[i<span class="number">-1</span>][w], dp[i][w-A[i]] + V[i])</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20200721180235085.png" alt="image-20200721180235085"></p>
+<p>Thus, the code is shown as </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">knapsack_III</span><span class="params">(A, V, m)</span>:</span></span><br><span class="line">    dp = [<span class="number">0</span>] * (m + <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(A)):</span><br><span class="line">        <span class="keyword">for</span> w <span class="keyword">in</span> range(m+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> w &gt;= A[i]:</span><br><span class="line">                dp[w] = max(dp[w], dp[w-A[i]] + V[i])</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="Problem-4-Combination-Version"><a href="#Problem-4-Combination-Version" class="headerlink" title="Problem 4: Combination Version"></a>Problem 4: Combination Version</h2><p>Given n items with size <code>A[i]</code> which an integer array and all positive numbers. An integer <code>target</code> denotes the size of a backpack. Find the number of possible fill the backpack. Each item may only be used once.</p>
+<p>As we consider the number of solutions in this problem, so the recurrence equation becomes</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][w] = dp[i<span class="number">-1</span>][w] + dp[i<span class="number">-1</span>][w-A[i]] <span class="comment"># w &gt;= A[i]</span></span><br></pre></td></tr></table></figure>
+
+<p>where the defintion dp[i][w] represents that <strong>the number of ways obtained by using the first i items to achieve the given target w</strong>. Therefore, the code is shown as</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">knapsack_IV</span><span class="params">(A, target)</span>        </span></span><br><span class="line"><span class="function">    <span class="title">if</span> <span class="title">sum</span><span class="params">(A)</span> &lt; <span class="title">target</span>:</span> <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    dp = [[<span class="number">0</span>] * (target + <span class="number">1</span>), [<span class="number">1</span>] + [<span class="number">0</span>] * target]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(A)):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(target + <span class="number">1</span>):</span><br><span class="line">            dp[i%<span class="number">2</span>][j] = dp[(i<span class="number">-1</span>)%<span class="number">2</span>][j]</span><br><span class="line">            <span class="keyword">if</span> j &gt;= A[i]:</span><br><span class="line">                dp[i%<span class="number">2</span>][j] += dp[(i<span class="number">-1</span>)%<span class="number">2</span>][j-A[i]]  </span><br><span class="line">    <span class="keyword">return</span> dp[(len(A)<span class="number">-1</span>)%<span class="number">2</span>][target]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Notice that the initial condition for this problem is that </li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[<span class="number">-1</span>][<span class="number">0</span>] = <span class="number">1</span> <span class="comment"># initial condition</span></span><br></pre></td></tr></table></figure>
+
+<p>This means using no items to obtain the target 0 is exactly one possible way.</p>
+<h2 id="Problem-5-Unbounded-Combination-Version"><a href="#Problem-5-Unbounded-Combination-Version" class="headerlink" title="Problem 5: Unbounded Combination Version"></a>Problem 5: Unbounded Combination Version</h2><p>Given an integer array <code>A</code> which contains <code>n</code> unique positive numbers, <code>A[i]</code> indicate the size of <code>i</code>th item. An integer <code>target</code> denotes the size of backpack. Find the number of ways to fill the backpack. Each item may be chosen unlimited number of times. </p>
+<p>Based on <strong>Method 2 of Problem 3</strong>,  we design the following recurrence equation</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][w] = dp[i<span class="number">-1</span>][w] + dp[i][w-A[i]]</span><br></pre></td></tr></table></figure>
+
+<p>where dp[w] represents *<em>the number of combinations to achive the target w by using the first i items with unlimited times *</em> . Thus, the code is shown as</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">knapsack_V</span><span class="params">(A, target)</span>:</span></span><br><span class="line">    dp = [<span class="number">1</span>] + [<span class="number">0</span>] * target</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(A)):</span><br><span class="line">        <span class="keyword">for</span> w <span class="keyword">in</span> range(target + <span class="number">1</span>):</span><br><span class="line">        	<span class="keyword">if</span> w &gt;= A[i]:</span><br><span class="line">            	dp[w] += dp[w-A[i]]</span><br><span class="line">    <span class="keyword">return</span> dp[target]</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="Problem-6-Unbounded-Permutation-Version"><a href="#Problem-6-Unbounded-Permutation-Version" class="headerlink" title="Problem 6: Unbounded Permutation Version"></a>Problem 6: Unbounded Permutation Version</h2><p>Given an integer array <code>A</code> with all positive numbers and no duplicates, find the number of permutations that add up to a positve integer target. </p>
+<p>eg. A=[1, 2, 4], target = 4. The solution [1,2,1] and [2,1,1] are considered different.</p>
+<p>Based on <strong>Method 1 of Problem 3</strong>, we only consider the last step</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[w] = sum(dp[w-A[i]] <span class="keyword">for</span> i <span class="keyword">in</span> range(len(A)) <span class="keyword">if</span> w &gt;= A[i])</span><br></pre></td></tr></table></figure>
+
+<p>where dp[w] represents <strong>the number of permutations to achive the target w by using any kind of items with unlimited times</strong>. Thus, the code is shown as</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">knapsack_VI</span><span class="params">(A, target)</span>:</span></span><br><span class="line">	dp = [<span class="number">1</span>] + [<span class="number">0</span>] * len(A)</span><br><span class="line">	<span class="keyword">for</span> w <span class="keyword">in</span> range(<span class="number">1</span> + target):</span><br><span class="line">		<span class="keyword">for</span> i <span class="keyword">in</span> range(len(A)):</span><br><span class="line">			<span class="keyword">if</span> w &gt;= A[i]:</span><br><span class="line">				dp[w] += dp[w-A[i]]</span><br><span class="line">	<span class="keyword">return</span> dp[target]</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
 <h1 id="Thoughts-on-the-Knapsack-Problem"><a href="#Thoughts-on-the-Knapsack-Problem" class="headerlink" title="Thoughts on the Knapsack Problem"></a>Thoughts on the Knapsack Problem</h1><p>Today, I did the target sum problem, where I learned two ways to solve the problem.</p>
 <ol>
 <li>Pull: </li>
@@ -345,7 +438,7 @@
 <p>P = (T + Sum) / 2</p>
 <p>where P is a set of positive integers and N is the set of negative integers. </p>
 <p>So the problem can be transformed to a subset sum problem to find a target sum at (T + Sum) / 2, by using this condition, we further pruning the search. </p>
-
+<h1 id="Interval-DP"><a href="#Interval-DP" class="headerlink" title="Interval DP"></a>Interval DP</h1>
       
     </div>
     
@@ -493,7 +586,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Thoughts-on-the-Knapsack-Problem"><span class="nav-text">Thoughts on the Knapsack Problem</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Knapsack-Problems"><span class="nav-text">Knapsack Problems</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-1-Basic-Version"><span class="nav-text">Problem 1: Basic Version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-2-General-Version"><span class="nav-text">Problem 2: General Version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-3-Unbounded-Version"><span class="nav-text">Problem 3: Unbounded Version</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Method-1"><span class="nav-text">Method 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Method-2"><span class="nav-text">Method 2:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-4-Combination-Version"><span class="nav-text">Problem 4: Combination Version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-5-Unbounded-Combination-Version"><span class="nav-text">Problem 5: Unbounded Combination Version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-6-Unbounded-Permutation-Version"><span class="nav-text">Problem 6: Unbounded Permutation Version</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Thoughts-on-the-Knapsack-Problem"><span class="nav-text">Thoughts on the Knapsack Problem</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Interval-DP"><span class="nav-text">Interval DP</span></a></li></ol></div>
             
 
           </div>
