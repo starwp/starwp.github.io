@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Combination and Permutation">
+<meta property="og:url" content="https://starwp.github.io/2020/07/28/Combination-and-Permutation/index.html">
+<meta property="og:site_name" content="Make It Happen">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i1.wp.com/e-gmat.com/blogs/wp-content/uploads/2018/06/difference-between-permutation-and-combination-gmat-quant-14.png?fit=2000%252C1125&ssl=1">
+<meta property="article:published_time" content="2020-07-29T01:51:35.000Z">
+<meta property="article:modified_time" content="2020-07-29T02:55:42.551Z">
+<meta property="article:author" content="Void Spirit">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i1.wp.com/e-gmat.com/blogs/wp-content/uploads/2018/06/difference-between-permutation-and-combination-gmat-quant-14.png?fit=2000%252C1125&ssl=1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://starwp.github.io/2020/07/28/Combination-and-Permutation/"/>
+
+
+
+
+
+  <title>Combination and Permutation | Make It Happen</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Make It Happen</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://starwp.github.io/2020/07/28/Combination-and-Permutation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Void Spirit">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Make It Happen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Combination and Permutation</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-28T21:51:35-04:00">
+                2020-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <img src="https://i1.wp.com/e-gmat.com/blogs/wp-content/uploads/2018/06/difference-between-permutation-and-combination-gmat-quant-14.png?fit=2000%2C1125&ssl=1 " width = "600" alt="" align=center />
+
+
+
+
+
+
+
+
+
+<a id="more"></a>
+
+
+
+<h1 id="Combination"><a href="#Combination" class="headerlink" title="Combination"></a>Combination</h1><p>This section discusses how to find the combination with/without replacement.</p>
+<h2 id="Without-Replacement"><a href="#Without-Replacement" class="headerlink" title="Without Replacement"></a>Without Replacement</h2><p>Generally, if we find the combination based on the for loop, we need to a big amount of loops. To make it easier, we employ the recursion to find the combination.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(A)):</span><br><span class="line">	<span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>,len(A)):</span><br><span class="line">        <span class="comment"># deal with the combination, [A[i], A[i]]</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>To make it efficent, the recursion is introduced.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(A, start, target, combo, res)</span>:</span></span><br><span class="line">	<span class="keyword">if</span> len(combo) == target:</span><br><span class="line">    	res.append(list(combo))</span><br><span class="line">    	<span class="keyword">return</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(start, len(A)):</span><br><span class="line">    	combo.append(A[i])</span><br><span class="line">    	dfs(A, start+<span class="number">1</span>, target, combo, res)</span><br><span class="line">    	combo.pop()</span><br></pre></td></tr></table></figure>
+
+
+
+<p>To avoid the repeative combinations:</p>
+<ul>
+<li>First, sort the array A</li>
+<li>Then, using the following technique</li>
+</ul>
+<h3 id="Technique-1"><a href="#Technique-1" class="headerlink" title="Technique 1"></a>Technique 1</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(A, start, target, combo, res)</span>:</span></span><br><span class="line">	<span class="keyword">if</span> len(combo) == target:</span><br><span class="line">    	res.append(list(combo))</span><br><span class="line">    	<span class="keyword">return</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(start, len(A)):</span><br><span class="line">    	<span class="keyword">if</span> i &gt; <span class="number">0</span> <span class="keyword">and</span> nums[i] == nums[i<span class="number">-1</span>]: <span class="comment">### technique 1, avoid repeatitions</span></span><br><span class="line">    		<span class="keyword">continue</span></span><br><span class="line">    	combo.append(A[i])</span><br><span class="line">    	dfs(A, start+<span class="number">1</span>, target, combo, res)</span><br><span class="line">    	combo.pop()</span><br></pre></td></tr></table></figure>
+
+<p>This technique works because, On the same level, for the same elements, we only choose one of them! This also indicates we need to group the same elements together by sorting or any other methods.</p>
+<h3 id="Technique-2"><a href="#Technique-2" class="headerlink" title="Technique 2"></a>Technique 2</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(A, start, target, combo, res)</span>:</span></span><br><span class="line">	<span class="keyword">if</span> len(combo) == target:</span><br><span class="line">    	res.append(list(combo))</span><br><span class="line">    	<span class="keyword">return</span></span><br><span class="line">    used = set([])  <span class="comment">### technique 2, avoid repeatitions</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(start, len(A)):</span><br><span class="line">    	<span class="keyword">if</span> A[i] <span class="keyword">in</span> used: <span class="comment">### technique 2, avoid repeatitions</span></span><br><span class="line">    		<span class="keyword">continue</span></span><br><span class="line">    	combo.append(A[i])</span><br><span class="line">    	dfs(A, start+<span class="number">1</span>, target, combo, res)</span><br><span class="line">    	combo.pop()</span><br></pre></td></tr></table></figure>
+
+<p>This works as the same principle as Technique 1.</p>
+<h2 id="With-Replacement"><a href="#With-Replacement" class="headerlink" title="With Replacement"></a>With Replacement</h2><p>To achieve the replacement, the code is shown as follows</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(A, start, target, combo, res)</span>:</span></span><br><span class="line">	<span class="keyword">if</span> len(combo) == target:</span><br><span class="line">    	res.append(list(combo))</span><br><span class="line">    	<span class="keyword">return</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(start, len(A)):</span><br><span class="line">    	combo.append(A[i])</span><br><span class="line">    	dfs(A, start, target, combo, res) <span class="comment"># difference is here, don't need to be start + 1</span></span><br><span class="line">    	combo.pop()</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="Problem-1"><a href="#Problem-1" class="headerlink" title="Problem 1:"></a>Problem 1:</h2><p>How many combinations of getting n balls out of m type of balls with replacement?</p>
+<h3 id="Solotion-1-Divider"><a href="#Solotion-1-Divider" class="headerlink" title="Solotion 1: Divider"></a>Solotion 1: Divider</h3><p>For the general problem without replacement, we consdier the following introduction problem:</p>
+<p><strong>Problem</strong>: Suppose we are required to get n balls, and at least we need to get one type of each of m. How many combintaions are there?</p>
+<p><strong>Solution</strong>: Based on the divider method, there are n-1 positions for m-1 dividers to set to solve the introduction problem. That is $$C^(m-1)_(n-1)$$.</p>
+<p>Since the above problem assigns each type at least one ball, we extend it to our original problem by adding m balls, so that we solve the same problem with size of n + m, but with the two adjacient dividers with a difference of 1 we regard the ball in the middle means we assign no ball to this type. Therefore, the answer is $$C^(m-1)_(n+m-1)$$.</p>
+<h3 id="Solution-2-DP"><a href="#Solution-2-DP" class="headerlink" title="Solution 2: DP"></a>Solution 2: DP</h3><p>It is interesing to notice that we can use DP to solve the problem. Based on the last step principle. We define dp[m][n] as the number of combinations to get n balls from the first m types</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[m][n] = d[m][n<span class="number">-1</span>] + dp[m<span class="number">-1</span>][n]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>dp[m][n-1] represents the mth type is used as the nth ball, so the remmaing n-1 balls can still use first m types.</p>
+</li>
+<li><p>dp[m-1][n] represnets the mth type is not in any of the combinations. </p>
+</li>
+</ul>
+<p>The inital conditions are:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dp[m][<span class="number">1</span>] = m</span><br><span class="line">dp[<span class="number">1</span>][n] = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1 id="Permutation"><a href="#Permutation" class="headerlink" title="Permutation"></a>Permutation</h1>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/24/Leetcode-Note/" rel="next" title="Leetcode Note">
+                <i class="fa fa-chevron-left"></i> Leetcode Note
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/29/Space-Complexity/" rel="prev" title="Space Complexity">
+                Space Complexity <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Void Spirit</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+                <a href="/archives">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Combination"><span class="nav-text">Combination</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Without-Replacement"><span class="nav-text">Without Replacement</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Technique-1"><span class="nav-text">Technique 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Technique-2"><span class="nav-text">Technique 2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#With-Replacement"><span class="nav-text">With Replacement</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-1"><span class="nav-text">Problem 1:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solotion-1-Divider"><span class="nav-text">Solotion 1: Divider</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-2-DP"><span class="nav-text">Solution 2: DP</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Permutation"><span class="nav-text">Permutation</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Void Spirit</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+<script src="<%- config.root %>js/hexo_resize_image.js"></script>
+</body>
+</html>

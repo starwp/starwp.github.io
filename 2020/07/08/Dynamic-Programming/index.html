@@ -90,7 +90,7 @@
 <meta property="og:image" content="https://starwp.github.io/2020/07/08/Dynamic-Programming/image-20200721183427683.png">
 <meta property="og:image" content="https://starwp.github.io/2020/07/08/Dynamic-Programming/image-20200721180235085.png">
 <meta property="article:published_time" content="2020-07-09T01:38:47.000Z">
-<meta property="article:modified_time" content="2020-07-22T00:39:44.701Z">
+<meta property="article:modified_time" content="2020-07-30T03:21:00.943Z">
 <meta property="article:author" content="Void Spirit">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://miro.medium.com/max/684/0*3dS6Jw8NzzSD-mn8.jpg">
@@ -410,7 +410,7 @@
 
 
 
-<h1 id="Thoughts-on-the-Knapsack-Problem"><a href="#Thoughts-on-the-Knapsack-Problem" class="headerlink" title="Thoughts on the Knapsack Problem"></a>Thoughts on the Knapsack Problem</h1><p>Today, I did the target sum problem, where I learned two ways to solve the problem.</p>
+<h2 id="Thoughts-on-the-Knapsack-Problem"><a href="#Thoughts-on-the-Knapsack-Problem" class="headerlink" title="Thoughts on the Knapsack Problem"></a>Thoughts on the Knapsack Problem</h2><p>Today, I did the target sum problem, where I learned two ways to solve the problem.</p>
 <ol>
 <li>Pull: </li>
 </ol>
@@ -457,7 +457,125 @@
 </ul>
 <h1 id="Interval-DP"><a href="#Interval-DP" class="headerlink" title="Interval DP"></a>Interval DP</h1><p>The interval Dp is almost the most difficult problem in DP. Different from the traditional DP by using the last step principle, the last step principle most of the time fails to work it out in the polynomial time. If we do some DP problem and find out the last step does not work, it is in a big chance that we need to consider the interval DP, where we partition the problem into small pieces by 2D index.</p>
 <p>To be specific, the last step principle uses dp[i] with 1D index, where i is the last step. However, the interval dp typically uses dp[i][j] with 2D index, where i is the first step and j is the last step. It is kind of like divide and conquer. <span style="color:red"><strong>(2D index, dp[start][end])</strong></span>. </p>
-<h3 id="Problem-1-burst"><a href="#Problem-1-burst" class="headerlink" title="Problem 1: burst"></a>Problem 1: burst</h3><h1 id="Game-Theory-DP"><a href="#Game-Theory-DP" class="headerlink" title="Game Theory DP"></a>Game Theory DP</h1><p> The geme theory is </p>
+<h2 id="Problem-1-Balloon-Burst"><a href="#Problem-1-Balloon-Burst" class="headerlink" title="Problem 1: Balloon Burst"></a>Problem 1: Balloon Burst</h2><h1 id="Game-Theory-DP"><a href="#Game-Theory-DP" class="headerlink" title="Game Theory DP"></a>Game Theory DP</h1><p> The geme theory dp problem deals with two playes with the optimal policy. So, we generally need to consider the two players together and solve the recurrence in a reversed manner.</p>
+<h2 id="Problem-1-Stone-III"><a href="#Problem-1-Stone-III" class="headerlink" title="Problem 1: Stone III"></a>Problem 1: Stone III</h2><p>Based on the last step principle, we define dp[i] to be the max relative value player got by using the first i </p>
+<h1 id="Double-Sequence-DP"><a href="#Double-Sequence-DP" class="headerlink" title="Double Sequence DP"></a>Double Sequence DP</h1><p>The double sequence DP is typicall defined as a problem where the objective depends on a given property based on the two sequences. For example, consider a problem P. There are two sequences A and B to deal with based on an objective (find largest common subsequences, transform A to B in the minimal step, and whether B is a substring of A and so on). Typically, based on the last step, we define dp[i][j] which is the max/min value to solve the problem. </p>
+<p>To derivate the recurrence equation, we utilize the pull method. Firstly and most importantly, assuming <span style="color:red"><strong>the objective with first i in A and first j in B has already been achieved</strong></span> now with the min/max value of dp[i][j]. For simplicity, we say <span style="color:red"><strong>the setting of dp[i][j] is achieved</strong></span>. For instance, with dp[i][j], we assume we have found the longest common subsequence or we have transfomred A to B now. Based on this achieved objective, we <span style="color:red"><strong>reason backward</strong></span> that how to get dp[i][j] and <span style="color:red"><strong>what the possible step in in the last step to achieve dp[i][j] and its setting</strong></span>. This generally should be related to dp[i-1][j], dp[i][j-1], or dp[i-1][j-1].  </p>
+<p>An important point is that <span style="color:red"><strong>even the setting of dp[i][j] is considered</strong></span>, like the practical scenario (dealing with A[0:i] and B[0:j] might change them to the setting A’[0:x], B’[0:y] based on the given objective), the recurrence to be built is always focusing on the orignial strings and index <span style="color:red"><strong>(A[i-1], B[j-1]), (A[i], B[j-1]), (A[i],B[j-1])</strong></span> rather than those settings ((A’[0:x-1], B’[0:y-1]), A’[0:x], B’[0:y-1]). </p>
+<h2 id="Problem-1-Edit-Distance"><a href="#Problem-1-Edit-Distance" class="headerlink" title="Problem 1: Edit Distance"></a>Problem 1: Edit Distance</h2><p>Given two words <em>A</em> and <em>B</em>, find the minimum number of steps required to convert A to B. (each operation is counted as 1 step.) You have the following 3 operations permitted on a word:</p>
+<ul>
+<li>Insert a character</li>
+<li>Delete a character</li>
+<li>Replace a character</li>
+</ul>
+<p>Since the covertion requires the permutation, we can define that dp[i][j] is the min step that we convert A[i] to B[j]. Based on the discussion above, by reasoning backward, the possible step to achieve the conversion is to either insert at pos i, delete the pos i, or replace the pos i. Hence, the recurrence equation is derivated as </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = min(dp[i][j<span class="number">-1</span>] + <span class="number">1</span>,  \ <span class="comment"># insert after pos i  </span></span><br><span class="line">               dp[i<span class="number">-1</span>][j] + <span class="number">1</span>,  \ <span class="comment"># delete the pos i</span></span><br><span class="line">               dp[i<span class="number">-1</span>][j<span class="number">-1</span>] + <span class="number">1</span>,\ <span class="comment"># replace the pos i</span></span><br><span class="line">			   dp[i<span class="number">-1</span>][j<span class="number">-1</span>])\ <span class="comment"># no operation A[i] = B[j]</span></span><br></pre></td></tr></table></figure>
+
+<p>where the above cases are discussed:</p>
+<ul>
+<li>Case 1: inserting at pos i indicates in the problem dp[i][j] the new element insert after A[i] matches B[j], so that 1st recurrence holds. </li>
+<li>Case 2: deleting at pos i indicates in the problem dp[i][j] A[i] is extra element and takes the extra step, so 2nd case holds</li>
+<li>Case 3: replacing, easily understood</li>
+<li>Case 4: no operation, easily understood. </li>
+</ul>
+<h2 id="Problem-2-Longest-Increasing-Common-Subsequence"><a href="#Problem-2-Longest-Increasing-Common-Subsequence" class="headerlink" title="Problem 2: Longest Increasing Common Subsequence"></a>Problem 2: Longest Increasing Common Subsequence</h2><p>Given 2 sequences of integers, we need to find a longest sub-sequence which is common to both the sequences, and the numbers of such a sub-sequence are in strictly increasing order.</p>
+<p>Let dp[i][j] be the LICS of A[0:i] and B[0:j]. Based on the last step principle, consider the following cases:</p>
+<ul>
+<li>Case 1: B[j-1] is not in LICS, dp[i][j] = dp[i][j-1]</li>
+<li>Case 2: A[i-1] is not in the LICS, dp[i][j] = dp[i-1][j]</li>
+<li>Case 3: A[i-1] and B[j-1] are both in LICS, dp[i][j] = dp[i-1][j-1] + 1, where A[i-1] = B[j-1] and A[i-1] is larger than the last value in the setting of dp[i-1][j-1]. (missing some cases…)</li>
+</ul>
+<p>Notice that the difficulty in Case 3 is that we need to know the last value in the previous setting dp[i-1][j-1], which is in fact unknown. To solve the problem, I use the following technique 1. </p>
+<h3 id="technique-1"><a href="#technique-1" class="headerlink" title="technique 1:"></a>technique 1:</h3><p><span style="color:red"><strong>If the information is unknown, compute it by introducing dp[i][j][1].</strong></span></p>
+<p>Based on the technique, we extend the defintion dp[i][j] to target both the maximal length LICS and the samllest ending number in the LICS.</p>
+<ul>
+<li>dp[i][j][0]: maximal length of LICS</li>
+<li>dp[i][j][1]: smallest ending number of this LICS</li>
+</ul>
+<p>Thus, we go back to previos discussion.</p>
+<ul>
+<li>Case 1: dp[i][j][0] = dp[i][j-1][0], dp[i][j][1] = dp[i][j-1][1]</li>
+<li>Case 2: dp[i][j][0] = dp[i-1][j][0], dp[i][j][1] = dp[i-1][j][1] </li>
+<li>Case 3: dp[i][j][0] = dp[i-1][j-1][0] + 1 if A[i-1] = B[j-1] and A[i-1] &gt; dp[i-1][j-1][1], dp[i][j][1] = A[i-1]</li>
+</ul>
+<p>However, something is overlooked in Case 3. For A[i-1] = B[j-1], we need to update the dp[i][j] by comparing all the previously dp[i-1][0]…dp[i-1][j-1] to find the LICS, so we modify Case 3 to:</p>
+<ul>
+<li>Case 3: dp[i][j][0] =  max(dp[i][j][0], dp[i-1][k][0] + 1) if A[i-1] = B[j-1] and A[i-1] &gt; dp[i-1][k][1], for k in range(j-1).</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">LICS</span><span class="params">(A, B)</span>:</span></span><br><span class="line">    dp = collections.defaultdict(int)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(A)+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(B)+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> i == <span class="number">0</span> <span class="keyword">or</span> j == <span class="number">0</span>:</span><br><span class="line">                dp[i, j, <span class="number">0</span>], dp[i, j, <span class="number">1</span>] = <span class="number">0</span>, sys.maxsize</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">                </span><br><span class="line">            dp[i,j,<span class="number">1</span>] = sys.maxsize</span><br><span class="line">            <span class="keyword">if</span> A[i<span class="number">-1</span>] == B[j<span class="number">-1</span>]:</span><br><span class="line">                <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">1</span>, j+<span class="number">1</span>):</span><br><span class="line">                    <span class="keyword">if</span> A[i<span class="number">-1</span>] &gt; dp[i<span class="number">-1</span>,k<span class="number">-1</span>,<span class="number">1</span>] <span class="keyword">or</span> dp[i<span class="number">-1</span>,k<span class="number">-1</span>,<span class="number">1</span>] == sys.maxsize <span class="keyword">and</span> \</span><br><span class="line">                        dp[i,j,<span class="number">0</span>] &lt;= dp[i<span class="number">-1</span>,k<span class="number">-1</span>,<span class="number">0</span>] + <span class="number">1</span>:</span><br><span class="line">                            dp[i,j,<span class="number">1</span>], dp[i,j,<span class="number">0</span>] = A[i<span class="number">-1</span>], dp[i<span class="number">-1</span>,k<span class="number">-1</span>,<span class="number">0</span>] + <span class="number">1</span>            </span><br><span class="line"> </span><br><span class="line">            <span class="keyword">if</span> dp[i,j,<span class="number">0</span>] &lt;= dp[i,j<span class="number">-1</span>,<span class="number">0</span>]:</span><br><span class="line">                dp[i,j,<span class="number">1</span>] = min(dp[i,j,<span class="number">1</span>], dp[i,j<span class="number">-1</span>,<span class="number">1</span>]) <span class="keyword">if</span> dp[i,j,<span class="number">0</span>] == dp[i,j<span class="number">-1</span>,<span class="number">0</span>] <span class="keyword">else</span> dp[i,j<span class="number">-1</span>,<span class="number">1</span>] </span><br><span class="line">                dp[i,j,<span class="number">0</span>] = dp[i,j<span class="number">-1</span>,<span class="number">0</span>]</span><br><span class="line">                    </span><br><span class="line">            <span class="keyword">if</span> dp[i,j,<span class="number">0</span>] &lt;= dp[i<span class="number">-1</span>,j,<span class="number">0</span>]:</span><br><span class="line">                dp[i,j,<span class="number">1</span>] = min(dp[i,j,<span class="number">1</span>], dp[i<span class="number">-1</span>,j,<span class="number">1</span>]) <span class="keyword">if</span> dp[i,j,<span class="number">0</span>] == dp[i<span class="number">-1</span>,j,<span class="number">0</span>] <span class="keyword">else</span> dp[i<span class="number">-1</span>,j,<span class="number">1</span>]</span><br><span class="line">                dp[i,j,<span class="number">0</span>] = dp[i<span class="number">-1</span>,j,<span class="number">0</span>]</span><br><span class="line">            </span><br><span class="line">    <span class="keyword">return</span> dp[len(A), len(B), <span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+
+
+
+<p>Based on the above logic, it is a O(n^3) time algorithm. In addtion, the logic is a little complicated due to we introduce the last value in the LICS. Thus, In the following we use the 2nd technique to solve it. </p>
+<h3 id="technique-2"><a href="#technique-2" class="headerlink" title="technique 2:"></a>technique 2:</h3><p><span style="color:red"><strong>If the information is unknown, associating it with the index in dp[i][j].</strong></span></p>
+<p>Based on this technique, it is obvious that we need to associate the last value of LICS of the index of dp[i][j]. Therefore, we redefine dp[i][j] to be the LICS of A[0:i] and B[0:j] where B[j-1] is the last value in this LICS. Therefore, the following recurrence can be derived easily.</p>
+<ul>
+<li>Case 1: dp[i][j] = max(dp[i][j], dp[i-1][j] if A[i-1] != B[j-1])</li>
+<li>Case 2: dp[i][j] = max(dp[i][j], dp[i-1][k] if A[i-1] == B[j-1] and B[j-1] &gt; B[k] for k in range(j))</li>
+</ul>
+<p>With the above recurrence equation, we are able to clearly solve the problem in O(n^3) time. However, there are some space for us to improve it. That is, since A[i-1] = B[j-1] and B[j-1] is the largest value, we need to find maximal of all the dp[i-1][k] with B[k] smaller than A[j-1],</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">LICS</span><span class="params">(A, B)</span>:</span></span><br><span class="line">    dp = [<span class="number">0</span>]*(len(B))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(A)):</span><br><span class="line">        max_i_minus_one = <span class="number">0</span> </span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(B)):</span><br><span class="line">            <span class="keyword">if</span> A[i] == B[j]:</span><br><span class="line">                dp[j] = max(dp[j], max_i_minus_one + <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">if</span> A[i] &gt; B[j]:</span><br><span class="line">                max_i_minus_one = max(dp[j], max_i_minus_one)</span><br><span class="line">    <span class="keyword">return</span> max(dp)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>Therefore, the above algorithm is O(n^2) time with O(n) space.</p>
+<h1 id="Hard-Problems"><a href="#Hard-Problems" class="headerlink" title="Hard Problems"></a>Hard Problems</h1><p>This sections presents some hard problems and discusses the important thoughts on solviing them.</p>
+<h2 id="Problem-1-Minimum-Adjustment-Cost"><a href="#Problem-1-Minimum-Adjustment-Cost" class="headerlink" title="Problem 1: Minimum Adjustment Cost"></a>Problem 1: Minimum Adjustment Cost</h2><p>To solve this problem, we start with the last step principle. We thus define dp[i] as the min-cost of adjustment for first i integers. Based on this defintion, we assume that A[i] is changed to B[i], where it holds that |B[i]- B[i-1]| &lt; target. </p>
+<p>So, there are two important questions to answer. </p>
+<ul>
+<li>B[i-1] is unknow</li>
+<li>Even it is known, how can we guarantee it is <strong>optimal</strong> to modify A[i] to B[i] within [B[i-1] - target, B[i-1] + target].</li>
+</ul>
+<p>Moreover, it is just a greedy way to caluate the cost .</p>
+<p>Thus, we utilize the technique 3,</p>
+<h3 id="technique-3"><a href="#technique-3" class="headerlink" title="technique 3:"></a>technique 3:</h3><p><span style="color:red"><strong>If the information is unknown, adding one dimension to have dp[i][k].</strong></span></p>
+<p>So, due to this technique, we redefine the state dp[i][k], where k represents the value B[i]. Since k is bounded in [0, 100]. This yields the following recurrence equation.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d[i][j] = min(d[i<span class="number">-1</span>][k] + abs(j-A[i]) <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">101</span>) <span class="keyword">if</span> j- Target &lt;= k <span class="keyword">and</span> k &lt;= j + target)</span><br></pre></td></tr></table></figure>
+
+<p>to be continued…</p>
+<h2 id="Problem-2-K-Edit-Distance"><a href="#Problem-2-K-Edit-Distance" class="headerlink" title="Problem 2: K Edit Distance"></a>Problem 2: K Edit Distance</h2><p>Given Edit distance problem (modify, insert, delete), and K is max-cost, output the possible strings.</p>
+<p>eg: </p>
+<p>A = [“abc”, “abd”, “abcd”, “adc”], Target = “ac”, K = 1<br>Output： [“abc”, “adc”] </p>
+<p>In fact, it is easy to see that this problem combines Trie and Edit distance.  We use the standard dp to solve the edit distance problem.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">DP</span><span class="params">(string, target)</span></span></span><br><span class="line"><span class="function">    <span class="title">for</span> <span class="title">i</span> <span class="title">in</span> <span class="title">range</span><span class="params">(<span class="number">1</span>, len<span class="params">(string)</span>+<span class="number">1</span>)</span>:</span>    <span class="comment">#outer loop for input strings</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len(target)+<span class="number">1</span>):<span class="comment">#inner loop for target string</span></span><br><span class="line">            <span class="comment">#dp process recurrence equation</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>To employ the Trie structure,  we store all the input strings in Trie and <strong>change the outer loop to a DFS traversal procedure</strong>, which is shown as follows</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">k_edit_distance</span><span class="params">(A, target, k)</span>:</span></span><br><span class="line">    tree = Trie()</span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> A:</span><br><span class="line">    	tree.insert(word)</span><br><span class="line">    dp = [<span class="number">0</span>] + [sys.maxsize] * len(target)</span><br><span class="line">    res = []</span><br><span class="line">    dfs(tree, target, k, dp, res)</span><br><span class="line">    <span class="keyword">return</span> res </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(node, target, k, pre_dp, res)</span></span></span><br><span class="line"><span class="function">	</span></span><br><span class="line">    if node.isWord and pre_dp[len(target)] &lt;= k:</span><br><span class="line">        res.append(node.string)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    dp = [sys.maxsize] * (len(target) + <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> node.children:</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len(target)+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> c != target[j<span class="number">-1</span>]:</span><br><span class="line">                dp[j] = max(dp[j<span class="number">-1</span>]+<span class="number">1</span>, pre_dp[j] + <span class="number">1</span>, pre_dp[j<span class="number">-1</span>]+<span class="number">1</span>)</span><br><span class="line">			<span class="keyword">else</span>:</span><br><span class="line">                dp[j] = max(dp[j<span class="number">-1</span>]+<span class="number">1</span>, pre_dp[j] + <span class="number">1</span>, pre_dp[j<span class="number">-1</span>])</span><br><span class="line">        dfs(node.children[c], target, k, dp, res)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       
     </div>
@@ -569,7 +687,7 @@
             
               <div class="site-state-item site-state-posts">
                 <a href="/archives">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -606,7 +724,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Knapsack-Problems"><span class="nav-text">Knapsack Problems</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-1-Basic-Version"><span class="nav-text">Problem 1: Basic Version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-2-General-Version"><span class="nav-text">Problem 2: General Version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-3-Unbounded-Version"><span class="nav-text">Problem 3: Unbounded Version</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Method-1"><span class="nav-text">Method 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Method-2"><span class="nav-text">Method 2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-4-Combination-Version"><span class="nav-text">Problem 4: Combination Version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-5-Unbounded-Combination-Version"><span class="nav-text">Problem 5: Unbounded Combination Version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-6-Unbounded-Permutation-Version"><span class="nav-text">Problem 6: Unbounded Permutation Version</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Thoughts-on-the-Knapsack-Problem"><span class="nav-text">Thoughts on the Knapsack Problem</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Partitioned-DP"><span class="nav-text">Partitioned DP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-1-Palindrome-Partitioning"><span class="nav-text">Problem 1: Palindrome Partitioning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-2-Copy-Books"><span class="nav-text">Problem 2: Copy Books</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Interval-DP"><span class="nav-text">Interval DP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Problem-1-burst"><span class="nav-text">Problem 1: burst</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Game-Theory-DP"><span class="nav-text">Game Theory DP</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Knapsack-Problems"><span class="nav-text">Knapsack Problems</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-1-Basic-Version"><span class="nav-text">Problem 1: Basic Version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-2-General-Version"><span class="nav-text">Problem 2: General Version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-3-Unbounded-Version"><span class="nav-text">Problem 3: Unbounded Version</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Method-1"><span class="nav-text">Method 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Method-2"><span class="nav-text">Method 2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-4-Combination-Version"><span class="nav-text">Problem 4: Combination Version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-5-Unbounded-Combination-Version"><span class="nav-text">Problem 5: Unbounded Combination Version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-6-Unbounded-Permutation-Version"><span class="nav-text">Problem 6: Unbounded Permutation Version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thoughts-on-the-Knapsack-Problem"><span class="nav-text">Thoughts on the Knapsack Problem</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Partitioned-DP"><span class="nav-text">Partitioned DP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-1-Palindrome-Partitioning"><span class="nav-text">Problem 1: Palindrome Partitioning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-2-Copy-Books"><span class="nav-text">Problem 2: Copy Books</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Interval-DP"><span class="nav-text">Interval DP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-1-Balloon-Burst"><span class="nav-text">Problem 1: Balloon Burst</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Game-Theory-DP"><span class="nav-text">Game Theory DP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-1-Stone-III"><span class="nav-text">Problem 1: Stone III</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Double-Sequence-DP"><span class="nav-text">Double Sequence DP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-1-Edit-Distance"><span class="nav-text">Problem 1: Edit Distance</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-2-Longest-Increasing-Common-Subsequence"><span class="nav-text">Problem 2: Longest Increasing Common Subsequence</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#technique-1"><span class="nav-text">technique 1:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#technique-2"><span class="nav-text">technique 2:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hard-Problems"><span class="nav-text">Hard Problems</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-1-Minimum-Adjustment-Cost"><span class="nav-text">Problem 1: Minimum Adjustment Cost</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#technique-3"><span class="nav-text">technique 3:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-2-K-Edit-Distance"><span class="nav-text">Problem 2: K Edit Distance</span></a></li></ol></li></ol></div>
             
 
           </div>

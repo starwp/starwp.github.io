@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="The key idea of binary search">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode Note">
+<meta property="og:url" content="https://starwp.github.io/2020/07/24/Leetcode-Note/index.html">
+<meta property="og:site_name" content="Make It Happen">
+<meta property="og:description" content="The key idea of binary search">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-24T14:18:55.000Z">
+<meta property="article:modified_time" content="2020-07-29T23:35:51.569Z">
+<meta property="article:author" content="Void Spirit">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://starwp.github.io/2020/07/24/Leetcode-Note/"/>
+
+
+
+
+
+  <title>Leetcode Note | Make It Happen</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Make It Happen</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://starwp.github.io/2020/07/24/Leetcode-Note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Void Spirit">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Make It Happen">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Leetcode Note</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-24T10:18:55-04:00">
+                2020-07-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  The key idea of binary search
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <div class="hbe-input-container">
+  <input type="password" id="hbePass" placeholder="" />
+    <label for="hbePass">Hey, password is required here.</label>
+    <div class="bottom-line"></div>
+  </div>
+  <script id="hbeData" type="hbeData" data-hmacdigest="7ad3410402d917d7bcab3e30a012fd4ca140114817a46ffbd7799491bab8a116">25c6a5822a619d0b6bbf85a4fff54928f70da8432e675c18f517f763f04c504b7b505f68bc4a2bc9fb7c7eb0f4443c8d4fe0bc7ea9ec98aa41105b2501adb2f250026379b81b020ed267d6962910053508da7eaa92c2ba8dc250a957fcdd009d140908288367bc5c338f57a9e5d449024fb97622266efda84fb8446ddb0d74f80f59c28e5328e8cbc58a9abac5b975d6e714a5824ed83d9a7bda7a5688e63041eee9b6bf3e5c754338518850df6042d5417fc178518cde72195d312bac9ed34708cd1f5a04afc06168efc7748d8967a0047b2129bf0c0fbfa648ebd161706b979bb8715b3dff1366da99ca03880a1406a2111a151ac1f2deddccace0007523abbb2773600ab8bd877287418ba585b62f6c0090a95c73f33933c269dacdec478b597ea3a51d9e88a5a6ba5edb284f0ae9ad6b7ccbfd52880dc727a9a7e86ed6cdc68339466d572b3358fde6897bea8fad75eed1e714d299c6a16d0899d0653d981bccc555d90f00b1274afc8f674471eaa56441ee8bede4c857d061485dcdac8aa3a6aabeb68db7acad8343f06a0a3eb7ec3f240ff1328a8370f7c4a0ea1c24bb919844fef4ef68782859ccf07df1a63a8dd6ea0de1674fb19f5dc4be1923e6db3b21ba1ebaffa94ee2d902d862add147efcc379e5987fb078bfe9f7f75493bf5dfc335cfb37c6e1c041977803757345124b06638dd354e3e95ba6938d0541ad3216e41dcfb6a4527d31eb53766b05c39694bbaace6100802b57f41a79cc2d5969dea37d8f6c28e7a83a29814f85bfdf9c31dee4514de2fc163860cd527e83513b79d059e9fb2c22f79d8c252668dccf652263a6f3e0892ce559731625d3ee4074716544db6d39ad2f2c6b17af63648845d04766885cd1baa86bcb1ab443b572f6bab75a2abc4a3a3b543c094a2347f79d62871efd01d75e9102ac7ea6db853ba45d2f5c50aa40d1c928d0d907ff5e567f47fc34382c8e7c66c6062940f6c0772a7f93c49d88b307beda00843c069153e8fb28e09f9f744e0836604b141ca7e949fb43719af876b208e5074504de450918d878077666bd8454896e310c308ac4649e9958530355bcd21506a88b63e9b71734b5e9999d62ef788f9ab158a5b8c27f9405fb5e9b47cde951d89b0e20f796b88496b103f1f9804ac3656379885d413f8cc7424b06419bc971c1eb0dab89bc55cee742b1326a37cf36c4df70b6ec4d7fc67be3872eddf5324bb4d94f2b7c47be0a7c09fd574d229360dbfc402796616dcc47720577340f88a0f3dff3d69722bece8c7fecb89ae618a80dc1e8185635a5663ffe79bd262e948e0c5a1e44fcc7d692afb00f2e73d26b91520b6bdf31b9ecb6e8b2868ba97d269eeaae9bf731d3b500e3226b2271b996e2d5841754a4617aa8d4e5d2b0ba67882ccb53dfb4aad0bfdf15a09914550c049e431c79664b69658fa739b0a589755d2391ff8c81ed4d6913e82698a74387de15f803cca32e02859f07506f8112625327b8313d93589de5101ba59997128361306eb8ef1c320cdc20c0d011a9f194ce5e19feaeae0f35b0f1b29b9032a2dbbb818710846878d5ae46ed07627ebfafa6c42de46dd8d4051dcb4f53b306b106c8ec1bdc3f093c4c0b100fab48fd04396a1b7771aed4352c5b23229e43ba45e8e626b10788bb6135c953f697b09997e35c9f32325b2afa2378de42a92c14f101798d384472b735c34c1a3804ab5fd50089eb7b1fe985eb8f14948f8e05447ecd5930bf449a321689d8ec420cdb5ee447b815e10cd6bd358b5181b8d8bd68b77d57ea7ef10b4e97035b9d7e35e11695c43c8cb8933e35d02ecaeec98468dcb24ff7681d65d29aecd4fa61321331c5a19e287891920f92f6cb5151150ea2e36f9635659086c0c2fbeb4c732ada221eae053675adacb37f1b7de809b574018ab2303453f2656b4199160b1d2df44894d50a47dc08517cd3db2ae4cb9a71efee1c198f85857bedb043e918bdf2e22db1d87c90e911a419bd934f53cd8b596794c48fe1dae878a276419d2f2af0408f65bd043e2d0be199c9fa85dbb09d4364a5c80dae31b2dd3cb69c7f81a3277222004f892d75e5d5b7dff7bb1558c56b29be31181789a77b1846c76e94fa5954778242b047177ceca8e84c2c2cdf93268e33badf2df8da0de08e7d2491d52f6e0bc8c38fcf2e64aefc5c6f34f9515c24ab4313f29f7e3f52b5c09b48e1380776b546174f5aa09841201a5d89fee9a4d2fcd8590d2bfa394ad9caf06f926578b1f79ec0b3ed1747595677c49aa07e6b2debf3220d72293787452f1bb603809782cc9b6c32f77ac8c9fbfa5f1f4f3b0c723ef234e586dc4f64b2a1102d9111679629f7301cd37136686bd6c1e3908c00d769dcb903f880fd715e831b405257942f178fcf4aa1fe11e07d719d9346ba5c3a9933e9a8b3c77732c427f65dd8e2289ad7052c5da02202a414bb7e2b60d82716f3b0f13ed88e308984e8327aa20bd55fff55d9ec589c4132a349a85ab4d8de2165d822da0fbb54ab488244b933a446c7c38fe7f888fb190087813c41f2009a2e9048e522fa440ac6477e566bf98e10d610b177e60646998fc4a0b381c3fe77771171cd3b45daa14374af0fde17597793890ba173dd4119500613362aaeda4be1667361b7875000593197a4c4e9003298f6c7284ee0a24a24a4e1affee1cbdaae4f3332a2b93e4fc559dbf9d7245fa0071b38088d17089d17f47b992fba0d1046921e191a61b3cc9b41860aebe6df2be821080655997a6a6a1d56c7171ece0bf62fe52766d5c9224331439a5b34a6f9f32f3f25fc1cbf63ea0a0e153dcf8470655521fdd1f974df80586575ff4a4155e4ef20a763de033ce165344377e0f678293c418f2ad69577cee729b8a5c2e1e05d27bbc748cd62d7f23cdeda772fbf9a45ee92292a31f8b694816069993c33b465e251151dfc8227dee42b39164384e77140b925ede7399150a917c5b82d273c1757e27c0c86b4118b76f4addaf69faa1e85dd6bfd8bd90fe6be31c85b14bdc51fcc195bde1b48a67f378b9b74aa896e4b88e5fbcbf6d8b923b577480d100bcdfc0cb6312536bff3f7316e6a0cc7eefef4c5c192ba69a6c14c7d0160cf3eec0ceca1451aa889305a84e0932b6c641ceac9b51687a81d6d150d5f68cdc72cf09e2eacaa15a6ea65908483dcfee164f4f7071883108f629fcc303b2f728078893c9fe2557821573753bdab5aa9b6d8caee0bac0c3ef8152526176520e130fa2f1f5b202c99689fbb0a9640b2c0b7983e82d57afce36fa96e65ef801e3ad7c12ae2ccc423333c017713a1673fdcc8479ce73228d4e0cb4e763f2ec8876a59aeff68c5a9e884637bb6e49a381e3c01eecd68c60664456fc4bf3f59f9a50955f0083e433fd6e707236eac31d38e67e9717d5b2adcf9ad6c395170ed33f867caea9f72e1edb96e75a5400e6bc2043bec0d81393d50fe8d4356c94f67debdafd0428e19861ffacea683e1d555a2c35b1e3d04e3a16c264769f6609ed15ddd6b5ea879ea434562369306440560b366d2979c642cca1b6e156bd3f9bc3a02aa80709f8bcdd5228ec44a5f44595bbbea0adce9f88876c513723f781abc7b31dba924c70ac446bf34aba07cbc8c4107a1115e2b32097e58845a4468d0096124fb8ee56ebe9562d82ce0c5e6f52db3ad56ce162f23a0567d9b9764edcbd34cef97613f7fb9f9c23c7f75288635ccc199db63a222a8d8cdcc8ecd5c0d941a96235a90807fd8626ecd3f5c00619383bb06a2e85077243d34e90053e30d0827d261147a6f7522f4e8109af719b9d61ba1ea0a60083cc7c3735bdb4b59371bd5ccb228e6043c1816f96c3bc265f82674628c4ea2d048a2ae3cb90be1d68d7f0f7ecbcdcd31c649ed8ac1684a80a0302f874bf9e2ab8b6f32a2ef09e8259a8a34ebf54510154fe7890873dec849a70e0826403007c7f20518ebd321cd8424fdbd892108c5cc870984bb97691385bddb68115180bb5d7fd4db399bf9dbe26702e41bc819b8bb7471030089966cd3193117593a2f0fe822732dd0116b0dd54ef9948fb54778c52ed5960a200eb3692d31733ca69c6e90fd448dd4eefff74a1175fac3929406a703de539aad24e286e54f03c88cd6f3d486364025e4abf75e207ea6bd459d86a466eced22aca1b18077f37029757a712e2644cb6d7038fcbe269d3f4cb9147c0bdb5d0e94af0361bf414439321e62da9c0f8e527755abe20ac2b96214ac745721fc0f9f703b35a515ad275dc5bc771040d7f2c181bef44d435b77d4994b1f14539fbe4b8622d4d7dd4be08c9de136239c2dada4f581edbfb2b8bddbed4d0101e26d292cbcb7fc44156f6ffa0ffbcea6479e1959fd76d97b04a46d2e15d320cc2058f80056052c3cf37823e58819e3252ad0eaf3d00e01269192cd5abb6e70372cab95789042d6f0533f470d69e825f782da541274d0a2c1a2b7921caca37a1a168872b610ad000c944f898e2e9c7315605fc856f90c8b07e6ec0b4cfdb9bd6055c61733313de30baf742b0c753e2494907236e1824cf20b5e5af2adc937680958ea879f4a977b0f23b77509fe293d939a5ab7e1f2d71c941621bd3752e1cd25c48f5200f7509da3c8c647bc9661c692c7b99f45c777b35ada5d93d22e0da7bce338a2e68a15eeec6ad8f583d7a801f33c70545fb7af6036b2dc53932618ae3193798aeb06db54562d0955bbc0e2b9a4208dea1614d121cc954eadf4cbca468ef0a9fa0fa5eac50c07db33d2cf412f06dd85334b0d81a81fff84157f83d9c8bbc35f67313a857f036aad5155e2d198e7e1282d78b7271a0bd365427063f063613b06db9ad0561970d32782db22dfb3bf02c0de52e9454f93de246f48ac10c1178df3680c5093e5c89442650315f6a69391b20837bba7de6ae3d8baa5086dbdc8c224be312ee63f2a129b18f3a1ba820e03eb373995b0513094d468a716677109c4e8e44aaa383ed3bfc1dbeb46e3c04a77734983c62aec301d1173fa36f29d98d54db98227ee2b57299fd960839ec094c5b4e78dc8ddb26353f80608163e3ca9a95d06e104df8aa00c4cf77a20f79e0e761e17a1f9445801629ef0ad910171c9ad965c7d12474aad3b26132052a0621619ef532c3e77062decc3d179027c92da34bea67ac751ed3b27edae70a2ffb022347e85969cb8db1f92d98c60d39937abb19a9096d8f123a82566f0f0568b74750d902e18182f818b26a1fe168d7d45d7994bd84146c872877d05ff22beb603d074155b781c2e8654b18d71827656249f75dccbf8fd68ee3cb24510da32cdc6a4dc1742cf1e07a1ef9d71c4adadf17cddcd49ddf1ebd6e3ad66d783fe6a9c63c5252e7888728c509086314f44751c8906fbd3e7f541ac7ed37cc0fe27b7894d7f1b7c524d724055799a2f487d66e46ef1354d94c42c0d6b9c445ec14104e511d48fc87a8c1fc0abdf3cb14007fd0a3bf5879d8b500b2d9934a5ad6b80694c79056a717ae4433b171043ac74dfd4e7cd568dd83db39640c49ed7e786ae4ad9ba528a11e3b0c835d269df533df221faf6109f505e88224ac6b18c6b5b396982dc4447dd9abefed2a84751d9ef0dbfe7df78c9cf6b6c398002fd5c4e97442a9b28098b52832c9eeb594990907f77054e62cfc201300e37b65f27c082f8d29846ca66d80c7fa8c769bff81d39af58c030ff657918776637876160d97fc67240892638802e1f76b7c9c7c031197295d425a7357006ba13b4705f2778f481d5d9820e65db8865f6cc7925787df2ec2b76929af9bd7498d72c4b4719bbdf38359e2397aadd6fe4e0d5589d2c7f19ff66d0b9a0ff837eb2d5619b46a0297bf485968ae10875c8ba00fef03e3d3d643aff7542784241c79c7284f6cf4b3cb245ddbff90897cfbf4447961d3d9c3e41ba59991d460abea53848f94bf8b4f5846e1d5dc3b1985db29c5391de74af9114c5a0c8954a52d0008348d675886fcd5cc867a3ddeebc2bae50d863ada12ce26b3666c92db60c039345daef2293c8cadebe0e70334b410479fdcea182bd730037c9fc0e9657c6177b3a4fd1fbf33afeb104040d7fcfac521cfce34ad9618f5a0f112bd55cb32a073dd5b71c75e550d460ecd29dcddc867116cd7831459fcb6ddd2ff8e16272f9904c7c10426c12e66c6d3178c11befa1e42c0b92cb1b69c0493fd7fe3d26e6709ce52b532dc5f106f1cb68028cc8bbbd4b41e321491d239ac492ee0713ba97250c6c34a7381667b9ab787757b60d2b3fcdf9058b0b3b3765cbd1d109063b37106f74d51b57c3f97a3b122cea9ccecff98e75ca5f16cfc0d0c3797f3b051ed51a05732d3b91f68f4bd97d9d8d0ab848a7a484f4e109af29c650b32f97ec5aae087f873dac6ebcc2516e33273f7d44978bb22ace9bd2b714f05742cb3d1a8f4733d7f86ffb2fdaa1c1998681d7d88aa84c9a730b3d315c9dae737767175f40bab9ff0c8bfba3bdae067f0d9443b62a4049fc9984f716b5d9dd411517deb621dc603265a19e427fb38a399a3d4e32a85341351494554425b7b9f5800e0d1387811fc7359c2ca9bad6580774e54396484c1397b43d5ce8034da0e79121910fd2a8f474db2d1b6330f4be9741d772639fa7286eb9a2961c0cc93cfadb6853c86cca757783ae290f5efff4b51ae34cc4bbb85d934a76f03d88e4f25af952681d58abc308dd4f3a35b419c14d02b3a2cc524cec43c1045d7181d5f2d436d5af6b66064d3daed1bb62ae18f00679bdf84936396c67f6717622ce3418503e630b5b23c18215fbbd58c71982bedcee99a01ee3f58777a3293e6122895ff32cec7f6e7e8caf98ca6732c22f88cc9298c811bf327ec3cb4cd047e79d1d6bdb93161e4b9c60a862ac31d6e66dc127f97ea81a124e95195a132b6309be56c872ef68be254143212fcc6a2a7c5ab67e42d57ddd50a06557d64df4633b2632f6fe550c5d4109693546385b89fe6cf82099d18a1a9ea3a3eac27e7c62ab893edff1ab1d53e185c65c993e6742057b5474f9d96e9075e703ea022c9c29adf856d0800b0b57d20b3a29348dd0e235e2e8acea79f732f100049bbce88e222362adcf4bb51e0fbaaf2335ef2bc6a3bd5ea8cddbfd206394c2e9a5ebc316fada09960bd438ae047d26869625480be724b5a20ebf719348b66b30562f45ae68409820bb1bab168dfe5f7329a1ef0f1076638574fda68cc2c2432a11920612373c2db8125ed6950941a31fd737bfb5746de987fb87a59f3072cc83c158fa8a3878912ef1e6aeb256a2bc0b3c3ea948a42b00aea36988a93f65fca24b86a2a159ae9520c4204967c93c6a6654e83dd5aca910844be288bc93aef4fcd5acb0ec473b197d3fba87133e1df61da7f79d4bffd8f20bdbc27fd9089308f94cd8fe9fbb7d63456599187bdf6cdb67d895806b167f6784abbf315ad98160a55dcd740d60d934296880ce47b0fad483b882784a5a9c759ad1200ab9547cd1f3992dc7a668029352a33f52c714d4df07924745bdf30dfcb45c5495be6cb896d119d4f9ab3346d6b575bcd7e1ee551030fa75b3b81c646afae74ee6aa3a3ea66a928a403c8daa581db10edaea17e9dfa63844fa7430586f4772d6fee735723830b54fe</script>
+</div>
+<script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/19/Coordinate-Transformation/" rel="next" title="Coordinate Transformation">
+                <i class="fa fa-chevron-left"></i> Coordinate Transformation
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/28/Combination-and-Permutation/" rel="prev" title="Combination and Permutation">
+                Combination and Permutation <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Void Spirit</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+                <a href="/archives">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Void Spirit</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+<script src="<%- config.root %>js/hexo_resize_image.js"></script>
+</body>
+</html>

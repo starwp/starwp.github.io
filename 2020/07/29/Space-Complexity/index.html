@@ -79,20 +79,17 @@
 
 
 
-<meta name="description" content="Fleury’s Algorithm for printing Eulerian Path">
+<meta name="description" content="On Space ComplexityWe discuss some techniques to save space complexity. We will use some problems to illustrate them. Problem 1:Given an unsorted integer array, find the smallest missing positive in">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Eulerian Path">
-<meta property="og:url" content="https://starwp.github.io/2020/05/03/Eulerian-Path/index.html">
+<meta property="og:title" content="Space Complexity">
+<meta property="og:url" content="https://starwp.github.io/2020/07/29/Space-Complexity/index.html">
 <meta property="og:site_name" content="Make It Happen">
-<meta property="og:description" content="Fleury’s Algorithm for printing Eulerian Path">
+<meta property="og:description" content="On Space ComplexityWe discuss some techniques to save space complexity. We will use some problems to illustrate them. Problem 1:Given an unsorted integer array, find the smallest missing positive in">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://brilliant-staff-media.s3-us-west-2.amazonaws.com/tiffany-wang/MJufJoRB0r.png">
-<meta property="og:image" content="https://user-images.githubusercontent.com/35303672/48727417-28c3d500-ec58-11e8-9715-33b168a50b7c.png">
-<meta property="article:published_time" content="2020-05-03T06:48:13.000Z">
-<meta property="article:modified_time" content="2020-07-08T06:18:44.004Z">
+<meta property="article:published_time" content="2020-07-30T00:18:44.000Z">
+<meta property="article:modified_time" content="2020-07-30T00:34:47.781Z">
 <meta property="article:author" content="Void Spirit">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://brilliant-staff-media.s3-us-west-2.amazonaws.com/tiffany-wang/MJufJoRB0r.png">
 
 
 
@@ -122,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://starwp.github.io/2020/05/03/Eulerian-Path/"/>
+  <link rel="canonical" href="https://starwp.github.io/2020/07/29/Space-Complexity/"/>
 
 
 
 
 
-  <title>Eulerian Path | Make It Happen</title>
+  <title>Space Complexity | Make It Happen</title>
   
 
 
@@ -245,7 +242,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://starwp.github.io/2020/05/03/Eulerian-Path/">
+    <link itemprop="mainEntityOfPage" href="https://starwp.github.io/2020/07/29/Space-Complexity/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Void Spirit">
@@ -262,7 +259,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Eulerian Path</h1>
+          <h1 class="post-title" itemprop="name headline">Space Complexity</h1>
         
 
         <div class="post-meta">
@@ -274,8 +271,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-03T02:48:13-04:00">
-                2020-05-03
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-29T20:18:44-04:00">
+                2020-07-29
               </time>
             
 
@@ -312,10 +309,31 @@
       
 
       
-        <p><a href="https://www.youtube.com/watch?v=8MpoO2zA2l4" target="_blank" rel="noopener">Fleury’s Algorithm for printing Eulerian Path</a></p>
-<div class="group-picture"><div class="group-picture-container"><div class="group-picture-row"><div class="group-picture-column"  style="width: 50%;"><img src="https://brilliant-staff-media.s3-us-west-2.amazonaws.com/tiffany-wang/MJufJoRB0r.png" class="" width="330"></div><div class="group-picture-column"  style="width: 50%;"><img src="https://user-images.githubusercontent.com/35303672/48727417-28c3d500-ec58-11e8-9715-33b168a50b7c.png" class="" width="400"></div></div><div class="group-picture-row"></div></div></div>
+        <a id="more"></a>
 
-<a id="more"></a>
+<h1 id="On-Space-Complexity"><a href="#On-Space-Complexity" class="headerlink" title="On Space Complexity"></a>On Space Complexity</h1><p>We discuss some techniques to save space complexity. We will use some problems to illustrate them.</p>
+<h2 id="Problem-1"><a href="#Problem-1" class="headerlink" title="Problem 1:"></a>Problem 1:</h2><p>Given an unsorted integer array, find the smallest missing positive integer.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,2,0]</span><br><span class="line">Output: 3</span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [3,4,-1,1]</span><br><span class="line">Output: 2</span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [7,8,9,11,12]</span><br><span class="line">Output: 1</span><br></pre></td></tr></table></figure>
+
+
+
+<p>To achieve a O(n) algorithm, we can easily come up with an idea using hash. Or in a simpler way, we use array instead of hash to store the information. However, this requires O(n) space time complexity.</p>
+<h3 id="Technique-1"><a href="#Technique-1" class="headerlink" title="Technique 1:"></a>Technique 1:</h3><p><strong>Using the given input to store the information</strong></p>
+<p>Since we need a O(n) extra space to store the information, we in fact can use the input nums to store the needed information. For this question, this information, should be the number in [1, n], we just utilize the values in nums in [1, n] to negation the corresponding index of value.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findMissing</span><span class="params">(nums)</span>:</span></span><br><span class="line">	f, n = <span class="number">0</span>, len(nums) - <span class="number">1</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">		<span class="keyword">if</span> nums[i] == <span class="number">1</span>: f = <span class="number">1</span></span><br><span class="line">		<span class="keyword">if</span> nums[i] &lt;= <span class="number">0</span>: nums[i] = n + <span class="number">2</span></span><br><span class="line">	<span class="keyword">if</span> <span class="keyword">not</span> f: <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">		<span class="keyword">if</span> abs(nums[i]) &gt; n: <span class="keyword">continue</span></span><br><span class="line">		<span class="keyword">if</span> nums[abs(nums[i])<span class="number">-1</span>] &gt; <span class="number">0</span>: </span><br><span class="line">			nums[abs(nums[i])<span class="number">-1</span>] = -nums[abs(nums[i])<span class="number">-1</span>]</span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">		<span class="keyword">if</span> nums[i] &gt; <span class="number">0</span>: <span class="keyword">return</span> i+<span class="number">1</span></span><br><span class="line">	<span class="keyword">return</span> n + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="Problem-2"><a href="#Problem-2" class="headerlink" title="Problem 2:"></a>Problem 2:</h2>
       
     </div>
     
@@ -339,8 +357,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/05/03/Cycle-Detection/" rel="next" title="Cycle Detection">
-                <i class="fa fa-chevron-left"></i> Cycle Detection
+              <a href="/2020/07/28/Combination-and-Permutation/" rel="next" title="Combination and Permutation">
+                <i class="fa fa-chevron-left"></i> Combination and Permutation
               </a>
             
           </div>
@@ -348,10 +366,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/05/06/Majority-Element/" rel="prev" title="Majority Element">
-                Majority Element <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -403,8 +417,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -444,6 +467,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#On-Space-Complexity"><span class="nav-text">On Space Complexity</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-1"><span class="nav-text">Problem 1:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Technique-1"><span class="nav-text">Technique 1:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-2"><span class="nav-text">Problem 2:</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
