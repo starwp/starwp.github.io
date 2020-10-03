@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
 
 
 
@@ -60,7 +60,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>Algs</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -79,7 +79,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                Home
+                首页
               </a>
             </li>
           
@@ -91,7 +91,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                Archives
+                归档
               </a>
             </li>
           
@@ -103,7 +103,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                Categories
+                分类
               </a>
             </li>
           
@@ -115,7 +115,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                Tags
+                标签
               </a>
             </li>
           
@@ -127,7 +127,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                About
+                关于
               </a>
             </li>
           
@@ -166,7 +166,7 @@
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
       <time datetime="2020-07-08 21:38" pubdate>
-        July 8, 2020 pm
+        2020年7月8日 晚上
       </time>
     </span>
   
@@ -194,6 +194,14 @@
 
   
   
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
 </div>
 
             
@@ -220,14 +228,11 @@
             <h1 style="display: none">Dynamic Programming</h1>
             
             <div class="markdown-body" id="post-body">
-              <a id="more"></a>
-
-
-
-
-
-<h1 id="Knapsack-Problems"><a href="#Knapsack-Problems" class="headerlink" title="Knapsack Problems"></a>Knapsack Problems</h1><p>The following discussion foucus on the series of knapsack problems.</p>
-<h2 id="Problem-1-Basic-Version"><a href="#Problem-1-Basic-Version" class="headerlink" title="Problem 1: Basic Version"></a>Problem 1: Basic Version</h2><p>Given <em>n</em> items with size Ai, an integer <em>m</em> denotes the size of a backpack, find the maximum size we can fit.</p>
+              <blockquote>
+<p>present types of DP problems and the techniques.</p>
+</blockquote>
+<h1 id="Knapsack-Problems"><a href="#Knapsack-Problems" class="headerlink" title="Knapsack Problems"></a>Knapsack Problems</h1><p>The following discussion focus on the series of knapsack problems.</p>
+<h2 id="Problem-1-Basic-Version"><a href="#Problem-1-Basic-Version" class="headerlink" title="Problem 1: Basic Version"></a>Problem 1: Basic Version</h2><p>Given <code>n</code> items with size <code>Ai</code>, an integer <code>m</code> denotes the size of a backpack, find the maximum size we can fit.</p>
 <p>问题：n个物品不同的size，一个大小m的背包，求背包能装的最大size。</p>
 <p>分析：</p>
 <ol>
@@ -259,7 +264,14 @@
 <li>考虑如何最后一步实现目标。</li>
 </ul>
 <p>对于上面这个题来说，实现最后一步的目标方式，一定是最后一个物品选，还是不选，所以，最后代码的实现，loop物品一定外循环，loop背包size一定是内循环。</p>
-<p><img src="image-20200721180707241.png" srcset="/img/loading.gif" alt="image-20200721180707241"></p>
+<p align="center">
+  <img width="400" src="image-20200721180707241.png" srcset="/img/loading.gif">
+</p>
+
+
+
+
+
 <p>Then, the code is shown</p>
 <pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">knapsack_I</span><span class="hljs-params">(A, m)</span>:</span>
     dp = collections.defaultdict(int)
@@ -292,43 +304,36 @@
 <p>问题：n物品有大小和价值，使用m大小的背包装最多的价值。物品可重复使用。</p>
 <p>分析：根据最后一步构成原理，nth物品，不选，选1次，选2次，。。。无数次。</p>
 <p>如果还是使用之前的定义dp[i][j]为使用前ith物品装背包j的最大价值，寻找其和i-1物品的关系</p>
-<pre><code class="hljs python"><span class="hljs-comment">#condition 1: if nth item cannot be selected</span>
-<span class="hljs-keyword">if</span> nums[i] &gt; j:
-	dp[i][j] = dp[i<span class="hljs-number">-1</span>][j]
-<span class="hljs-comment">#condition 2: if nth item can be selected once</span>
-<span class="hljs-keyword">if</span> nums[i] &lt;= j:
-	dp[i][j] = dp[i<span class="hljs-number">-1</span>][j-A[i]] + V[i]
-<span class="hljs-keyword">if</span> <span class="hljs-number">2</span>*nums[i] &lt;= j:
-	dp[i][j] = dp[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-2</span>*A[i]] + <span class="hljs-number">2</span>*V[i]
-<span class="hljs-comment">#...</span>
-<span class="hljs-keyword">if</span> k*nums[j] &lt;= j:
-    dp[i][j] = dp[i<span class="hljs-number">-1</span>][j-k*A[i]] + k*V[i]
-
-<span class="hljs-comment">#综上总结(包括，不选，选1次，选2次。。。。无数次)                   </span>
-<span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(sys.maxsize):
+<ul>
+<li><p>condition 1: if nth item cannot be selected<br><code>dp[i][j] = dp[i-1][j] if nums[i] &gt; j</code> </p>
+</li>
+<li><p>condition 2: if nth item can be selected once<br><code>dp[i][j] = dp[i-1][j-A[i]] + V[i] if nums[i] &lt;= j</code></p>
+</li>
+<li><p>others:</p>
+<p><code>dp[i][j] = dp[i-1][j-2*A[i]] + 2*V[i] if 2*nums[i] &lt;= j</code></p>
+<p><code>dp[i][j] = dp[i-1][j-k*A[i]] + k*V[i] if k*nums[j] &lt;= j</code></p>
+</li>
+</ul>
+<p>综上总结(包括，不选，选1次，选2次。。。。无数次) </p>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(sys.maxsize):
     <span class="hljs-keyword">if</span> k*A[j] &lt;= j:
     	dp[i][j] = max(dp[i][j], dp[i<span class="hljs-number">-1</span>][j-k*A[i]] + k*V[i])
     <span class="hljs-keyword">else</span>:
     	<span class="hljs-keyword">break</span></code></pre>
 
 <p>可以看出来，多了一个for loop循环选择次数，但是重写递推(使用largeNumber次和largeNumber+1次)</p>
-<pre><code class="hljs python">式<span class="hljs-number">1</span>： dp[i][j] = max(dp[i<span class="hljs-number">-1</span>][j-k*A[i]] + k*V[i] <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(largeNumber))
-式<span class="hljs-number">2</span>： dp[i][j-A[i]] = max(dp[i<span class="hljs-number">-1</span>][j-A[i]-k*A[i]] + k*V[i] <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(largeNumber))
-式<span class="hljs-number">3</span>： dp[i][j-A[i]] = max(dp[i<span class="hljs-number">-1</span>][j-(k+<span class="hljs-number">1</span>)*A[i]] + k*V[i] <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(largeNumber))
-式<span class="hljs-number">4</span>: dp[i][j] = max(dp[i<span class="hljs-number">-1</span>][j], max(dp[i<span class="hljs-number">-1</span>][j-(k+<span class="hljs-number">1</span>)*A[i]] + k*V[i] <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, largeNumber)) + V[i])
-式<span class="hljs-number">4</span>: dp[i][j] = max(dp[i<span class="hljs-number">-1</span>][j], dp[i<span class="hljs-number">-1</span>][j-(k+<span class="hljs-number">1</span>)*A[i]] + (k+<span class="hljs-number">1</span>)*V[i] <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, largeNumber))
-    
-可得：dp[i][j] = max(dp[i<span class="hljs-number">-1</span>][j], dp[i][j-A[i]]+V[i])</code></pre>
-
+<p><code>dp[i][j] = max(dp[i-1][j-k*A[i]] + k*V[i] for k in range(largeNumber))</code><br><code>dp[i][j-A[i]] = max(dp[i-1][j-A[i]-k*A[i]] + k*V[i] for k in range(largeNumber))</code><br><code>dp[i][j-A[i]] = max(dp[i-1][j-(k+1)*A[i]] + k*V[i] for k in range(largeNumber))</code><br><code>dp[i][j] = max(dp[i-1][j], max(dp[i-1][j-(k+1)*A[i]] + k*V[i] for k in range(1, largeNumber)) + V[i])</code><br><code>dp[i][j] = max(dp[i-1][j], dp[i-1][j-(k+1)*A[i]] + (k+1)*V[i] for k in range(1, largeNumber))</code></p>
+<p>可得：</p>
+<p><code>dp[i][j] = max(dp[i-1][j], dp[i][j-A[i]]+V[i])</code></p>
 <p>其对应的物理含义，dp[i][j-A[i]] 当前第ith物品被选中的时候，因此</p>
-<pre><code class="hljs python">前i物品装背包j最大价值   =  max(第ith不选的背包j    第ith被选中了很多次的背包j-A[i]  
-dp[i][j]             =   max(dp[i<span class="hljs-number">-1</span>][j]),     dp[i][j-A[i]]+V[i]</code></pre>
+<p><code>前i物品装背包j最大价值   =  max(第ith不选的背包j,    第ith被选中了很多次的背包j-A[i])</code></p>
+<p><code>dp[i][j]             =   max(dp[i-1][j],     dp[i][j-A[i]]+V[i])</code></p>
+<p align="center">
+  <img width="400" src="image-20200721180235085.png" srcset="/img/loading.gif">
+</p>
 
 
 
-
-
-<p><img src="image-20200721180235085.png" srcset="/img/loading.gif" alt="image-20200721180235085"></p>
 <p>Thus, the code is shown as </p>
 <pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">knapsack_III</span><span class="hljs-params">(A, V, m)</span>:</span>
     dp = [<span class="hljs-number">0</span>] * (m + <span class="hljs-number">1</span>)
@@ -402,7 +407,12 @@ dp[i][j]             =   max(dp[i<span class="hljs-number">-1</span>][j]),     d
 <pre><code class="hljs python">dp[t] = sum([dp[t-A[i]] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(A)) <span class="hljs-keyword">if</span> t&gt;=A[i]])</code></pre>
 
 <p>这样就类似爬楼梯。</p>
-<p><img src="image-20200721183427683.png" srcset="/img/loading.gif" alt="image-20200721183427683"></p>
+<p align="center">
+  <img width="400" src="image-20200721183427683.png" srcset="/img/loading.gif">
+</p>
+
+
+
 <p>Thus, the code is shown as</p>
 <pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">knapsack_VI</span><span class="hljs-params">(A, target)</span>:</span>
     dp = [<span class="hljs-number">1</span>] + [<span class="hljs-number">0</span>] * target
@@ -575,8 +585,8 @@ dp[<span class="hljs-number">1</span>,n<span class="hljs-number">-1</span>]，dp
 
 <h1 id="Double-Sequence-DP"><a href="#Double-Sequence-DP" class="headerlink" title="Double Sequence DP"></a>Double Sequence DP</h1><p>双序列DP问题一般的目标是基于两个串的特性的。例如，考虑一个问题P，有两个串A和B目标是(最大公共字串，将A变成B)。因此，根据最后一步原理，一般我们定义dp[i][j]表示目标去求解问题。</p>
 <p>为了找到递推方程，一般利用pull的方法。首先，最重要的一点，假设前i个A和前j个B的<strong>子问题的目标</strong>已经实现，例如dp[i][j]对应的min/max值求出来了，也就是说对应的dp[i][j]的目标配置被完全实现。例如，最长公共子串问题，dp[i][j]不仅代表这个最长的值，也代表着A串已经完全转化到B了。基于这个目标，我们就需要反向推理如何获得dp[i][j]，有哪些可能的最后一步实现这个目标和配置。一般来说，相关的变量是dp[i-1][j]，dp[i][j-1]，dp[i-1][j-1]。</p>
-<p>另一个很重要的点是，即使我们考虑了dp[i][j]的目标配置，当处理实际的 问题，例如(处理，原始A[0:i] and B[0:j] 需要改变配置到A’[0:x], B’[0:y]基于目标，但是我们的递推方程在建立的时候，还是需要考虑原始的string和index，以及其处理的orignial strings and index <span style="color:red"><strong>(A[i-1], B[j-1]), (A[i], B[j-1]), (A[i],B[j-1])</strong></span> rather than those settings ((A’[0:x-1], B’[0:y-1]), A’[0:x], B’[0:y-1]). </p>
-<h2 id="Problem-1-Distinct-Subsequences"><a href="#Problem-1-Distinct-Subsequences" class="headerlink" title="Problem 1: Distinct Subsequences"></a>Problem 1: Distinct Subsequences</h2><p>题意：给定两个字符串A[0..m-1]，B[0..n-1]，问B在A中出现多少次（可以不连续）</p>
+<p>另一个很重要的点是，即使我们考虑了dp[i][j]的目标配置，当处理实际的 问题，例如(处理，原始A[0:i] and B[0:j] 需要改变配置到A&#39;[0:x], B&#39;[0:y]基于目标，但是我们的递推方程在建立的时候，还是需要考虑原始的string和index，以及其处理的orignial strings and index <span style="color:red"><strong>(A[i-1], B[j-1]), (A[i], B[j-1]), (A[i],B[j-1])</strong></span> rather than those settings ((A&#39;[0:x-1], B&#39;[0:y-1]), A&#39;[0:x], B&#39;[0:y-1]). </p>
+<h2 id="Problem-1-Distinct-Subsequences"><a href="#Problem-1-Distinct-Subsequences" class="headerlink" title="Problem 1: Distinct Subsequences"></a>Problem 1: Distinct Subsequences</h2><p>题意：给定两个字符串<code>A[0..m-1]</code>，<code>B[0..n-1]</code>，问B在A中出现多少次（可以不连续）</p>
 <pre><code class="hljs python">例子
 • 输入：A=“rabbbit”, B=“rabbit”
 • 输出：<span class="hljs-number">3</span>
@@ -590,14 +600,14 @@ dp[<span class="hljs-number">1</span>,n<span class="hljs-number">-1</span>]，dp
 <ul>
 <li>问题1：求多少种的时候，是＋，最后一步分类，再讨论分类用加号链接</li>
 </ul>
-<h2 id="Problem-2-Edit-Distance"><a href="#Problem-2-Edit-Distance" class="headerlink" title="Problem 2: Edit Distance"></a>Problem 2: Edit Distance</h2><p>Given two words <em>A</em> and <em>B</em>, find the minimum number of steps required to convert A to B. (each operation is counted as 1 step.) You have the following 3 operations permitted on a word:</p>
+<h2 id="Problem-2-Edit-Distance"><a href="#Problem-2-Edit-Distance" class="headerlink" title="Problem 2: Edit Distance"></a>Problem 2: Edit Distance</h2><p>Given two words <code>A</code> and <code>B</code>, find the minimum number of steps required to convert <code>A</code> to <code>B</code>. (each operation is counted as 1 step.) You have the following 3 operations permitted on a word:</p>
 <ul>
 <li>Insert a character</li>
 <li>Delete a character</li>
 <li>Replace a character</li>
 </ul>
 <p>问题：编辑距离：</p>
-<p>Since the covertion requires the permutation, we can define that dp[i][j] is the min step that we convert A[i] to B[j]. Based on the discussion above, by reasoning backward, the possible step to achieve the conversion is to either insert at pos i, delete the pos i, or replace the pos i. Hence, the recurrence equation is derivated as </p>
+<p>Since the conversion requires the permutation, we can define that dp[i][j] is the min step that we convert A[i] to B[j]. Based on the discussion above, by reasoning backward, the possible step to achieve the conversion is to either insert at pos i, delete the pos i, or replace the pos i. Hence, the recurrence equation is derivated as </p>
 <pre><code class="hljs python">dp[i][j] = min(dp[i][j<span class="hljs-number">-1</span>] + <span class="hljs-number">1</span>,  \ <span class="hljs-comment"># insert after pos i  </span>
                dp[i<span class="hljs-number">-1</span>][j] + <span class="hljs-number">1</span>,  \ <span class="hljs-comment"># delete the pos i</span>
                dp[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>] + <span class="hljs-number">1</span>,\ <span class="hljs-comment"># replace the pos i</span>
@@ -619,12 +629,12 @@ dp[<span class="hljs-number">1</span>,n<span class="hljs-number">-1</span>]，dp
 </ul>
 <p>Notice that the difficulty in Case 3 is that we need to know the last value in the previous setting dp[i-1][j-1], which is in fact unknown. To solve the problem, I use the following technique 1. </p>
 <h3 id="technique-1"><a href="#technique-1" class="headerlink" title="technique 1:"></a>technique 1:</h3><p><span style="color:red"><strong>If the information is unknown, compute it by introducing dp[i][j][1].</strong></span></p>
-<p>Based on the technique, we extend the defintion dp[i][j] to target both the maximal length LICS and the samllest ending number in the LICS.</p>
+<p>Based on the technique, we extend the definition dp[i][j] to target both the maximal length LICS and the smallest ending number in the LICS.</p>
 <ul>
 <li>dp[i][j][0]: maximal length of LICS</li>
 <li>dp[i][j][1]: smallest ending number of this LICS</li>
 </ul>
-<p>Thus, we go back to previos discussion.</p>
+<p>Thus, we go back to previous discussion.</p>
 <ul>
 <li>Case 1: dp[i][j][0] = dp[i][j-1][0], dp[i][j][1] = dp[i][j-1][1]</li>
 <li>Case 2: dp[i][j][0] = dp[i-1][j][0], dp[i][j][1] = dp[i-1][j][1] </li>
@@ -846,7 +856,7 @@ dp[<span class="hljs-number">2</span>][<span class="hljs-number">0</span>][<span
                       <a href="/2020/07/09/Trie/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Trie</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
@@ -855,7 +865,7 @@ dp[<span class="hljs-number">2</span>][<span class="hljs-number">0</span>][<span
                     
                       <a href="/2020/07/07/Disjoint-Set/">
                         <span class="hidden-mobile">Disjoint Set</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -872,7 +882,7 @@ dp[<span class="hljs-number">2</span>][<span class="hljs-number">0</span>][<span
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div id="tocbot"></div>
 </div>
 
@@ -899,7 +909,7 @@ dp[<span class="hljs-number">2</span>][<span class="hljs-number">0</span>][<span
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -908,7 +918,7 @@ dp[<span class="hljs-number">2</span>][<span class="hljs-number">0</span>][<span
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -960,6 +970,8 @@ dp[<span class="hljs-number">2</span>][<span class="hljs-number">0</span>][<span
   <script  src="/js/clipboard-use.js" ></script>
 
 
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
