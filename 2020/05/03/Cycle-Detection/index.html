@@ -150,7 +150,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
+         style="background: url('https://rmt.dogedoge.com/fetch/fluid/storage/post.png?w=1280&fmt=webp') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -222,6 +222,7 @@
             <div class="markdown-body" id="post-body">
               <p>“<a href="https://en.wikipedia.org/wiki/Cycle_detection" target="_blank" rel="noopener">Cycle detection algorithms</a>. Given an array of n + 1 integers with each in [1, n], can you detect duplicates in O(1) space and O(n) time?”</p>
 <a id="more"></a>
+
 <h2 id="1-Find-the-element-that-appear-once"><a href="#1-Find-the-element-that-appear-once" class="headerlink" title="1 Find the element that appear once"></a>1 Find the element that appear once</h2><h3 id="1-1-Problem-statement"><a href="#1-1-Problem-statement" class="headerlink" title="1.1 Problem statement:"></a>1.1 Problem statement:</h3><p>Given an array of n + 1 integers with each in [1, n], can you detect duplicates in O(1) space and O(n) time?</p>
 <h3 id="1-2-Solution"><a href="#1-2-Solution" class="headerlink" title="1.2 Solution:"></a>1.2 Solution:</h3><p>As all the integers are ranged in [1, n], there must be at least one duplicate due to the pigeonhole principle. The trick is to treat each integer as an index of the input array, such that it points to another integer in the input i.e. treat it as a “pointer”. </p>
 <p>Then, we need to locate a starting point. In this case, if we consider the index starts from 0, the 1st integer cannot have any pointers going to it, since its position is smaller than any integers in the array. Of course, if the index starts from 1, it is intuitive to find the nth integer as the starting point as it is larger than any interger in the array. </p>
@@ -527,6 +528,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
 
