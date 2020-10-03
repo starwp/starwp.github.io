@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
 
 
 
@@ -79,7 +79,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                Home
               </a>
             </li>
           
@@ -91,7 +91,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                Archives
               </a>
             </li>
           
@@ -103,7 +103,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                Categories
               </a>
             </li>
           
@@ -115,7 +115,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                Tags
               </a>
             </li>
           
@@ -127,7 +127,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                About
               </a>
             </li>
           
@@ -166,7 +166,7 @@
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
       <time datetime="2020-07-08 21:38" pubdate>
-        2020年7月8日 晚上
+        July 8, 2020 pm
       </time>
     </span>
   
@@ -187,7 +187,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      109
+      110
        分钟
     </span>
   
@@ -237,7 +237,7 @@
 <p>分析：</p>
 <ol>
 <li>目标很明确，使用n个物品装大小为m背包的最大size</li>
-<li>每个物品状态也很明确，每个物品可选，可不选</li>
+<li>每个物品状态也很明确，每个物品可选，可不选(表明了combination problem, not permutation problem)</li>
 </ol>
 <p>因此，直接定义dp[n]为使用前n个物品求出的最大size，再根据<strong>最后一步原理</strong>倒退分析dp[n]和dp[n-1]的联系。</p>
 <pre><code class="hljs python"><span class="hljs-comment">#condition 1: if nth item cannot be selected</span>
@@ -247,8 +247,8 @@
 <span class="hljs-comment">#condition 2: if nth item can be selected</span>
 	dp[n] = dp[n<span class="hljs-number">-1</span>] + A[n<span class="hljs-number">-1</span>]</code></pre>
 
-<p>   显然，我们发现，根据物品的状态无法直接显出有效的递归公式，因为我们少了一个背包当前的状态，于是我们补上当前背包状态，重新定于dp[n][m]</p>
-<p>dp[n][m]表示使用前n个物品装大小为m背包求出最大的size，于是递推公式如下</p>
+<p>   显然，我们发现，根据物品的状态无法直接显出有效的递归公式，因为我们少了一个背包当前的状态，于是我们补上当前背包状态，重新定于dp[n][m]如下:</p>
+<p>dp[n][m]表示使用前n个物品装大小为m背包求出最大的size，于是递推公式如下:</p>
 <pre><code class="hljs python"><span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(m):
     <span class="hljs-comment">#condition 1: if nth item cannot be selected</span>
     <span class="hljs-keyword">if</span> A[n<span class="hljs-number">-1</span>] &gt; j: 
@@ -259,10 +259,8 @@
 
 
 
-<p>一般来说，我们使用<strong>最后一步原理</strong>，</p>
-<ul>
-<li>考虑如何最后一步实现目标。</li>
-</ul>
+
+<h2 id="Technique-Last-Step-Principle"><a href="#Technique-Last-Step-Principle" class="headerlink" title="Technique: Last Step Principle"></a>Technique: Last Step Principle</h2><p>由上面的分析我们总结出最后一步原理: 考虑<strong>最后一步做什么</strong>可以实现目标。</p>
 <p>对于上面这个题来说，实现最后一步的目标方式，一定是最后一个物品选，还是不选，所以，最后代码的实现，loop物品一定外循环，loop背包size一定是内循环。</p>
 <p align="center">
   <img width="400" src="image-20200721180707241.png" srcset="/img/loading.gif">
@@ -283,7 +281,7 @@
     <span class="hljs-keyword">return</span> dp[(len(A)<span class="hljs-number">-1</span>)%<span class="hljs-number">2</span>, m]</code></pre>
 
 <ul>
-<li>Notice背包大小范围在[0,m]建立内循环。我们使用二维dp节省空间。</li>
+<li>Notice that 背包大小范围在[0,m]建立内循环。我们使用二维dp节省空间。如果倒着loop内循环，可以只用exactly一维空间。</li>
 </ul>
 <h2 id="Problem-2-General-Version"><a href="#Problem-2-General-Version" class="headerlink" title="Problem 2: General Version"></a>Problem 2: General Version</h2><p>Given <code>n</code> items and a backpack with size <code>m</code>. Given array <code>A</code> representing the size of each item and array <code>V</code> representing the value of each item. What’s the maximum value can you put into the backpack?</p>
 <p>问题：n物品有大小和价值，使用m大小的背包装最多的价值。</p>
@@ -358,12 +356,10 @@
 
 
 
-
-
 <p>As we consider the number of solutions in this problem, so the recurrence equation becomes</p>
 <pre><code class="hljs python">dp[i][w] = dp[i<span class="hljs-number">-1</span>][w] + dp[i<span class="hljs-number">-1</span>][w-A[i]] <span class="hljs-comment"># w &gt;= A[i]</span></code></pre>
 
-<p>where the defintion dp[i][w] represents that <strong>the number of ways obtained by using the first i items to achieve the given target w</strong>. Therefore, the code is shown as</p>
+<p>where the definition dp[i][w] represents that <strong>the number of ways obtained by using the first i items to achieve the given target w</strong>. Therefore, the code is shown as</p>
 <pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">knapsack_IV</span><span class="hljs-params">(A, target)</span>        </span>
 <span class="hljs-function">    <span class="hljs-title">if</span> <span class="hljs-title">sum</span><span class="hljs-params">(A)</span> &lt; <span class="hljs-title">target</span>:</span> <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
     dp = [[<span class="hljs-number">0</span>] * (target + <span class="hljs-number">1</span>), [<span class="hljs-number">1</span>] + [<span class="hljs-number">0</span>] * target]
@@ -406,7 +402,7 @@
 <p>分析：根据最后一步构成原理，构成最后一步的permutation可以来自于数组中任何一个物品。因此只能定义dp[target]为目标，递归公式为：</p>
 <pre><code class="hljs python">dp[t] = sum([dp[t-A[i]] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(A)) <span class="hljs-keyword">if</span> t&gt;=A[i]])</code></pre>
 
-<p>这样就类似爬楼梯。</p>
+<p>这样就类似<strong>爬楼梯</strong>问题。</p>
 <p align="center">
   <img width="400" src="image-20200721183427683.png" srcset="/img/loading.gif">
 </p>
@@ -463,7 +459,7 @@ dp[i][sum - A[i]] += dp[i][sum]</code></pre>
 <p>P = (T + Sum) / 2</p>
 <p>where P is a set of positive integers and N is the set of negative integers. </p>
 <p>So the problem can be transformed to a subset sum problem to find a target sum at (T + Sum) / 2, by using this condition, we further pruning the search. </p>
-<h1 id="Partitioned-DP"><a href="#Partitioned-DP" class="headerlink" title="Partitioned DP"></a>Partitioned DP</h1><p>This partitioned DP 处理string和sequence， 且我们需要将stringparitition成k段substrings (subsequence) ，每段满足不同的条件.</p>
+<h1 id="Partitioned-DP"><a href="#Partitioned-DP" class="headerlink" title="Partitioned DP"></a>Partitioned DP</h1><p>This partitioned DP 处理string和sequence， 且我们需要将string进行partition成k段substrings(subsequence) ，每段满足不同的条件.</p>
 <h2 id="Problem-1-Palindrome-Partitioning"><a href="#Problem-1-Palindrome-Partitioning" class="headerlink" title="Problem 1: Palindrome Partitioning"></a>Problem 1: Palindrome Partitioning</h2><p>Given a string <code>s</code>, cut <code>s</code> into some substrings such that every substring is a palindrome. Return the <strong>minimum</strong> cuts needed for a palindrome partitioning of <em>s</em>.</p>
 <p>Based on the last step principle, we can define dp[i] as the min-cut obtained by the string with the first i elements. Therefore, we could have the recurrence</p>
 <pre><code class="hljs python">dp[i] = min(dp[i], dp[j] + <span class="hljs-number">1</span> <span class="hljs-keyword">if</span> isPalindrome(s[i:j+<span class="hljs-number">1</span>]))</code></pre>
@@ -479,12 +475,6 @@ dp[i+r+<span class="hljs-number">1</span>] = min(dp[i+r+<span class="hljs-number
 <p>分析：根据min max(f[0], f[1], f[2],…,f[k-1])，根据最后一步原理，假设最后一个人抄书的范围设定在[j,n-1]本，设dp[i][j]为前i人且第i人抄到第j本的最短时间，可得如下递归式子 </p>
 <pre><code class="hljs python"><span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(j):
 	dp[i][j] = min(dp[i][j], max(dp[i<span class="hljs-number">-1</span>][k] , sum(pages[k+<span class="hljs-number">1</span>:j+<span class="hljs-number">1</span>])))</code></pre>
-
-
-
-
-
-
 
 
 
@@ -844,6 +834,15 @@ dp[<span class="hljs-number">2</span>][<span class="hljs-number">0</span>][<span
               <div class="post-metas mb-3">
                 
                 
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Algorithm/">Algorithm</a>
+                    
+                      <a class="hover-with-bg" href="/tags/DP/">DP</a>
+                    
+                  </div>
+                
               </div>
               
                 <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
@@ -856,7 +855,7 @@ dp[<span class="hljs-number">2</span>][<span class="hljs-number">0</span>][<span
                       <a href="/2020/07/09/Trie/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Trie</span>
-                        <span class="visible-mobile">上一篇</span>
+                        <span class="visible-mobile">Previous</span>
                       </a>
                     
                   </article>
@@ -865,7 +864,7 @@ dp[<span class="hljs-number">2</span>][<span class="hljs-number">0</span>][<span
                     
                       <a href="/2020/07/07/Disjoint-Set/">
                         <span class="hidden-mobile">Disjoint Set</span>
-                        <span class="visible-mobile">下一篇</span>
+                        <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -882,7 +881,7 @@ dp[<span class="hljs-number">2</span>][<span class="hljs-number">0</span>][<span
     
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
   <div id="tocbot"></div>
 </div>
 
@@ -909,7 +908,7 @@ dp[<span class="hljs-number">2</span>][<span class="hljs-number">0</span>][<span
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -918,7 +917,7 @@ dp[<span class="hljs-number">2</span>][<span class="hljs-number">0</span>][<span
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
