@@ -1,319 +1,226 @@
+
+
 <!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
 
 
 
-  
-
-
-<html class="theme-next gemini use-motion" lang="en">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Void Spirit">
+  <meta name="keywords" content="">
+  <title>Sliding Window - Make It Happen</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
 
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-
-
-<meta property="og:type" content="article">
-<meta property="og:title" content="Sliding Window">
-<meta property="og:url" content="https://starwp.github.io/2020/06/25/Sliding-Window/index.html">
-<meta property="og:site_name" content="Make It Happen">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://images.patentswarm.com/US8976860B2/original.d66604dfa1230ffe00ddf7b59e632d726b86918f943bb6a6d6f0defcec1293e7.png">
-<meta property="og:image" content="https://i.ytimg.com/vi/ShbRCjvB_yQ/maxresdefault.jpg">
-<meta property="og:image" content="https://starwp.github.io/2020/06/25/Sliding-Window/image-20200706224309985.png">
-<meta property="og:image" content="https://starwp.github.io/2020/06/25/Sliding-Window/image-20200706232631967.png">
-<meta property="og:image" content="https://starwp.github.io/2020/06/25/Sliding-Window/image-20200706232800001.png">
-<meta property="article:published_time" content="2020-06-25T22:08:55.000Z">
-<meta property="article:modified_time" content="2020-07-08T06:34:43.249Z">
-<meta property="article:author" content="Void Spirit">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://images.patentswarm.com/US8976860B2/original.d66604dfa1230ffe00ddf7b59e632d726b86918f943bb6a6d6f0defcec1293e7.png">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="https://starwp.github.io/2020/06/25/Sliding-Window/"/>
-
-
-
-
-
-  <title>Sliding Window | Make It Happen</title>
   
 
 
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
 
 
 
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
+<link  rel="stylesheet" href="/css/main.css" />
 
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.0"></head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
-  
-  
-    
-  
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
 
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Make It Happen</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle"></p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
     </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
   </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            Tags
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
 </nav>
 
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://starwp.github.io/2020/06/25/Sliding-Window/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Void Spirit">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Make It Happen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">Sliding Window</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
               
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-25T18:08:55-04:00">
-                2020-06-25
-              </time>
-            
+            </span>
 
             
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-06-25 18:08" pubdate>
+        June 25, 2020 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      701 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      14
+       分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
-          </span>
+          </div>
 
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      </div>
+    </div>
+  </header>
 
+  <main>
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
-      
-        <div class="group-picture"><div class="group-picture-container"><div class="group-picture-row"><div class="group-picture-column"  style="width: 50%;"><img src="https://images.patentswarm.com/US8976860B2/original.d66604dfa1230ffe00ddf7b59e632d726b86918f943bb6a6d6f0defcec1293e7.png" class="" width="300"></div><div class="group-picture-column"  style="width: 50%;"><img src="https://i.ytimg.com/vi/ShbRCjvB_yQ/maxresdefault.jpg" class="" width="400"></div></div><div class="group-picture-row"></div></div></div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">Sliding Window</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <img src=" https://images.patentswarm.com/US8976860B2/original.d66604dfa1230ffe00ddf7b59e632d726b86918f943bb6a6d6f0defcec1293e7.png" srcset="/img/loading.gif" width = "400" alt="" align=center />
 
 
 
@@ -322,20 +229,36 @@
 
 
 <h1 id="Templates"><a href="#Templates" class="headerlink" title="Templates"></a>Templates</h1><p>Here we present a first template for sliding window problem.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def sliding_window(A, window):</span><br><span class="line">    left, right, value &#x3D; 0, 0, 0</span><br><span class="line">    while right &lt; len(A):</span><br><span class="line">    	value &#x3D; A[right] # always consider ther right element</span><br><span class="line">    	right +&#x3D; 1</span><br><span class="line">    	while left - right &gt; window: #shrink the window for the specific condition</span><br><span class="line">    		temp &#x3D; A[left]</span><br><span class="line">            left +&#x3D; 1</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs pytho">def sliding_window(A, window):
+    left, right, value &#x3D; 0, 0, 0
+    while right &lt; len(A):
+    	value &#x3D; A[right] # always consider ther right element
+    	right +&#x3D; 1
+    	while left - right &gt; window: #shrink the window for the specific condition
+    		temp &#x3D; A[left]
+            left +&#x3D; 1</code></pre>
 
 
 
 <p>The sliding window technique can be used to some two pointer problems, which makes it easy to write the code.</p>
 <p>However, when dealing with complex sliding window problem, we might need to move left pointers in the outer loop rather the right pointers in the outer loop. We therefore have the the following template.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sliding_window</span><span class="params">(A, window, start)</span>:</span></span><br><span class="line">    cur_sum, min_len = <span class="number">0</span>, len(A)</span><br><span class="line">    <span class="keyword">for</span> left <span class="keyword">in</span> range(len(A)):</span><br><span class="line">        <span class="keyword">while</span> right &lt; len(A) <span class="keyword">and</span> cur_sum &lt; start:</span><br><span class="line">            cur_sum += A[right]</span><br><span class="line">        <span class="keyword">if</span> cur_sum &gt;= start:</span><br><span class="line">            min_len = min(min_len, right - left)</span><br><span class="line">        cur_sum -= A[left]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> min_len</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sliding_window</span><span class="hljs-params">(A, window, start)</span>:</span>
+    cur_sum, min_len = <span class="hljs-number">0</span>, len(A)
+    <span class="hljs-keyword">for</span> left <span class="hljs-keyword">in</span> range(len(A)):
+        <span class="hljs-keyword">while</span> right &lt; len(A) <span class="hljs-keyword">and</span> cur_sum &lt; start:
+            cur_sum += A[right]
+        <span class="hljs-keyword">if</span> cur_sum &gt;= start:
+            min_len = min(min_len, right - left)
+        cur_sum -= A[left]
+    
+    <span class="hljs-keyword">return</span> min_len</code></pre>
 
 
 
 <h1 id="Common-mistake"><a href="#Common-mistake" class="headerlink" title="Common mistake"></a>Common mistake</h1><ol>
 <li>The common mistake that I usually make in the first template is that, since I fix where to increment the index <strong>right</strong>, when going to the while loop for shrinking the size of the window, the index <strong>right</strong> should point to <strong>right+1</strong>. In this case, if we would like to use <strong>right</strong>, it has already been changed and is not the original one, especially when referring to the array index by watching out if we really want to looking at <strong>nums[right]</strong> or <strong>nums[right+1]</strong>.</li>
 </ol>
-<p><img src="image-20200706224309985.png" alt="image-20200706224309985"></p>
+<p><img src="image-20200706224309985.png" srcset="/img/loading.gif" alt="image-20200706224309985"></p>
 <ul>
 <li>The next point is that we should be careful with the <strong>left index</strong> in the <strong>second while</strong> loop</li>
 <li>To reasonably design where to compute the objective. As it shown in the figure, there might be two options to choose to put the object lines.</li>
@@ -346,7 +269,7 @@
 <ul>
 <li>We first consider to compute the minimal length for the subarray sum greater than or equal to the start value. This shows that if both cases are feasible (subarray sum &gt;= start), the correct index is <strong>right - 1</strong>.</li>
 </ul>
-<p><img src="image-20200706232631967.png" alt="image-20200706232631967"></p>
+<p><img src="image-20200706232631967.png" srcset="/img/loading.gif" alt="image-20200706232631967"></p>
 <ul>
 <li><p>Then, we consider the end side.  </p>
 <ul>
@@ -364,348 +287,216 @@
 </ul>
 </li>
 </ul>
-<p><img src="image-20200706232800001.png" alt="image-20200706232800001"></p>
+<p><img src="image-20200706232800001.png" srcset="/img/loading.gif" alt="image-20200706232800001"></p>
 </li>
 </ul>
 <p>Combining those two cases, we have the following code.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">subarraySumII</span><span class="params">(self, A, start, end)</span>:</span></span><br><span class="line">    </span><br><span class="line">    sum_right_min = sum_right_max = right_min = right_max = cnt = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> left <span class="keyword">in</span> range(len(A)):</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> right_min &lt; len(A) <span class="keyword">and</span> sum_right_min &lt; start:</span><br><span class="line">            sum_right_min += A[right_min]</span><br><span class="line">            right_min += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> right_max &lt; len(A) <span class="keyword">and</span> sum_right_max &lt;= end:</span><br><span class="line">            sum_right_max += A[right_max]</span><br><span class="line">            right_max += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># feasible condition of right_min</span></span><br><span class="line">        <span class="keyword">if</span> sum_right_min &gt;= start <span class="keyword">and</span> right_min &gt; left:</span><br><span class="line">            <span class="keyword">if</span> right_max &gt;= len(A) <span class="keyword">and</span> sum_right_max &lt;= end:</span><br><span class="line">                cnt += (right_max - <span class="number">1</span>) - (right_min - <span class="number">1</span>) + <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                cnt += (right_max - <span class="number">2</span>) - (right_min - <span class="number">1</span>) + <span class="number">1</span> </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> right_min &gt; left:</span><br><span class="line">            sum_right_min -= A[left]</span><br><span class="line">        <span class="keyword">if</span> right_max &gt; left:</span><br><span class="line">        	sum_right_max -= A[left]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> cnt</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">subarraySumII</span><span class="hljs-params">(self, A, start, end)</span>:</span>
+    
+    sum_right_min = sum_right_max = right_min = right_max = cnt = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> left <span class="hljs-keyword">in</span> range(len(A)):
+        
+        <span class="hljs-keyword">while</span> right_min &lt; len(A) <span class="hljs-keyword">and</span> sum_right_min &lt; start:
+            sum_right_min += A[right_min]
+            right_min += <span class="hljs-number">1</span>
+        
+        <span class="hljs-keyword">while</span> right_max &lt; len(A) <span class="hljs-keyword">and</span> sum_right_max &lt;= end:
+            sum_right_max += A[right_max]
+            right_max += <span class="hljs-number">1</span>
+        
+        <span class="hljs-comment"># feasible condition of right_min</span>
+        <span class="hljs-keyword">if</span> sum_right_min &gt;= start <span class="hljs-keyword">and</span> right_min &gt; left:
+            <span class="hljs-keyword">if</span> right_max &gt;= len(A) <span class="hljs-keyword">and</span> sum_right_max &lt;= end:
+                cnt += (right_max - <span class="hljs-number">1</span>) - (right_min - <span class="hljs-number">1</span>) + <span class="hljs-number">1</span>
+            <span class="hljs-keyword">else</span>:
+                cnt += (right_max - <span class="hljs-number">2</span>) - (right_min - <span class="hljs-number">1</span>) + <span class="hljs-number">1</span> 
+        
+        <span class="hljs-keyword">if</span> right_min &gt; left:
+            sum_right_min -= A[left]
+        <span class="hljs-keyword">if</span> right_max &gt; left:
+        	sum_right_max -= A[left]
+    
+    <span class="hljs-keyword">return</span> cnt</code></pre>
 
 
 
 <p>Of course, we can use some metric to optimize the logic but need to be careful enough.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">subarraySumII</span><span class="params">(self, A, start, end)</span>:</span></span><br><span class="line">    </span><br><span class="line">    sum_right_min = sum_right_max = right_min = right_max = cnt = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> left <span class="keyword">in</span> range(len(A)):</span><br><span class="line">        </span><br><span class="line">        right_max = max(left, right_max)</span><br><span class="line">        <span class="keyword">while</span> right_min &lt; len(A) <span class="keyword">and</span> sum_right_min &lt; start:</span><br><span class="line">            sum_right_min += A[right_min]</span><br><span class="line">            right_min += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> right_max &lt; len(A) <span class="keyword">and</span> sum_right_max + A[right_max] &lt;= end:</span><br><span class="line">            sum_right_max += A[right_max]</span><br><span class="line">            right_max += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> sum_right_min &gt;= start <span class="keyword">and</span> right_min &gt; left: </span><br><span class="line">            cnt += (right_max - <span class="number">1</span>) - (right_min - <span class="number">1</span>) + <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> right_min &gt; left:</span><br><span class="line">            sum_right_min -= A[left]</span><br><span class="line">        <span class="keyword">if</span> right_max &gt; left:</span><br><span class="line">        	sum_right_max -= A[left]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> cnt</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">subarraySumII</span><span class="hljs-params">(self, A, start, end)</span>:</span>
+    
+    sum_right_min = sum_right_max = right_min = right_max = cnt = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> left <span class="hljs-keyword">in</span> range(len(A)):
+        
+        right_max = max(left, right_max)
+        <span class="hljs-keyword">while</span> right_min &lt; len(A) <span class="hljs-keyword">and</span> sum_right_min &lt; start:
+            sum_right_min += A[right_min]
+            right_min += <span class="hljs-number">1</span>
+        
+        <span class="hljs-keyword">while</span> right_max &lt; len(A) <span class="hljs-keyword">and</span> sum_right_max + A[right_max] &lt;= end:
+            sum_right_max += A[right_max]
+            right_max += <span class="hljs-number">1</span>
+        
+        <span class="hljs-keyword">if</span> sum_right_min &gt;= start <span class="hljs-keyword">and</span> right_min &gt; left: 
+            cnt += (right_max - <span class="hljs-number">1</span>) - (right_min - <span class="hljs-number">1</span>) + <span class="hljs-number">1</span>
+        
+        <span class="hljs-keyword">if</span> right_min &gt; left:
+            sum_right_min -= A[left]
+        <span class="hljs-keyword">if</span> right_max &gt; left:
+        	sum_right_max -= A[left]
+    
+    <span class="hljs-keyword">return</span> cnt</code></pre>
 
 
 
 <p>Or the following code.</p>
 <p>def subarraySumII(self, A, start, end):</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">subarraySumII</span><span class="params">(self, A, start, end)</span>:</span></span><br><span class="line">    </span><br><span class="line">    sum_right_min = sum_right_max = right_min = right_max = cnt = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> left <span class="keyword">in</span> range(len(A)):</span><br><span class="line">        </span><br><span class="line">        right_min = max(left, right_min)</span><br><span class="line">        right_max = max(left, right_max)</span><br><span class="line">        <span class="keyword">while</span> right_min &lt; len(A) <span class="keyword">and</span> sum_right_min + A[right_min] &lt; start:</span><br><span class="line">            sum_right_min += A[right_min]</span><br><span class="line">            right_min += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> right_max &lt; len(A) <span class="keyword">and</span> sum_right_max + A[right_max] &lt;= end:</span><br><span class="line">            sum_right_max += A[right_max]</span><br><span class="line">            right_max += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> right_min &lt; len(A): <span class="comment"># or right_min &lt; right_max</span></span><br><span class="line">            cnt += (right_max - <span class="number">1</span>) - (right_min) + <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> right_min &gt; left:</span><br><span class="line">            sum_right_min -= A[left]</span><br><span class="line">        <span class="keyword">if</span> right_max &gt; left:</span><br><span class="line">        	sum_right_max -= A[left]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> cnt</span><br></pre></td></tr></table></figure>
-
-
-
-      
-    </div>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">subarraySumII</span><span class="hljs-params">(self, A, start, end)</span>:</span>
     
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2020/06/25/Python-Note/" rel="next" title="Python Note">
-                <i class="fa fa-chevron-left"></i> Python Note
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/07/07/Disjoint-Set/" rel="prev" title="Disjoint Set">
-                Disjoint Set <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-
-
-
-        </div>
+    sum_right_min = sum_right_max = right_min = right_max = cnt = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> left <span class="hljs-keyword">in</span> range(len(A)):
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
+        right_min = max(left, right_min)
+        right_max = max(left, right_max)
+        <span class="hljs-keyword">while</span> right_min &lt; len(A) <span class="hljs-keyword">and</span> sum_right_min + A[right_min] &lt; start:
+            sum_right_min += A[right_min]
+            right_min += <span class="hljs-number">1</span>
+        
+        <span class="hljs-keyword">while</span> right_max &lt; len(A) <span class="hljs-keyword">and</span> sum_right_max + A[right_max] &lt;= end:
+            sum_right_max += A[right_max]
+            right_max += <span class="hljs-number">1</span>
+        
+        <span class="hljs-keyword">if</span> right_min &lt; len(A): <span class="hljs-comment"># or right_min &lt; right_max</span>
+            cnt += (right_max - <span class="hljs-number">1</span>) - (right_min) + <span class="hljs-number">1</span>
+        
+        <span class="hljs-keyword">if</span> right_min &gt; left:
+            sum_right_min -= A[left]
+        <span class="hljs-keyword">if</span> right_max &gt; left:
+        	sum_right_max -= A[left]
     
-    <div class="sidebar-inner">
+    <span class="hljs-keyword">return</span> cnt</code></pre>
 
-      
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">Void Spirit</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-                <a href="/archives">
-                  <span class="site-state-item-count">30</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
               </div>
-            
-
-            
-
-            
-
-          </nav>
-
-          
-
-          
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
               
-            
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/07/07/Disjoint-Set/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Disjoint Set</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/06/25/Python-Note/">
+                        <span class="hidden-mobile">Python Note</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Templates"><span class="nav-text">Templates</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Common-mistake"><span class="nav-text">Common mistake</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
+          </article>
+        </div>
       </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Void Spirit</span>
-
-  
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
 </div>
 
-
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
       </div>
     
-
-    
-
   </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
 
   
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
   
 
   
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
   
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-  
-
 
   
 
+  
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+    
 
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
 
 
   
+    <script  src="/js/lazyload.js" ></script>
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
 
 
 
@@ -713,11 +504,8 @@
 
 
 
-
-
-  
-
-
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
 
 
 
@@ -725,52 +513,114 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
 
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
       });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
 
 
-  
 
-  
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Sliding Window&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
 
-<script src="<%- config.root %>js/hexo_resize_image.js"></script>
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>

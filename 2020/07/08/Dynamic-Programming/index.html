@@ -1,319 +1,230 @@
+
+
 <!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
 
 
 
-  
-
-
-<html class="theme-next gemini use-motion" lang="en">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Void Spirit">
+  <meta name="keywords" content="">
+  <title>Dynamic Programming - Make It Happen</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
 
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-
-
-<meta property="og:type" content="article">
-<meta property="og:title" content="Dynamic Programming">
-<meta property="og:url" content="https://starwp.github.io/2020/07/08/Dynamic-Programming/index.html">
-<meta property="og:site_name" content="Make It Happen">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://miro.medium.com/max/684/0*3dS6Jw8NzzSD-mn8.jpg">
-<meta property="og:image" content="https://www.mathworks.com/matlabcentral/mlc-downloads/downloads/submissions/67486/versions/1/screenshot.png">
-<meta property="og:image" content="https://starwp.github.io/2020/07/08/Dynamic-Programming/image-20200721180707241.png">
-<meta property="og:image" content="https://starwp.github.io/2020/07/08/Dynamic-Programming/image-20200721180235085.png">
-<meta property="og:image" content="https://starwp.github.io/2020/07/08/Dynamic-Programming/image-20200721183427683.png">
-<meta property="article:published_time" content="2020-07-09T01:38:47.000Z">
-<meta property="article:modified_time" content="2020-09-15T14:07:40.804Z">
-<meta property="article:author" content="Void Spirit">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://miro.medium.com/max/684/0*3dS6Jw8NzzSD-mn8.jpg">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="https://starwp.github.io/2020/07/08/Dynamic-Programming/"/>
-
-
-
-
-
-  <title>Dynamic Programming | Make It Happen</title>
   
 
 
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
 
 
 
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
+<link  rel="stylesheet" href="/css/main.css" />
 
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.0"></head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
-  
-  
-    
-  
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
 
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Make It Happen</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle"></p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
     </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
   </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            Tags
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
 </nav>
 
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://starwp.github.io/2020/07/08/Dynamic-Programming/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Void Spirit">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Make It Happen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">Dynamic Programming</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
               
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-08T21:38:47-04:00">
-                2020-07-08
-              </time>
-            
+            </span>
 
             
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-07-08 21:38" pubdate>
+        July 8, 2020 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      6.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      109
+       分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
-          </span>
+          </div>
 
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      </div>
+    </div>
+  </header>
 
+  <main>
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
-      
-        <div class="group-picture"><div class="group-picture-container"><div class="group-picture-row"><div class="group-picture-column"  style="width: 50%;"><img src="https://miro.medium.com/max/684/0*3dS6Jw8NzzSD-mn8.jpg" class="" width="400"></div><div class="group-picture-column"  style="width: 50%;"><img src="https://www.mathworks.com/matlabcentral/mlc-downloads/downloads/submissions/67486/versions/1/screenshot.png" class="" width="250"></div></div><div class="group-picture-row"></div></div></div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">Dynamic Programming</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <img src="https://www.mathworks.com/matlabcentral/mlc-downloads/downloads/submissions/67486/versions/1/screenshot.png" srcset="/img/loading.gif" width = "400" alt="" align=center />
+
+
+
+
 
 
 
@@ -330,11 +241,22 @@
 <li>每个物品状态也很明确，每个物品可选，可不选</li>
 </ol>
 <p>因此，直接定义dp[n]为使用前n个物品求出的最大size，再根据<strong>最后一步原理</strong>倒退分析dp[n]和dp[n-1]的联系。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#condition 1: if nth item cannot be selected</span></span><br><span class="line"><span class="keyword">if</span> A[n<span class="number">-1</span>] &gt; current remaining volume:</span><br><span class="line">	dp[n] = dp[n<span class="number">-1</span>] </span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line"><span class="comment">#condition 2: if nth item can be selected</span></span><br><span class="line">	dp[n] = dp[n<span class="number">-1</span>] + A[n<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-comment">#condition 1: if nth item cannot be selected</span>
+<span class="hljs-keyword">if</span> A[n<span class="hljs-number">-1</span>] &gt; current remaining volume:
+	dp[n] = dp[n<span class="hljs-number">-1</span>] 
+<span class="hljs-keyword">else</span>:
+<span class="hljs-comment">#condition 2: if nth item can be selected</span>
+	dp[n] = dp[n<span class="hljs-number">-1</span>] + A[n<span class="hljs-number">-1</span>]</code></pre>
 
 <p>   显然，我们发现，根据物品的状态无法直接显出有效的递归公式，因为我们少了一个背包当前的状态，于是我们补上当前背包状态，重新定于dp[n][m]</p>
 <p>dp[n][m]表示使用前n个物品装大小为m背包求出最大的size，于是递推公式如下</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> range(m):</span><br><span class="line">    <span class="comment">#condition 1: if nth item cannot be selected</span></span><br><span class="line">    <span class="keyword">if</span> A[n<span class="number">-1</span>] &gt; j: </span><br><span class="line">		dp[n][j] = dp[n<span class="number">-1</span>][j] </span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">	<span class="comment">#condition 2: if nth item can be selected</span></span><br><span class="line">		dp[n][j] = max(dp[n<span class="number">-1</span>][j], dp[n<span class="number">-1</span>][j-A[n<span class="number">-1</span>]] + A[n<span class="number">-1</span>])</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(m):
+    <span class="hljs-comment">#condition 1: if nth item cannot be selected</span>
+    <span class="hljs-keyword">if</span> A[n<span class="hljs-number">-1</span>] &gt; j: 
+		dp[n][j] = dp[n<span class="hljs-number">-1</span>][j] 
+	<span class="hljs-keyword">else</span>:
+	<span class="hljs-comment">#condition 2: if nth item can be selected</span>
+		dp[n][j] = max(dp[n<span class="hljs-number">-1</span>][j], dp[n<span class="hljs-number">-1</span>][j-A[n<span class="hljs-number">-1</span>]] + A[n<span class="hljs-number">-1</span>])</code></pre>
 
 
 
@@ -343,9 +265,16 @@
 <li>考虑如何最后一步实现目标。</li>
 </ul>
 <p>对于上面这个题来说，实现最后一步的目标方式，一定是最后一个物品选，还是不选，所以，最后代码的实现，loop物品一定外循环，loop背包size一定是内循环。</p>
-<p><img src="image-20200721180707241.png" alt="image-20200721180707241"></p>
+<p><img src="image-20200721180707241.png" srcset="/img/loading.gif" alt="image-20200721180707241"></p>
 <p>Then, the code is shown</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">knapsack_I</span><span class="params">(A, m)</span>:</span></span><br><span class="line">    dp = collections.defaultdict(int)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(A)):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(m + <span class="number">1</span>):</span><br><span class="line">            dp[i%<span class="number">2</span>,j] = dp[(i<span class="number">-1</span>)%<span class="number">2</span>,j]</span><br><span class="line">            <span class="keyword">if</span> j &gt;= A[i]: </span><br><span class="line">                dp[i%<span class="number">2</span>,j] = max(dp[i%<span class="number">2</span>,j], dp[(i<span class="number">-1</span>)%<span class="number">2</span>,j-A[i]] + A[i])</span><br><span class="line">    <span class="keyword">return</span> dp[(len(A)<span class="number">-1</span>)%<span class="number">2</span>, m]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">knapsack_I</span><span class="hljs-params">(A, m)</span>:</span>
+    dp = collections.defaultdict(int)
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(A)):
+        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(m + <span class="hljs-number">1</span>):
+            dp[i%<span class="hljs-number">2</span>,j] = dp[(i<span class="hljs-number">-1</span>)%<span class="hljs-number">2</span>,j]
+            <span class="hljs-keyword">if</span> j &gt;= A[i]: 
+                dp[i%<span class="hljs-number">2</span>,j] = max(dp[i%<span class="hljs-number">2</span>,j], dp[(i<span class="hljs-number">-1</span>)%<span class="hljs-number">2</span>,j-A[i]] + A[i])
+    <span class="hljs-keyword">return</span> dp[(len(A)<span class="hljs-number">-1</span>)%<span class="hljs-number">2</span>, m]</code></pre>
 
 <ul>
 <li>Notice背包大小范围在[0,m]建立内循环。我们使用二维dp节省空间。</li>
@@ -354,7 +283,14 @@
 <p>问题：n物品有大小和价值，使用m大小的背包装最多的价值。</p>
 <p>题解同上。</p>
 <p>This one is similar to the basic version.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">knapsack_II</span><span class="params">(A, V, m)</span>:</span>        </span><br><span class="line">    dp = [[<span class="number">0</span>] * (m + <span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">2</span>)] </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(A)):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, m + <span class="number">1</span>):</span><br><span class="line">            dp[i%<span class="number">2</span>][j] = dp[(i<span class="number">-1</span>)%<span class="number">2</span>][j]</span><br><span class="line">            <span class="keyword">if</span> j &gt;= A[i]:</span><br><span class="line">                dp[i%<span class="number">2</span>][j] = max(dp[i%<span class="number">2</span>][j], dp[(i<span class="number">-1</span>)%<span class="number">2</span>][j-A[i]] + V[i])</span><br><span class="line">    <span class="keyword">return</span> dp[(len(A)<span class="number">-1</span>)%<span class="number">2</span>][m]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">knapsack_II</span><span class="hljs-params">(A, V, m)</span>:</span>        
+    dp = [[<span class="hljs-number">0</span>] * (m + <span class="hljs-number">1</span>) <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>)] 
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(A)):
+        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, m + <span class="hljs-number">1</span>):
+            dp[i%<span class="hljs-number">2</span>][j] = dp[(i<span class="hljs-number">-1</span>)%<span class="hljs-number">2</span>][j]
+            <span class="hljs-keyword">if</span> j &gt;= A[i]:
+                dp[i%<span class="hljs-number">2</span>][j] = max(dp[i%<span class="hljs-number">2</span>][j], dp[(i<span class="hljs-number">-1</span>)%<span class="hljs-number">2</span>][j-A[i]] + V[i])
+    <span class="hljs-keyword">return</span> dp[(len(A)<span class="hljs-number">-1</span>)%<span class="hljs-number">2</span>][m]</code></pre>
 
 
 
@@ -362,21 +298,51 @@
 <p>问题：n物品有大小和价值，使用m大小的背包装最多的价值。物品可重复使用。</p>
 <p>分析：根据最后一步构成原理，nth物品，不选，选1次，选2次，。。。无数次。</p>
 <p>如果还是使用之前的定义dp[i][j]为使用前ith物品装背包j的最大价值，寻找其和i-1物品的关系</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#condition 1: if nth item cannot be selected</span></span><br><span class="line"><span class="keyword">if</span> nums[i] &gt; j:</span><br><span class="line">	dp[i][j] = dp[i<span class="number">-1</span>][j]</span><br><span class="line"><span class="comment">#condition 2: if nth item can be selected once</span></span><br><span class="line"><span class="keyword">if</span> nums[i] &lt;= j:</span><br><span class="line">	dp[i][j] = dp[i<span class="number">-1</span>][j-A[i]] + V[i]</span><br><span class="line"><span class="keyword">if</span> <span class="number">2</span>*nums[i] &lt;= j:</span><br><span class="line">	dp[i][j] = dp[i<span class="number">-1</span>][j<span class="number">-2</span>*A[i]] + <span class="number">2</span>*V[i]</span><br><span class="line"><span class="comment">#...</span></span><br><span class="line"><span class="keyword">if</span> k*nums[j] &lt;= j:</span><br><span class="line">    dp[i][j] = dp[i<span class="number">-1</span>][j-k*A[i]] + k*V[i]</span><br><span class="line"></span><br><span class="line"><span class="comment">#综上总结(包括，不选，选1次，选2次。。。。无数次)                   </span></span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> range(sys.maxsize):</span><br><span class="line">    <span class="keyword">if</span> k*A[j] &lt;= j:</span><br><span class="line">    	dp[i][j] = max(dp[i][j], dp[i<span class="number">-1</span>][j-k*A[i]] + k*V[i])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">    	<span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-comment">#condition 1: if nth item cannot be selected</span>
+<span class="hljs-keyword">if</span> nums[i] &gt; j:
+	dp[i][j] = dp[i<span class="hljs-number">-1</span>][j]
+<span class="hljs-comment">#condition 2: if nth item can be selected once</span>
+<span class="hljs-keyword">if</span> nums[i] &lt;= j:
+	dp[i][j] = dp[i<span class="hljs-number">-1</span>][j-A[i]] + V[i]
+<span class="hljs-keyword">if</span> <span class="hljs-number">2</span>*nums[i] &lt;= j:
+	dp[i][j] = dp[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-2</span>*A[i]] + <span class="hljs-number">2</span>*V[i]
+<span class="hljs-comment">#...</span>
+<span class="hljs-keyword">if</span> k*nums[j] &lt;= j:
+    dp[i][j] = dp[i<span class="hljs-number">-1</span>][j-k*A[i]] + k*V[i]
+
+<span class="hljs-comment">#综上总结(包括，不选，选1次，选2次。。。。无数次)                   </span>
+<span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(sys.maxsize):
+    <span class="hljs-keyword">if</span> k*A[j] &lt;= j:
+    	dp[i][j] = max(dp[i][j], dp[i<span class="hljs-number">-1</span>][j-k*A[i]] + k*V[i])
+    <span class="hljs-keyword">else</span>:
+    	<span class="hljs-keyword">break</span></code></pre>
 
 <p>可以看出来，多了一个for loop循环选择次数，但是重写递推(使用largeNumber次和largeNumber+1次)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">式<span class="number">1</span>： dp[i][j] = max(dp[i<span class="number">-1</span>][j-k*A[i]] + k*V[i] <span class="keyword">for</span> k <span class="keyword">in</span> range(largeNumber))</span><br><span class="line">式<span class="number">2</span>： dp[i][j-A[i]] = max(dp[i<span class="number">-1</span>][j-A[i]-k*A[i]] + k*V[i] <span class="keyword">for</span> k <span class="keyword">in</span> range(largeNumber))</span><br><span class="line">式<span class="number">3</span>： dp[i][j-A[i]] = max(dp[i<span class="number">-1</span>][j-(k+<span class="number">1</span>)*A[i]] + k*V[i] <span class="keyword">for</span> k <span class="keyword">in</span> range(largeNumber))</span><br><span class="line">式<span class="number">4</span>: dp[i][j] = max(dp[i<span class="number">-1</span>][j], max(dp[i<span class="number">-1</span>][j-(k+<span class="number">1</span>)*A[i]] + k*V[i] <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">1</span>, largeNumber)) + V[i])</span><br><span class="line">式<span class="number">4</span>: dp[i][j] = max(dp[i<span class="number">-1</span>][j], dp[i<span class="number">-1</span>][j-(k+<span class="number">1</span>)*A[i]] + (k+<span class="number">1</span>)*V[i] <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">1</span>, largeNumber))</span><br><span class="line">    </span><br><span class="line">可得：dp[i][j] = max(dp[i<span class="number">-1</span>][j], dp[i][j-A[i]]+V[i])</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">式<span class="hljs-number">1</span>： dp[i][j] = max(dp[i<span class="hljs-number">-1</span>][j-k*A[i]] + k*V[i] <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(largeNumber))
+式<span class="hljs-number">2</span>： dp[i][j-A[i]] = max(dp[i<span class="hljs-number">-1</span>][j-A[i]-k*A[i]] + k*V[i] <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(largeNumber))
+式<span class="hljs-number">3</span>： dp[i][j-A[i]] = max(dp[i<span class="hljs-number">-1</span>][j-(k+<span class="hljs-number">1</span>)*A[i]] + k*V[i] <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(largeNumber))
+式<span class="hljs-number">4</span>: dp[i][j] = max(dp[i<span class="hljs-number">-1</span>][j], max(dp[i<span class="hljs-number">-1</span>][j-(k+<span class="hljs-number">1</span>)*A[i]] + k*V[i] <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, largeNumber)) + V[i])
+式<span class="hljs-number">4</span>: dp[i][j] = max(dp[i<span class="hljs-number">-1</span>][j], dp[i<span class="hljs-number">-1</span>][j-(k+<span class="hljs-number">1</span>)*A[i]] + (k+<span class="hljs-number">1</span>)*V[i] <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, largeNumber))
+    
+可得：dp[i][j] = max(dp[i<span class="hljs-number">-1</span>][j], dp[i][j-A[i]]+V[i])</code></pre>
 
 <p>其对应的物理含义，dp[i][j-A[i]] 当前第ith物品被选中的时候，因此</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">前i物品装背包j最大价值   =  max(第ith不选的背包j    第ith被选中了很多次的背包j-A[i]  </span><br><span class="line">dp[i][j]             =   max(dp[i<span class="number">-1</span>][j]),     dp[i][j-A[i]]+V[i]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">前i物品装背包j最大价值   =  max(第ith不选的背包j    第ith被选中了很多次的背包j-A[i]  
+dp[i][j]             =   max(dp[i<span class="hljs-number">-1</span>][j]),     dp[i][j-A[i]]+V[i]</code></pre>
 
 
 
 
 
-<p><img src="image-20200721180235085.png" alt="image-20200721180235085"></p>
+<p><img src="image-20200721180235085.png" srcset="/img/loading.gif" alt="image-20200721180235085"></p>
 <p>Thus, the code is shown as </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">knapsack_III</span><span class="params">(A, V, m)</span>:</span></span><br><span class="line">    dp = [<span class="number">0</span>] * (m + <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(A)):</span><br><span class="line">        <span class="keyword">for</span> w <span class="keyword">in</span> range(m+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> w &gt;= A[i]:</span><br><span class="line">                dp[w] = max(dp[w], dp[w-A[i]] + V[i])</span><br><span class="line">    <span class="keyword">return</span> dp[m]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">knapsack_III</span><span class="hljs-params">(A, V, m)</span>:</span>
+    dp = [<span class="hljs-number">0</span>] * (m + <span class="hljs-number">1</span>)
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(A)):
+        <span class="hljs-keyword">for</span> w <span class="hljs-keyword">in</span> range(m+<span class="hljs-number">1</span>):
+            <span class="hljs-keyword">if</span> w &gt;= A[i]:
+                dp[w] = max(dp[w], dp[w-A[i]] + V[i])
+    <span class="hljs-keyword">return</span> dp[m]</code></pre>
 
 
 
@@ -385,7 +351,7 @@
 <h2 id="Problem-4-Combination-Version"><a href="#Problem-4-Combination-Version" class="headerlink" title="Problem 4: Combination Version"></a>Problem 4: Combination Version</h2><p>Given n items with size <code>A[i]</code> which an integer array and all positive numbers. An integer <code>target</code> denotes the size of a backpack. Find the number of possible fill the backpack. Each item may only be used once.</p>
 <p>问题：n个物品各有大小，背包大小为target，求出装满当前背包在组合数量。每个物品用一次。</p>
 <p>分析：根据<strong>最后一步原理</strong>，最后一个物品装包，还是不装包的组合数为状态可以定义当前dp[i][j]，使用前i个物品装满背包大小j的组合数。有以下递推公式</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = dp[i<span class="number">-1</span>][j] + dp[i][j-A[i]]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">dp[i][j] = dp[i<span class="hljs-number">-1</span>][j] + dp[i][j-A[i]]</code></pre>
 
 
 
@@ -396,26 +362,40 @@
 
 
 <p>As we consider the number of solutions in this problem, so the recurrence equation becomes</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][w] = dp[i<span class="number">-1</span>][w] + dp[i<span class="number">-1</span>][w-A[i]] <span class="comment"># w &gt;= A[i]</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">dp[i][w] = dp[i<span class="hljs-number">-1</span>][w] + dp[i<span class="hljs-number">-1</span>][w-A[i]] <span class="hljs-comment"># w &gt;= A[i]</span></code></pre>
 
 <p>where the defintion dp[i][w] represents that <strong>the number of ways obtained by using the first i items to achieve the given target w</strong>. Therefore, the code is shown as</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">knapsack_IV</span><span class="params">(A, target)</span>        </span></span><br><span class="line"><span class="function">    <span class="title">if</span> <span class="title">sum</span><span class="params">(A)</span> &lt; <span class="title">target</span>:</span> <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    dp = [[<span class="number">0</span>] * (target + <span class="number">1</span>), [<span class="number">1</span>] + [<span class="number">0</span>] * target]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(A)):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(target + <span class="number">1</span>):</span><br><span class="line">            dp[i%<span class="number">2</span>][j] = dp[(i<span class="number">-1</span>)%<span class="number">2</span>][j]</span><br><span class="line">            <span class="keyword">if</span> j &gt;= A[i]:</span><br><span class="line">                dp[i%<span class="number">2</span>][j] += dp[(i<span class="number">-1</span>)%<span class="number">2</span>][j-A[i]]  </span><br><span class="line">    <span class="keyword">return</span> dp[(len(A)<span class="number">-1</span>)%<span class="number">2</span>][target]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">knapsack_IV</span><span class="hljs-params">(A, target)</span>        </span>
+<span class="hljs-function">    <span class="hljs-title">if</span> <span class="hljs-title">sum</span><span class="hljs-params">(A)</span> &lt; <span class="hljs-title">target</span>:</span> <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+    dp = [[<span class="hljs-number">0</span>] * (target + <span class="hljs-number">1</span>), [<span class="hljs-number">1</span>] + [<span class="hljs-number">0</span>] * target]
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(A)):
+        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(target + <span class="hljs-number">1</span>):
+            dp[i%<span class="hljs-number">2</span>][j] = dp[(i<span class="hljs-number">-1</span>)%<span class="hljs-number">2</span>][j]
+            <span class="hljs-keyword">if</span> j &gt;= A[i]:
+                dp[i%<span class="hljs-number">2</span>][j] += dp[(i<span class="hljs-number">-1</span>)%<span class="hljs-number">2</span>][j-A[i]]  
+    <span class="hljs-keyword">return</span> dp[(len(A)<span class="hljs-number">-1</span>)%<span class="hljs-number">2</span>][target]</code></pre>
 
 <ul>
 <li>Notice that the initial condition for this problem is that </li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[<span class="number">-1</span>][<span class="number">0</span>] = <span class="number">1</span> <span class="comment"># initial condition</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">dp[<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span> <span class="hljs-comment"># initial condition</span></code></pre>
 
 <p>This means using no items to obtain the target 0 is exactly one possible way.</p>
 <h2 id="Problem-5-Unbounded-Combination-Version"><a href="#Problem-5-Unbounded-Combination-Version" class="headerlink" title="Problem 5: Unbounded Combination Version"></a>Problem 5: Unbounded Combination Version</h2><p>Given an integer array <code>A</code> which contains <code>n</code> unique positive numbers, <code>A[i]</code> indicate the size of <code>i</code>th item. An integer <code>target</code> denotes the size of backpack. Find the number of ways to fill the backpack. Each item may be chosen unlimited number of times. </p>
 <p>问题：n个物品各有大小，背包大小为target，求出装满当前背包在组合数量。每个物品用无数次。</p>
 <p>分析：根据之前的问题3的分析，依然可以直接定义dp[i][j]为前i物品装满背包j的组合数量，递归公式如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] &#x3D; dp[i-1][j] + dp[i][j-A[i]]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs markdown">dp[<span class="hljs-string">i</span>][<span class="hljs-symbol">j</span>] = dp[<span class="hljs-string">i-1</span>][<span class="hljs-symbol">j</span>] + dp[<span class="hljs-string">i</span>][<span class="hljs-symbol">j-A[i</span>]]</code></pre>
 
 
 
 <p>Thus, the code is shown as</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">knapsack_V</span><span class="params">(A, target)</span>:</span></span><br><span class="line">    dp = [<span class="number">1</span>] + [<span class="number">0</span>] * target</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(A)):</span><br><span class="line">        <span class="keyword">for</span> w <span class="keyword">in</span> range(target + <span class="number">1</span>):</span><br><span class="line">        	<span class="keyword">if</span> w &gt;= A[i]:</span><br><span class="line">            	dp[w] += dp[w-A[i]]</span><br><span class="line">    <span class="keyword">return</span> dp[target]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">knapsack_V</span><span class="hljs-params">(A, target)</span>:</span>
+    dp = [<span class="hljs-number">1</span>] + [<span class="hljs-number">0</span>] * target
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(A)):
+        <span class="hljs-keyword">for</span> w <span class="hljs-keyword">in</span> range(target + <span class="hljs-number">1</span>):
+        	<span class="hljs-keyword">if</span> w &gt;= A[i]:
+            	dp[w] += dp[w-A[i]]
+    <span class="hljs-keyword">return</span> dp[target]</code></pre>
 
 
 
@@ -425,12 +405,18 @@
 <p>eg. A=[1, 2, 4], target = 4. The solution [1,2,1] and [2,1,1] are considered different.</p>
 <p>问题：n个物品各有unique大小，背包大小为target，求出装满当前背包在排列数量。每个物品用无数次。</p>
 <p>分析：根据最后一步构成原理，构成最后一步的permutation可以来自于数组中任何一个物品。因此只能定义dp[target]为目标，递归公式为：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[t] = sum([dp[t-A[i]] <span class="keyword">for</span> i <span class="keyword">in</span> range(len(A)) <span class="keyword">if</span> t&gt;=A[i]])</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">dp[t] = sum([dp[t-A[i]] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(A)) <span class="hljs-keyword">if</span> t&gt;=A[i]])</code></pre>
 
 <p>这样就类似爬楼梯。</p>
-<p><img src="image-20200721183427683.png" alt="image-20200721183427683"></p>
+<p><img src="image-20200721183427683.png" srcset="/img/loading.gif" alt="image-20200721183427683"></p>
 <p>Thus, the code is shown as</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">knapsack_VI</span><span class="params">(A, target)</span>:</span></span><br><span class="line">    dp = [<span class="number">1</span>] + [<span class="number">0</span>] * target</span><br><span class="line">	<span class="keyword">for</span> w <span class="keyword">in</span> range(<span class="number">1</span> + target):</span><br><span class="line">		<span class="keyword">for</span> i <span class="keyword">in</span> range(len(A)):</span><br><span class="line">			<span class="keyword">if</span> w &gt;= A[i]:</span><br><span class="line">				dp[w] += dp[w-A[i]]</span><br><span class="line">	<span class="keyword">return</span> dp[target]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">knapsack_VI</span><span class="hljs-params">(A, target)</span>:</span>
+    dp = [<span class="hljs-number">1</span>] + [<span class="hljs-number">0</span>] * target
+	<span class="hljs-keyword">for</span> w <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span> + target):
+		<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(A)):
+			<span class="hljs-keyword">if</span> w &gt;= A[i]:
+				dp[w] += dp[w-A[i]]
+	<span class="hljs-keyword">return</span> dp[target]</code></pre>
 
 
 
@@ -444,19 +430,26 @@
 <ol>
 <li>Pull: </li>
 </ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][sum] = dp[i<span class="number">-1</span>][sum - A[i]] + dp[i<span class="number">-1</span>][sum + A[i]]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">dp[i][sum] = dp[i<span class="hljs-number">-1</span>][sum - A[i]] + dp[i<span class="hljs-number">-1</span>][sum + A[i]]</code></pre>
 
 
 
 <ol start="2">
 <li>Push:</li>
 </ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dp[i][sum + A[i]] += dp[i][sum]</span><br><span class="line">dp[i][sum - A[i]] += dp[i][sum]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">dp[i][sum + A[i]] += dp[i][sum]
+dp[i][sum - A[i]] += dp[i][sum]</code></pre>
 
 
 
 <p>It is interesting to use push to solve the problem. In addition, we can use the dictionary to lower the search space in the initial stages.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> e <span class="keyword">in</span> A:</span><br><span class="line">    tmp = collections.defaultdict(int)</span><br><span class="line">    <span class="keyword">for</span> key <span class="keyword">in</span> dp:</span><br><span class="line">        tmp[key + e] += dp[key]</span><br><span class="line">        tmp[key - e] += dp[key]</span><br><span class="line">    dp = tmp</span><br><span class="line"><span class="keyword">return</span> dp[target]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> e <span class="hljs-keyword">in</span> A:
+    tmp = collections.defaultdict(int)
+    <span class="hljs-keyword">for</span> key <span class="hljs-keyword">in</span> dp:
+        tmp[key + e] += dp[key]
+        tmp[key - e] += dp[key]
+    dp = tmp
+<span class="hljs-keyword">return</span> dp[target]</code></pre>
 
 
 
@@ -469,17 +462,19 @@
 <h1 id="Partitioned-DP"><a href="#Partitioned-DP" class="headerlink" title="Partitioned DP"></a>Partitioned DP</h1><p>This partitioned DP 处理string和sequence， 且我们需要将stringparitition成k段substrings (subsequence) ，每段满足不同的条件.</p>
 <h2 id="Problem-1-Palindrome-Partitioning"><a href="#Problem-1-Palindrome-Partitioning" class="headerlink" title="Problem 1: Palindrome Partitioning"></a>Problem 1: Palindrome Partitioning</h2><p>Given a string <code>s</code>, cut <code>s</code> into some substrings such that every substring is a palindrome. Return the <strong>minimum</strong> cuts needed for a palindrome partitioning of <em>s</em>.</p>
 <p>Based on the last step principle, we can define dp[i] as the min-cut obtained by the string with the first i elements. Therefore, we could have the recurrence</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i] = min(dp[i], dp[j] + <span class="number">1</span> <span class="keyword">if</span> isPalindrome(s[i:j+<span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">dp[i] = min(dp[i], dp[j] + <span class="hljs-number">1</span> <span class="hljs-keyword">if</span> isPalindrome(s[i:j+<span class="hljs-number">1</span>]))</code></pre>
 
 <p>This indicates that we need to store the result of that whether every string s[i:j+1] is a palindrome or not. Then, we need O(n^2) space. </p>
 <p>To shrink the space complexity, a good technique is to apply <strong>push</strong>, then we can decide if a substring is a palindrome and store its results while updating the dp values. Thus, the push technique shows the recurrence as follows </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dp[i+r] = min(dp[i+r], dp[i-r<span class="number">-1</span>] + <span class="number">1</span>) <span class="comment"># </span></span><br><span class="line">dp[i+r+<span class="number">1</span>] = min(dp[i+r+<span class="number">1</span>], dp[i-r<span class="number">-1</span>] + <span class="number">1</span>) <span class="comment"># one is for odd palindrome, another is for even case</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">dp[i+r] = min(dp[i+r], dp[i-r<span class="hljs-number">-1</span>] + <span class="hljs-number">1</span>) <span class="hljs-comment"># </span>
+dp[i+r+<span class="hljs-number">1</span>] = min(dp[i+r+<span class="hljs-number">1</span>], dp[i-r<span class="hljs-number">-1</span>] + <span class="hljs-number">1</span>) <span class="hljs-comment"># one is for odd palindrome, another is for even case</span></code></pre>
 
 <p>where r represents the “radius” of the substring s[i-r, i+r].</p>
 <h2 id="Problem-2-Copy-Books"><a href="#Problem-2-Copy-Books" class="headerlink" title="Problem 2: Copy Books"></a>Problem 2: Copy Books</h2><p>Given <code>n</code> books and the <code>i-th</code> book has <code>pages[i]</code> pages. There are <code>k</code> persons to copy these books. These books list in a row and each person can claim a continous range of books. For example, one copier can copy the books from <code>i-th</code> to <code>j-th</code> continously, but he can not copy the 1st book, 2nd book and 4th book (without 3rd book). They start copying books at the same time and they all cost 1 minute to copy 1 page of a book. What’s the best strategy to assign books so that the slowest copier can finish at earliest time? Return the shortest time that the slowest copier spends.</p>
 <p>问题：n本书不同的页数，k个人负责抄书，每个人只能连续的抄书，求k个人中最慢的那个抄书的会花的最短的时间</p>
 <p>分析：根据min max(f[0], f[1], f[2],…,f[k-1])，根据最后一步原理，假设最后一个人抄书的范围设定在[j,n-1]本，设dp[i][j]为前i人且第i人抄到第j本的最短时间，可得如下递归式子 </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> range(j):</span><br><span class="line">	dp[i][j] = min(dp[i][j], max(dp[i<span class="number">-1</span>][k] , sum(pages[k+<span class="number">1</span>:j+<span class="number">1</span>])))</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(j):
+	dp[i][j] = min(dp[i][j], max(dp[i<span class="hljs-number">-1</span>][k] , sum(pages[k+<span class="hljs-number">1</span>:j+<span class="hljs-number">1</span>])))</code></pre>
 
 
 
@@ -492,7 +487,7 @@
 
 
 <p>Given this partitioned one, we can use the previously similar last step principle.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[k][i] = min(max(dp[k<span class="number">-1</span>][j], sum(pages[j:i]) <span class="keyword">for</span> j <span class="keyword">in</span> range(i))</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">dp[k][i] = min(max(dp[k<span class="hljs-number">-1</span>][j], sum(pages[j:i]) <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(i))</code></pre>
 
 <p>where dp[i] as the shortest time using by k workers with the first i books.</p>
 <p>The abve recurrence equation also requires to deal with the summation in advance to lower the time complexity.</p>
@@ -508,10 +503,19 @@
 <li>You may imagine <code>nums[-1] = nums[n] = 1</code>. They are not real therefore you can not burst them.</li>
 </ul>
 <p>分析：扎气球实际上permutation的问题，因此，最后一步构成原理可以由每个气球构成(n个中)。因此，定义dp[0][n-1]为使用第0-n-1个气球的cost，那么可得</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[<span class="number">0</span>][n<span class="number">-1</span>] = max(dp[<span class="number">0</span>][i]+nums[<span class="number">0</span>]*nums[i]*nums[n<span class="number">-1</span>]+dp[i][n<span class="number">-1</span>] <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n<span class="number">-2</span>))</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">dp[<span class="hljs-number">0</span>][n<span class="hljs-number">-1</span>] = max(dp[<span class="hljs-number">0</span>][i]+nums[<span class="hljs-number">0</span>]*nums[i]*nums[n<span class="hljs-number">-1</span>]+dp[i][n<span class="hljs-number">-1</span>] <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, n<span class="hljs-number">-2</span>))</code></pre>
 
 <p>由此，我们将问题切割为更小的区别子问题，代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ballonn</span><span class="params">(A)</span>:</span></span><br><span class="line">    A.insert(<span class="number">0</span>,<span class="number">1</span>)</span><br><span class="line">    A.append(<span class="number">1</span>)</span><br><span class="line">    n = len(A)</span><br><span class="line">    dp = [[<span class="number">0</span>]*n <span class="keyword">for</span> _ <span class="keyword">in</span> range(n)] </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">-1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> range(i+<span class="number">1</span>,j):</span><br><span class="line">                dp[i][j] = max(dp[i][j], dp[i][k]+A[i]*A[k]*A[j]+dp[k][j])</span><br><span class="line">	<span class="keyword">return</span> dp[<span class="number">0</span>][n<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">ballonn</span><span class="hljs-params">(A)</span>:</span>
+    A.insert(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>)
+    A.append(<span class="hljs-number">1</span>)
+    n = len(A)
+    dp = [[<span class="hljs-number">0</span>]*n <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(n)] 
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n<span class="hljs-number">-1</span>,<span class="hljs-number">-1</span>,<span class="hljs-number">-1</span>):
+        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(i+<span class="hljs-number">1</span>, n):
+            <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(i+<span class="hljs-number">1</span>,j):
+                dp[i][j] = max(dp[i][j], dp[i][k]+A[i]*A[k]*A[j]+dp[k][j])
+	<span class="hljs-keyword">return</span> dp[<span class="hljs-number">0</span>][n<span class="hljs-number">-1</span>]</code></pre>
 
 
 
@@ -521,10 +525,16 @@
 <h2 id="Problem-1-Coins-in-a-line"><a href="#Problem-1-Coins-in-a-line" class="headerlink" title="Problem 1: Coins in a line"></a>Problem 1: Coins in a line</h2><p>问题：有一排N个石子，Alice, Bob两人轮流取石子。每次一个人可以从最右边取走1个或2个石子。取走最后石子的人胜。 问先手Alice是否必胜 (先手必胜: true,先手必败: false)  </p>
 <p>分析：博弈问题并不适合最后一步分析，因为是面临一个setting，所以一般来说，使用第一步分析，而我们要确认的是dp[0]的值，表示当前还剩下多少n个没有取走。有点逆向的感觉，那么可以显然看出，dp[n-1]和dp[n-2]一定是True。</p>
 <p>博弈的递归关系可以对之前的状态取反写出来(<strong>最好举例确认逻辑关系</strong>)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i] |&#x3D; not(dp[i+1] and dp[i+2])</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs inform7">dp<span class="hljs-comment">[i]</span> |= not(dp<span class="hljs-comment">[i+1]</span> and dp<span class="hljs-comment">[i+2]</span>)</code></pre>
 
 <p>因此代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">coin</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>: <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">if</span> n &lt;= <span class="number">2</span>: <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    dp = [<span class="literal">False</span>]*(n<span class="number">-2</span>) + [<span class="literal">True</span>, <span class="literal">True</span>] </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n<span class="number">-3</span>,<span class="number">-1</span>,<span class="number">-1</span>):</span><br><span class="line">        dp[i] = <span class="keyword">not</span>(dp[i+<span class="number">1</span>] <span class="keyword">and</span> dp[i+<span class="number">2</span>])</span><br><span class="line">    <span class="keyword">return</span> dp[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">coin</span><span class="hljs-params">(n)</span>:</span>
+    <span class="hljs-keyword">if</span> n == <span class="hljs-number">0</span>: <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
+    <span class="hljs-keyword">if</span> n &lt;= <span class="hljs-number">2</span>: <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+    dp = [<span class="hljs-literal">False</span>]*(n<span class="hljs-number">-2</span>) + [<span class="hljs-literal">True</span>, <span class="hljs-literal">True</span>] 
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n<span class="hljs-number">-3</span>,<span class="hljs-number">-1</span>,<span class="hljs-number">-1</span>):
+        dp[i] = <span class="hljs-keyword">not</span>(dp[i+<span class="hljs-number">1</span>] <span class="hljs-keyword">and</span> dp[i+<span class="hljs-number">2</span>])
+    <span class="hljs-keyword">return</span> dp[<span class="hljs-number">0</span>]</code></pre>
 
 
 
@@ -532,13 +542,32 @@
 <p>分析：利用下一题的原理可以求解，</p>
 <h2 id="Problem-3-Coins-in-a-line-III"><a href="#Problem-3-Coins-in-a-line-III" class="headerlink" title="Problem 3: Coins in a line III"></a>Problem 3: Coins in a line III</h2><p>题意：给定一个序列a[0], a[1], …, a[N-1]，两个玩家Alice和Bob轮流取数，每个人每次只能取第一个数或最后一个数， 双方都用最优策略，使得自己的数字和尽量比对手大，问先手是否必胜。如果数字和一样，也算先手胜。  </p>
 <p>分析：利用第一步分析，且因为是博弈关系，我们考虑dp[0:n-1]不是算当前选手最大值，而是当前选手比对手多的值。递归关系有</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dp[<span class="number">0</span>,n<span class="number">-1</span>] = max(A[<span class="number">0</span>]-dp[<span class="number">1</span>，n<span class="number">-1</span>], A[n<span class="number">-1</span>]-dp[<span class="number">0</span>，n<span class="number">-2</span>]) <span class="comment">#Alice比bob多的值</span></span><br><span class="line">dp[<span class="number">1</span>,n<span class="number">-1</span>]，dp[<span class="number">0</span>，n<span class="number">-2</span>] 是bob比alice多的值</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">dp[<span class="hljs-number">0</span>,n<span class="hljs-number">-1</span>] = max(A[<span class="hljs-number">0</span>]-dp[<span class="hljs-number">1</span>，n<span class="hljs-number">-1</span>], A[n<span class="hljs-number">-1</span>]-dp[<span class="hljs-number">0</span>，n<span class="hljs-number">-2</span>]) <span class="hljs-comment">#Alice比bob多的值</span>
+dp[<span class="hljs-number">1</span>,n<span class="hljs-number">-1</span>]，dp[<span class="hljs-number">0</span>，n<span class="hljs-number">-2</span>] 是bob比alice多的值</code></pre>
 
 <p>这样代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">conins</span><span class="params">(a)</span>:</span></span><br><span class="line">    n = len(a)</span><br><span class="line">    dp = [[<span class="number">0</span>]*n <span class="keyword">for</span> _ <span class="keyword">in</span> range(n)]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n<span class="number">-1</span>, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i, n<span class="number">-1</span>):</span><br><span class="line">            <span class="keyword">if</span> i == j:</span><br><span class="line">                dp[i][j] = a[i]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">            	dp[i][j] = max(a[i]-dp[i+<span class="number">1</span>，j], a[j]-dp[i，j<span class="number">-1</span>])</span><br><span class="line">    <span class="keyword">return</span> dp[<span class="number">0</span>][n<span class="number">-1</span>] &gt;= <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">conins</span><span class="hljs-params">(a)</span>:</span>
+    n = len(a)
+    dp = [[<span class="hljs-number">0</span>]*n <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(n)]
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n<span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>):
+        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(i, n<span class="hljs-number">-1</span>):
+            <span class="hljs-keyword">if</span> i == j:
+                dp[i][j] = a[i]
+            <span class="hljs-keyword">else</span>:
+            	dp[i][j] = max(a[i]-dp[i+<span class="hljs-number">1</span>，j], a[j]-dp[i，j<span class="hljs-number">-1</span>])
+    <span class="hljs-keyword">return</span> dp[<span class="hljs-number">0</span>][n<span class="hljs-number">-1</span>] &gt;= <span class="hljs-number">0</span></code></pre>
 
 <p>例子分析：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">输入： [<span class="number">1</span>, <span class="number">5</span>, <span class="number">233</span>, <span class="number">7</span>]</span><br><span class="line">输出： <span class="literal">True</span> （先手取走<span class="number">1</span>，无论后手取哪个，先手都能取走<span class="number">233</span>）</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>: dp[<span class="number">3</span>][<span class="number">3</span>] = <span class="number">7</span></span><br><span class="line">    </span><br><span class="line"><span class="number">2</span>: dp[<span class="number">2</span>][<span class="number">2</span>] = <span class="number">233</span>, dp[<span class="number">2</span>][<span class="number">3</span>] = max(<span class="number">233</span>-dp[<span class="number">3</span>,<span class="number">3</span>], <span class="number">7</span>-dp[<span class="number">2</span>][<span class="number">2</span>]) = <span class="number">226</span></span><br><span class="line"></span><br><span class="line"><span class="number">3</span>: dp[<span class="number">1</span>][<span class="number">1</span>] = <span class="number">5</span>,   dp[<span class="number">1</span>][<span class="number">2</span>] = max( <span class="number">5</span>-dp[<span class="number">2</span>,<span class="number">2</span>], <span class="number">233</span>-dp[<span class="number">1</span>][<span class="number">1</span>]) = <span class="number">228</span>, dp[<span class="number">1</span>][<span class="number">3</span>] = max(<span class="number">5</span>-dp[<span class="number">2</span>,<span class="number">3</span>], <span class="number">7</span>-dp[<span class="number">1</span>,<span class="number">2</span>]) = <span class="number">-221</span> </span><br><span class="line"></span><br><span class="line"><span class="number">4</span>: dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>,   dp[<span class="number">0</span>][<span class="number">1</span>] = max(<span class="number">1</span>-dp[<span class="number">1</span>][<span class="number">1</span>], <span class="number">5</span>-dp[<span class="number">0</span>][<span class="number">0</span>]) = <span class="number">4</span>, dp[<span class="number">0</span>][<span class="number">2</span>] = max(<span class="number">1</span><span class="number">-288</span>,<span class="number">233</span><span class="number">-4</span>)=<span class="number">229</span>, dp[<span class="number">0</span>][<span class="number">3</span>]=max(<span class="number">1</span>+<span class="number">221</span>,<span class="number">7</span><span class="number">-229</span>)=<span class="number">222</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">输入： [<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">233</span>, <span class="hljs-number">7</span>]
+输出： <span class="hljs-literal">True</span> （先手取走<span class="hljs-number">1</span>，无论后手取哪个，先手都能取走<span class="hljs-number">233</span>）
+
+<span class="hljs-number">1</span>: dp[<span class="hljs-number">3</span>][<span class="hljs-number">3</span>] = <span class="hljs-number">7</span>
+    
+<span class="hljs-number">2</span>: dp[<span class="hljs-number">2</span>][<span class="hljs-number">2</span>] = <span class="hljs-number">233</span>, dp[<span class="hljs-number">2</span>][<span class="hljs-number">3</span>] = max(<span class="hljs-number">233</span>-dp[<span class="hljs-number">3</span>,<span class="hljs-number">3</span>], <span class="hljs-number">7</span>-dp[<span class="hljs-number">2</span>][<span class="hljs-number">2</span>]) = <span class="hljs-number">226</span>
+
+<span class="hljs-number">3</span>: dp[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>] = <span class="hljs-number">5</span>,   dp[<span class="hljs-number">1</span>][<span class="hljs-number">2</span>] = max( <span class="hljs-number">5</span>-dp[<span class="hljs-number">2</span>,<span class="hljs-number">2</span>], <span class="hljs-number">233</span>-dp[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>]) = <span class="hljs-number">228</span>, dp[<span class="hljs-number">1</span>][<span class="hljs-number">3</span>] = max(<span class="hljs-number">5</span>-dp[<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], <span class="hljs-number">7</span>-dp[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>]) = <span class="hljs-number">-221</span> 
+
+<span class="hljs-number">4</span>: dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>,   dp[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] = max(<span class="hljs-number">1</span>-dp[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>], <span class="hljs-number">5</span>-dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]) = <span class="hljs-number">4</span>, dp[<span class="hljs-number">0</span>][<span class="hljs-number">2</span>] = max(<span class="hljs-number">1</span><span class="hljs-number">-288</span>,<span class="hljs-number">233</span><span class="hljs-number">-4</span>)=<span class="hljs-number">229</span>, dp[<span class="hljs-number">0</span>][<span class="hljs-number">3</span>]=max(<span class="hljs-number">1</span>+<span class="hljs-number">221</span>,<span class="hljs-number">7</span><span class="hljs-number">-229</span>)=<span class="hljs-number">222</span></code></pre>
 
 
 
@@ -554,7 +583,12 @@
 <p>为了找到递推方程，一般利用pull的方法。首先，最重要的一点，假设前i个A和前j个B的<strong>子问题的目标</strong>已经实现，例如dp[i][j]对应的min/max值求出来了，也就是说对应的dp[i][j]的目标配置被完全实现。例如，最长公共子串问题，dp[i][j]不仅代表这个最长的值，也代表着A串已经完全转化到B了。基于这个目标，我们就需要反向推理如何获得dp[i][j]，有哪些可能的最后一步实现这个目标和配置。一般来说，相关的变量是dp[i-1][j]，dp[i][j-1]，dp[i-1][j-1]。</p>
 <p>另一个很重要的点是，即使我们考虑了dp[i][j]的目标配置，当处理实际的 问题，例如(处理，原始A[0:i] and B[0:j] 需要改变配置到A’[0:x], B’[0:y]基于目标，但是我们的递推方程在建立的时候，还是需要考虑原始的string和index，以及其处理的orignial strings and index <span style="color:red"><strong>(A[i-1], B[j-1]), (A[i], B[j-1]), (A[i],B[j-1])</strong></span> rather than those settings ((A’[0:x-1], B’[0:y-1]), A’[0:x], B’[0:y-1]). </p>
 <h2 id="Problem-1-Distinct-Subsequences"><a href="#Problem-1-Distinct-Subsequences" class="headerlink" title="Problem 1: Distinct Subsequences"></a>Problem 1: Distinct Subsequences</h2><p>题意：给定两个字符串A[0..m-1]，B[0..n-1]，问B在A中出现多少次（可以不连续）</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">例子</span><br><span class="line">• 输入：A=“rabbbit”, B=“rabbit”</span><br><span class="line">• 输出：<span class="number">3</span></span><br><span class="line">– rabbbit</span><br><span class="line">– rabbbit</span><br><span class="line">– rabbbit</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">例子
+• 输入：A=“rabbbit”, B=“rabbit”
+• 输出：<span class="hljs-number">3</span>
+– rabbbit
+– rabbbit
+– rabbbit</code></pre>
 
 
 
@@ -570,7 +604,10 @@
 </ul>
 <p>问题：编辑距离：</p>
 <p>Since the covertion requires the permutation, we can define that dp[i][j] is the min step that we convert A[i] to B[j]. Based on the discussion above, by reasoning backward, the possible step to achieve the conversion is to either insert at pos i, delete the pos i, or replace the pos i. Hence, the recurrence equation is derivated as </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = min(dp[i][j<span class="number">-1</span>] + <span class="number">1</span>,  \ <span class="comment"># insert after pos i  </span></span><br><span class="line">               dp[i<span class="number">-1</span>][j] + <span class="number">1</span>,  \ <span class="comment"># delete the pos i</span></span><br><span class="line">               dp[i<span class="number">-1</span>][j<span class="number">-1</span>] + <span class="number">1</span>,\ <span class="comment"># replace the pos i</span></span><br><span class="line">			   dp[i<span class="number">-1</span>][j<span class="number">-1</span>])\ <span class="comment"># no operation A[i] = B[j]</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">dp[i][j] = min(dp[i][j<span class="hljs-number">-1</span>] + <span class="hljs-number">1</span>,  \ <span class="hljs-comment"># insert after pos i  </span>
+               dp[i<span class="hljs-number">-1</span>][j] + <span class="hljs-number">1</span>,  \ <span class="hljs-comment"># delete the pos i</span>
+               dp[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>] + <span class="hljs-number">1</span>,\ <span class="hljs-comment"># replace the pos i</span>
+			   dp[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>])\ <span class="hljs-comment"># no operation A[i] = B[j]</span></code></pre>
 
 <p>where the above cases are discussed:</p>
 <ul>
@@ -603,7 +640,30 @@
 <ul>
 <li>Case 3: dp[i][j][0] =  max(dp[i][j][0], dp[i-1][k][0] + 1) if A[i-1] = B[j-1] and A[i-1] &gt; dp[i-1][k][1], for k in range(j-1).</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">LICS</span><span class="params">(A, B)</span>:</span></span><br><span class="line">    dp = collections.defaultdict(int)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(A)+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(B)+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> i == <span class="number">0</span> <span class="keyword">or</span> j == <span class="number">0</span>:</span><br><span class="line">                dp[i, j, <span class="number">0</span>], dp[i, j, <span class="number">1</span>] = <span class="number">0</span>, sys.maxsize</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">                </span><br><span class="line">            dp[i,j,<span class="number">1</span>] = sys.maxsize</span><br><span class="line">            <span class="keyword">if</span> A[i<span class="number">-1</span>] == B[j<span class="number">-1</span>]:</span><br><span class="line">                <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">1</span>, j+<span class="number">1</span>):</span><br><span class="line">                    <span class="keyword">if</span> A[i<span class="number">-1</span>] &gt; dp[i<span class="number">-1</span>,k<span class="number">-1</span>,<span class="number">1</span>] <span class="keyword">or</span> dp[i<span class="number">-1</span>,k<span class="number">-1</span>,<span class="number">1</span>] == sys.maxsize <span class="keyword">and</span> \</span><br><span class="line">                        dp[i,j,<span class="number">0</span>] &lt;= dp[i<span class="number">-1</span>,k<span class="number">-1</span>,<span class="number">0</span>] + <span class="number">1</span>:</span><br><span class="line">                            dp[i,j,<span class="number">1</span>], dp[i,j,<span class="number">0</span>] = A[i<span class="number">-1</span>], dp[i<span class="number">-1</span>,k<span class="number">-1</span>,<span class="number">0</span>] + <span class="number">1</span>            </span><br><span class="line"> </span><br><span class="line">            <span class="keyword">if</span> dp[i,j,<span class="number">0</span>] &lt;= dp[i,j<span class="number">-1</span>,<span class="number">0</span>]:</span><br><span class="line">                dp[i,j,<span class="number">1</span>] = min(dp[i,j,<span class="number">1</span>], dp[i,j<span class="number">-1</span>,<span class="number">1</span>]) <span class="keyword">if</span> dp[i,j,<span class="number">0</span>] == dp[i,j<span class="number">-1</span>,<span class="number">0</span>] <span class="keyword">else</span> dp[i,j<span class="number">-1</span>,<span class="number">1</span>] </span><br><span class="line">                dp[i,j,<span class="number">0</span>] = dp[i,j<span class="number">-1</span>,<span class="number">0</span>]</span><br><span class="line">                    </span><br><span class="line">            <span class="keyword">if</span> dp[i,j,<span class="number">0</span>] &lt;= dp[i<span class="number">-1</span>,j,<span class="number">0</span>]:</span><br><span class="line">                dp[i,j,<span class="number">1</span>] = min(dp[i,j,<span class="number">1</span>], dp[i<span class="number">-1</span>,j,<span class="number">1</span>]) <span class="keyword">if</span> dp[i,j,<span class="number">0</span>] == dp[i<span class="number">-1</span>,j,<span class="number">0</span>] <span class="keyword">else</span> dp[i<span class="number">-1</span>,j,<span class="number">1</span>]</span><br><span class="line">                dp[i,j,<span class="number">0</span>] = dp[i<span class="number">-1</span>,j,<span class="number">0</span>]</span><br><span class="line">            </span><br><span class="line">    <span class="keyword">return</span> dp[len(A), len(B), <span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">LICS</span><span class="hljs-params">(A, B)</span>:</span>
+    dp = collections.defaultdict(int)
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(A)+<span class="hljs-number">1</span>):
+        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(len(B)+<span class="hljs-number">1</span>):
+            <span class="hljs-keyword">if</span> i == <span class="hljs-number">0</span> <span class="hljs-keyword">or</span> j == <span class="hljs-number">0</span>:
+                dp[i, j, <span class="hljs-number">0</span>], dp[i, j, <span class="hljs-number">1</span>] = <span class="hljs-number">0</span>, sys.maxsize
+                <span class="hljs-keyword">continue</span>
+                
+            dp[i,j,<span class="hljs-number">1</span>] = sys.maxsize
+            <span class="hljs-keyword">if</span> A[i<span class="hljs-number">-1</span>] == B[j<span class="hljs-number">-1</span>]:
+                <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, j+<span class="hljs-number">1</span>):
+                    <span class="hljs-keyword">if</span> A[i<span class="hljs-number">-1</span>] &gt; dp[i<span class="hljs-number">-1</span>,k<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>] <span class="hljs-keyword">or</span> dp[i<span class="hljs-number">-1</span>,k<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>] == sys.maxsize <span class="hljs-keyword">and</span> \
+                        dp[i,j,<span class="hljs-number">0</span>] &lt;= dp[i<span class="hljs-number">-1</span>,k<span class="hljs-number">-1</span>,<span class="hljs-number">0</span>] + <span class="hljs-number">1</span>:
+                            dp[i,j,<span class="hljs-number">1</span>], dp[i,j,<span class="hljs-number">0</span>] = A[i<span class="hljs-number">-1</span>], dp[i<span class="hljs-number">-1</span>,k<span class="hljs-number">-1</span>,<span class="hljs-number">0</span>] + <span class="hljs-number">1</span>            
+ 
+            <span class="hljs-keyword">if</span> dp[i,j,<span class="hljs-number">0</span>] &lt;= dp[i,j<span class="hljs-number">-1</span>,<span class="hljs-number">0</span>]:
+                dp[i,j,<span class="hljs-number">1</span>] = min(dp[i,j,<span class="hljs-number">1</span>], dp[i,j<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>]) <span class="hljs-keyword">if</span> dp[i,j,<span class="hljs-number">0</span>] == dp[i,j<span class="hljs-number">-1</span>,<span class="hljs-number">0</span>] <span class="hljs-keyword">else</span> dp[i,j<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>] 
+                dp[i,j,<span class="hljs-number">0</span>] = dp[i,j<span class="hljs-number">-1</span>,<span class="hljs-number">0</span>]
+                    
+            <span class="hljs-keyword">if</span> dp[i,j,<span class="hljs-number">0</span>] &lt;= dp[i<span class="hljs-number">-1</span>,j,<span class="hljs-number">0</span>]:
+                dp[i,j,<span class="hljs-number">1</span>] = min(dp[i,j,<span class="hljs-number">1</span>], dp[i<span class="hljs-number">-1</span>,j,<span class="hljs-number">1</span>]) <span class="hljs-keyword">if</span> dp[i,j,<span class="hljs-number">0</span>] == dp[i<span class="hljs-number">-1</span>,j,<span class="hljs-number">0</span>] <span class="hljs-keyword">else</span> dp[i<span class="hljs-number">-1</span>,j,<span class="hljs-number">1</span>]
+                dp[i,j,<span class="hljs-number">0</span>] = dp[i<span class="hljs-number">-1</span>,j,<span class="hljs-number">0</span>]
+            
+    <span class="hljs-keyword">return</span> dp[len(A), len(B), <span class="hljs-number">0</span>]</code></pre>
 
 
 
@@ -615,7 +675,16 @@
 <li>Case 2: dp[i][j] = max(dp[i][j], dp[i-1][k] if A[i-1] == B[j-1] and B[j-1] &gt; B[k] for k in range(j))</li>
 </ul>
 <p>With the above recurrence equation, we are able to clearly solve the problem in O(n^3) time. However, there are some space for us to improve it. That is, since A[i-1] = B[j-1] and B[j-1] is the largest value, we need to find maximal of all the dp[i-1][k] with B[k] smaller than A[j-1],</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">LICS</span><span class="params">(A, B)</span>:</span></span><br><span class="line">    dp = [<span class="number">0</span>]*(len(B))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(A)):</span><br><span class="line">        max_i_minus_one = <span class="number">0</span> </span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(B)):</span><br><span class="line">            <span class="keyword">if</span> A[i] == B[j]:</span><br><span class="line">                dp[j] = max(dp[j], max_i_minus_one + <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">if</span> A[i] &gt; B[j]:</span><br><span class="line">                max_i_minus_one = max(dp[j], max_i_minus_one)</span><br><span class="line">    <span class="keyword">return</span> max(dp)</span><br></pre></td></tr></table></figure>
+ <pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">LICS</span><span class="hljs-params">(A, B)</span>:</span>
+    dp = [<span class="hljs-number">0</span>]*(len(B))
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(A)):
+        max_i_minus_one = <span class="hljs-number">0</span> 
+        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(len(B)):
+            <span class="hljs-keyword">if</span> A[i] == B[j]:
+                dp[j] = max(dp[j], max_i_minus_one + <span class="hljs-number">1</span>)
+            <span class="hljs-keyword">if</span> A[i] &gt; B[j]:
+                max_i_minus_one = max(dp[j], max_i_minus_one)
+    <span class="hljs-keyword">return</span> max(dp)</code></pre>
 
 
 
@@ -624,19 +693,59 @@
 <h2 id="Problem-1-K-sum"><a href="#Problem-1-K-sum" class="headerlink" title="Problem 1: K sum"></a>Problem 1: K sum</h2><p>题意：给定数组A，包含n个互不相等的正整数, 问有多少种方式从中找出K个数，使得它们的和是Target  </p>
 <p>分析：目标构成target，且是组合问题，根据最后一步构成原理，</p>
 <p>到底是dp[i][k][target]，还是dp[i][target][k]，</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][k][target] = dp[i<span class="number">-1</span>][k][target] + dp[i<span class="number">-1</span>][k<span class="number">-1</span>][target-A[i]]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">dp[i][k][target] = dp[i<span class="hljs-number">-1</span>][k][target] + dp[i<span class="hljs-number">-1</span>][k<span class="hljs-number">-1</span>][target-A[i]]</code></pre>
 
 <p>代码是这样的</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">kSum</span><span class="params">(A, k, target)</span>:</span></span><br><span class="line">    dp = collections.defaultdict(int)</span><br><span class="line">    dp[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(A)+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> t <span class="keyword">in</span> range(target+<span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> j == <span class="number">0</span> <span class="keyword">and</span> t == <span class="number">0</span>:</span><br><span class="line">                    dp[i][j][t] = <span class="number">1</span></span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                dp[i][j][t] = dp[i<span class="number">-1</span>][j][t]</span><br><span class="line">                <span class="keyword">if</span> t &gt;= A[i<span class="number">-1</span>]:</span><br><span class="line">                    dp[i][j][t] += dp[i<span class="number">-1</span>][j<span class="number">-1</span>][t-A[i<span class="number">-1</span>]]</span><br><span class="line">    <span class="keyword">return</span> dp[len(A)][k][target]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">kSum</span><span class="hljs-params">(A, k, target)</span>:</span>
+    dp = collections.defaultdict(int)
+    dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, len(A)+<span class="hljs-number">1</span>):
+        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(i+<span class="hljs-number">1</span>):
+            <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> range(target+<span class="hljs-number">1</span>):
+                <span class="hljs-keyword">if</span> j == <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> t == <span class="hljs-number">0</span>:
+                    dp[i][j][t] = <span class="hljs-number">1</span>
+                    <span class="hljs-keyword">continue</span>
+                dp[i][j][t] = dp[i<span class="hljs-number">-1</span>][j][t]
+                <span class="hljs-keyword">if</span> t &gt;= A[i<span class="hljs-number">-1</span>]:
+                    dp[i][j][t] += dp[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>][t-A[i<span class="hljs-number">-1</span>]]
+    <span class="hljs-keyword">return</span> dp[len(A)][k][target]</code></pre>
 
 <p>例子：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">输入：A=[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], K=<span class="number">2</span>, Target = <span class="number">5</span></span><br><span class="line">输出：<span class="number">2</span> (<span class="number">1</span> + <span class="number">4</span> = <span class="number">5</span>, <span class="number">2</span> + <span class="number">3</span> = <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">dp[<span class="number">1</span>][<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>, dp[<span class="number">1</span>][<span class="number">0</span>][<span class="number">1</span>] = <span class="number">0</span>, ..., dp[<span class="number">1</span>][<span class="number">0</span>][<span class="number">5</span>] = <span class="number">0</span></span><br><span class="line">    dp[<span class="number">1</span>][<span class="number">1</span>][<span class="number">0</span>] = <span class="number">0</span>, dp[<span class="number">1</span>][<span class="number">1</span>][<span class="number">1</span>] = <span class="number">1</span>, dp[<span class="number">1</span>][<span class="number">1</span>][<span class="number">2</span>] = <span class="number">0.</span>.., dp[<span class="number">1</span>][<span class="number">1</span>][<span class="number">5</span>] = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">dp[<span class="number">2</span>][<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>, dp[<span class="number">2</span>][<span class="number">0</span>][<span class="number">1</span>] = <span class="number">0</span>, ..., dp[<span class="number">2</span>][<span class="number">0</span>][<span class="number">5</span>] = <span class="number">0</span></span><br><span class="line">    dp[<span class="number">2</span>][<span class="number">1</span>][<span class="number">0</span>] = <span class="number">0</span>, dp[<span class="number">2</span>][<span class="number">1</span>][<span class="number">1</span>] = <span class="number">1</span>, dp[<span class="number">2</span>][<span class="number">1</span>][<span class="number">2</span>] = <span class="number">1.</span>.., dp[<span class="number">2</span>][<span class="number">1</span>][<span class="number">5</span>] = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">之前自己推算dp[<span class="number">2</span>][<span class="number">1</span>][<span class="number">1</span>]=<span class="number">2</span>，还以为初始化错了。</span><br><span class="line"></span><br><span class="line">输入：A=[<span class="number">1</span>], K=<span class="number">0</span>, Target=<span class="number">1</span></span><br><span class="line">输出：<span class="number">0</span></span><br><span class="line">这个例子出错了，是因为dp[i][j][t] += dp[i<span class="number">-1</span>][j<span class="number">-1</span>][t-A[i<span class="number">-1</span>]]，j<span class="number">-1</span>=<span class="number">-1</span>了。(需要引起注意，python <span class="number">-1</span> index问题)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">输入：A=[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>], K=<span class="hljs-number">2</span>, Target = <span class="hljs-number">5</span>
+输出：<span class="hljs-number">2</span> (<span class="hljs-number">1</span> + <span class="hljs-number">4</span> = <span class="hljs-number">5</span>, <span class="hljs-number">2</span> + <span class="hljs-number">3</span> = <span class="hljs-number">5</span>)
+
+dp[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>, dp[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>, ..., dp[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>][<span class="hljs-number">5</span>] = <span class="hljs-number">0</span>
+    dp[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>, dp[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>][<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>, dp[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>][<span class="hljs-number">2</span>] = <span class="hljs-number">0.</span>.., dp[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>][<span class="hljs-number">5</span>] = <span class="hljs-number">0</span>
+
+dp[<span class="hljs-number">2</span>][<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>, dp[<span class="hljs-number">2</span>][<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>, ..., dp[<span class="hljs-number">2</span>][<span class="hljs-number">0</span>][<span class="hljs-number">5</span>] = <span class="hljs-number">0</span>
+    dp[<span class="hljs-number">2</span>][<span class="hljs-number">1</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>, dp[<span class="hljs-number">2</span>][<span class="hljs-number">1</span>][<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>, dp[<span class="hljs-number">2</span>][<span class="hljs-number">1</span>][<span class="hljs-number">2</span>] = <span class="hljs-number">1.</span>.., dp[<span class="hljs-number">2</span>][<span class="hljs-number">1</span>][<span class="hljs-number">5</span>] = <span class="hljs-number">0</span>
+
+
+之前自己推算dp[<span class="hljs-number">2</span>][<span class="hljs-number">1</span>][<span class="hljs-number">1</span>]=<span class="hljs-number">2</span>，还以为初始化错了。
+
+输入：A=[<span class="hljs-number">1</span>], K=<span class="hljs-number">0</span>, Target=<span class="hljs-number">1</span>
+输出：<span class="hljs-number">0</span>
+这个例子出错了，是因为dp[i][j][t] += dp[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>][t-A[i<span class="hljs-number">-1</span>]]，j<span class="hljs-number">-1</span>=<span class="hljs-number">-1</span>了。(需要引起注意，python <span class="hljs-number">-1</span> index问题)</code></pre>
 
 
 
 <p>如果是定义dp[i][target][k]，使用上面相同的代码依然正确(交换target和k的维度)。</p>
 <p>但是这个解的时间复杂度太高了。其实在是否选择当前第ith number的时候，我们可以记录选择了的个数。因此考虑这个信息。可以使用push的方式编写递推关系，这样有更好的效率。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#依然使用dp[i][t]的定义</span></span><br><span class="line"><span class="comment">#假设最初的值dp[0][0] = 1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">kSum</span><span class="params">(A, k, target)</span>:</span></span><br><span class="line">    dp = collections.defaultdict(int)</span><br><span class="line">    dp[<span class="number">0</span>,<span class="number">0</span>] = <span class="number">1</span> </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(A)+<span class="number">1</span>):</span><br><span class="line">        tmp = collections.defaultdict(int)</span><br><span class="line">        <span class="keyword">for</span> j, t <span class="keyword">in</span> dp:</span><br><span class="line">            <span class="keyword">if</span> j&gt;k <span class="keyword">or</span> t&gt;target: </span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            tmp[j,t] += dp[j,t]</span><br><span class="line">            tmp[j+<span class="number">1</span>,t+A[i<span class="number">-1</span>]] += dp[j,t]</span><br><span class="line">        dp=tmp</span><br><span class="line">    <span class="keyword">return</span> dp[k,target]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-comment">#依然使用dp[i][t]的定义</span>
+<span class="hljs-comment">#假设最初的值dp[0][0] = 1</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">kSum</span><span class="hljs-params">(A, k, target)</span>:</span>
+    dp = collections.defaultdict(int)
+    dp[<span class="hljs-number">0</span>,<span class="hljs-number">0</span>] = <span class="hljs-number">1</span> 
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, len(A)+<span class="hljs-number">1</span>):
+        tmp = collections.defaultdict(int)
+        <span class="hljs-keyword">for</span> j, t <span class="hljs-keyword">in</span> dp:
+            <span class="hljs-keyword">if</span> j&gt;k <span class="hljs-keyword">or</span> t&gt;target: 
+                <span class="hljs-keyword">continue</span>
+            tmp[j,t] += dp[j,t]
+            tmp[j+<span class="hljs-number">1</span>,t+A[i<span class="hljs-number">-1</span>]] += dp[j,t]
+        dp=tmp
+    <span class="hljs-keyword">return</span> dp[k,target]</code></pre>
 
 
 
@@ -654,19 +763,43 @@
 <p>Thus, we utilize the technique 3,</p>
 <h3 id="technique-3"><a href="#technique-3" class="headerlink" title="technique 3:"></a>technique 3:</h3><p><span style="color:red"><strong>If the information is unknown, adding one dimension to have dp[i][k].</strong></span></p>
 <p>So, due to this technique, we redefine the state dp[i][k], where k represents the value B[i]. Since k is bounded in [0, 100]. This yields the following recurrence equation.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d[i][j] = min(d[i<span class="number">-1</span>][k] + abs(j-A[i]) <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">101</span>) <span class="keyword">if</span> j- Target &lt;= k <span class="keyword">and</span> k &lt;= j + target)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">d[i][j] = min(d[i<span class="hljs-number">-1</span>][k] + abs(j-A[i]) <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, <span class="hljs-number">101</span>) <span class="hljs-keyword">if</span> j- Target &lt;= k <span class="hljs-keyword">and</span> k &lt;= j + target)</code></pre>
 
 <p>to be continued…</p>
 <h2 id="Problem-3-K-Edit-Distance"><a href="#Problem-3-K-Edit-Distance" class="headerlink" title="Problem 3: K Edit Distance"></a>Problem 3: K Edit Distance</h2><p>Given Edit distance problem (modify, insert, delete), and K is max-cost, output the possible strings.</p>
 <p>eg: </p>
 <p>A = [“abc”, “abd”, “abcd”, “adc”], Target = “ac”, K = 1<br>Output： [“abc”, “adc”] </p>
 <p>In fact, it is easy to see that this problem combines Trie and Edit distance.  We use the standard dp to solve the edit distance problem.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">DP</span><span class="params">(string, target)</span></span></span><br><span class="line"><span class="function">    <span class="title">for</span> <span class="title">i</span> <span class="title">in</span> <span class="title">range</span><span class="params">(<span class="number">1</span>, len<span class="params">(string)</span>+<span class="number">1</span>)</span>:</span>    <span class="comment">#outer loop for input strings</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len(target)+<span class="number">1</span>):<span class="comment">#inner loop for target string</span></span><br><span class="line">            <span class="comment">#dp process recurrence equation</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">DP</span><span class="hljs-params">(string, target)</span></span>
+<span class="hljs-function">    <span class="hljs-title">for</span> <span class="hljs-title">i</span> <span class="hljs-title">in</span> <span class="hljs-title">range</span><span class="hljs-params">(<span class="hljs-number">1</span>, len<span class="hljs-params">(string)</span>+<span class="hljs-number">1</span>)</span>:</span>    <span class="hljs-comment">#outer loop for input strings</span>
+        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, len(target)+<span class="hljs-number">1</span>):<span class="hljs-comment">#inner loop for target string</span>
+            <span class="hljs-comment">#dp process recurrence equation</span></code></pre>
 
 
 
 <p>To employ the Trie structure,  we store all the input strings in Trie and <strong>change the outer loop to a DFS traversal procedure</strong>, which is shown as follows</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">k_edit_distance</span><span class="params">(A, target, k)</span>:</span></span><br><span class="line">    tree = Trie()</span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> A:</span><br><span class="line">    	tree.insert(word)</span><br><span class="line">    dp = [<span class="number">0</span>] + [sys.maxsize] * len(target)</span><br><span class="line">    res = []</span><br><span class="line">    dfs(tree, target, k, dp, res)</span><br><span class="line">    <span class="keyword">return</span> res </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(node, target, k, pre_dp, res)</span></span></span><br><span class="line"><span class="function">	</span></span><br><span class="line">    if node.isWord and pre_dp[len(target)] &lt;= k:</span><br><span class="line">        res.append(node.string)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    dp = [sys.maxsize] * (len(target) + <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> node.children:</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len(target)+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> c != target[j<span class="number">-1</span>]:</span><br><span class="line">                dp[j] = max(dp[j<span class="number">-1</span>]+<span class="number">1</span>, pre_dp[j] + <span class="number">1</span>, pre_dp[j<span class="number">-1</span>]+<span class="number">1</span>)</span><br><span class="line">			<span class="keyword">else</span>:</span><br><span class="line">                dp[j] = max(dp[j<span class="number">-1</span>]+<span class="number">1</span>, pre_dp[j] + <span class="number">1</span>, pre_dp[j<span class="number">-1</span>])</span><br><span class="line">        dfs(node.children[c], target, k, dp, res)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">k_edit_distance</span><span class="hljs-params">(A, target, k)</span>:</span>
+    tree = Trie()
+    <span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> A:
+    	tree.insert(word)
+    dp = [<span class="hljs-number">0</span>] + [sys.maxsize] * len(target)
+    res = []
+    dfs(tree, target, k, dp, res)
+    <span class="hljs-keyword">return</span> res 
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">dfs</span><span class="hljs-params">(node, target, k, pre_dp, res)</span></span>
+<span class="hljs-function">	</span>
+    if node.isWord and pre_dp[len(target)] &lt;= k:
+        res.append(node.string)
+        <span class="hljs-keyword">return</span>
+    dp = [sys.maxsize] * (len(target) + <span class="hljs-number">1</span>)
+    <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> node.children:
+        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, len(target)+<span class="hljs-number">1</span>):
+            <span class="hljs-keyword">if</span> c != target[j<span class="hljs-number">-1</span>]:
+                dp[j] = max(dp[j<span class="hljs-number">-1</span>]+<span class="hljs-number">1</span>, pre_dp[j] + <span class="hljs-number">1</span>, pre_dp[j<span class="hljs-number">-1</span>]+<span class="hljs-number">1</span>)
+			<span class="hljs-keyword">else</span>:
+                dp[j] = max(dp[j<span class="hljs-number">-1</span>]+<span class="hljs-number">1</span>, pre_dp[j] + <span class="hljs-number">1</span>, pre_dp[j<span class="hljs-number">-1</span>])
+        dfs(node.children[c], target, k, dp, res)</code></pre>
 
 
 
@@ -701,329 +834,127 @@
 
 
 
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2020/07/07/Disjoint-Set/" rel="next" title="Disjoint Set">
-                <i class="fa fa-chevron-left"></i> Disjoint Set
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/07/09/Trie/" rel="prev" title="Trie">
-                Trie <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">Void Spirit</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-                <a href="/archives">
-                  <span class="site-state-item-count">30</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
               </div>
-            
-
-            
-
-            
-
-          </nav>
-
-          
-
-          
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
               
-            
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/07/09/Trie/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Trie</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/07/Disjoint-Set/">
+                        <span class="hidden-mobile">Disjoint Set</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Knapsack-Problems"><span class="nav-text">Knapsack Problems</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-1-Basic-Version"><span class="nav-text">Problem 1: Basic Version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-2-General-Version"><span class="nav-text">Problem 2: General Version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-3-Unbounded-Version"><span class="nav-text">Problem 3: Unbounded Version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-4-Combination-Version"><span class="nav-text">Problem 4: Combination Version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-5-Unbounded-Combination-Version"><span class="nav-text">Problem 5: Unbounded Combination Version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-6-Unbounded-Permutation-Version"><span class="nav-text">Problem 6: Unbounded Permutation Version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thoughts-on-the-Knapsack-Problem"><span class="nav-text">Thoughts on the Knapsack Problem</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Partitioned-DP"><span class="nav-text">Partitioned DP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-1-Palindrome-Partitioning"><span class="nav-text">Problem 1: Palindrome Partitioning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-2-Copy-Books"><span class="nav-text">Problem 2: Copy Books</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Interval-DP"><span class="nav-text">Interval DP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-1-Balloon-Burst"><span class="nav-text">Problem 1: Balloon Burst</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Game-Theory-DP"><span class="nav-text">Game Theory DP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-1-Coins-in-a-line"><span class="nav-text">Problem 1: Coins in a line</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-2-Coins-in-a-line-II"><span class="nav-text">Problem 2: Coins in a line II</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-3-Coins-in-a-line-III"><span class="nav-text">Problem 3: Coins in a line III</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Double-Sequence-DP"><span class="nav-text">Double Sequence DP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-1-Distinct-Subsequences"><span class="nav-text">Problem 1: Distinct Subsequences</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-2-Edit-Distance"><span class="nav-text">Problem 2: Edit Distance</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-3-Longest-Increasing-Common-Subsequence"><span class="nav-text">Problem 3: Longest Increasing Common Subsequence</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#technique-1"><span class="nav-text">technique 1:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#technique-2"><span class="nav-text">technique 2:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hard-Problems"><span class="nav-text">Hard Problems</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-1-K-sum"><span class="nav-text">Problem 1: K sum</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-2-Minimum-Adjustment-Cost"><span class="nav-text">Problem 2: Minimum Adjustment Cost</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#technique-3"><span class="nav-text">technique 3:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-3-K-Edit-Distance"><span class="nav-text">Problem 3: K Edit Distance</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
+          </article>
+        </div>
       </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Void Spirit</span>
-
-  
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
 </div>
 
-
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
       </div>
     
-
-    
-
   </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
 
   
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
   
 
   
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
   
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-  
-
 
   
 
+  
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+    
 
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
 
 
   
+    <script  src="/js/lazyload.js" ></script>
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
 
 
 
@@ -1031,11 +962,8 @@
 
 
 
-
-
-  
-
-
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
 
 
 
@@ -1043,52 +971,114 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
 
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
       });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
 
 
-  
 
-  
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Dynamic Programming&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
 
-<script src="<%- config.root %>js/hexo_resize_image.js"></script>
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>

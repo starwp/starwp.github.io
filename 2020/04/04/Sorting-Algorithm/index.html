@@ -1,325 +1,257 @@
+
+
 <!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
 
 
 
-  
-
-
-<html class="theme-next gemini use-motion" lang="en">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Void Spirit">
+  <meta name="keywords" content="">
+  <title>Sorting Algorithm - Make It Happen</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
 
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-
-
-<meta name="description" content="Can you write mergeSort and quickSort? In-place mergeSort? In this blog, we talk about the popular sorting algorithms, quickSort, mergeSort and so on. We then compare them from various aspects.">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Sorting Algorithm">
-<meta property="og:url" content="https://starwp.github.io/2020/04/04/Sorting-Algorithm/index.html">
-<meta property="og:site_name" content="Make It Happen">
-<meta property="og:description" content="Can you write mergeSort and quickSort? In-place mergeSort? In this blog, we talk about the popular sorting algorithms, quickSort, mergeSort and so on. We then compare them from various aspects.">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://miro.medium.com/max/1400/0*qwkWXc-wzW2D8ggV.jpg">
-<meta property="article:published_time" content="2020-04-04T22:45:50.000Z">
-<meta property="article:modified_time" content="2020-09-11T23:53:00.409Z">
-<meta property="article:author" content="Void Spirit">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://miro.medium.com/max/1400/0*qwkWXc-wzW2D8ggV.jpg">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="https://starwp.github.io/2020/04/04/Sorting-Algorithm/"/>
-
-
-
-
-
-  <title>Sorting Algorithm | Make It Happen</title>
   
 
 
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
 
 
 
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
+<link  rel="stylesheet" href="/css/main.css" />
 
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.0"></head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
-  
-  
-    
-  
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
 
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Make It Happen</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle"></p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
     </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
   </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            Tags
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
 </nav>
 
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://starwp.github.io/2020/04/04/Sorting-Algorithm/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Void Spirit">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Make It Happen">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">Sorting Algorithm</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
               
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-04T18:45:50-04:00">
-                2020-04-04
-              </time>
-            
+            </span>
 
             
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-04-04 18:45" pubdate>
+        April 4, 2020 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      33
+       分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
-          </span>
+          </div>
 
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      </div>
+    </div>
+  </header>
 
+  <main>
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
-      
-        <p>Can you write mergeSort and quickSort? In-place mergeSort? In this blog, we talk about the popular sorting algorithms, quickSort, mergeSort and so on. We then compare them from various aspects.</p>
-<img src="https://miro.medium.com/max/1400/0*qwkWXc-wzW2D8ggV.jpg" width = "300" alt="" align=center />
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">Sorting Algorithm</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <p>Can you write mergeSort and quickSort? In-place mergeSort? In this blog, we talk about the popular sorting algorithms, quickSort, mergeSort and so on. We then compare them from various aspects.</p>
+<img src="https://miro.medium.com/max/1400/0*qwkWXc-wzW2D8ggV.jpg" srcset="/img/loading.gif" width = "300" alt="" align=center />
 
 <a id="more"></a>
 
 
 
 <h2 id="1-QuickSort"><a href="#1-QuickSort" class="headerlink" title="1 QuickSort"></a>1 QuickSort</h2><p>先给出快排的代码，如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quickSort</span><span class="params">(nums, start, end)</span>:</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> start &gt;= end:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    </span><br><span class="line">    pivot = nums[random.randint(start, end)] </span><br><span class="line">    </span><br><span class="line">    <span class="comment">#this is to partition the array </span></span><br><span class="line">    left, right = start, end</span><br><span class="line">    <span class="keyword">while</span> left &lt;= right:</span><br><span class="line">		</span><br><span class="line">        <span class="keyword">while</span> left &lt;= right <span class="keyword">and</span> nums[left] &lt; pivot:</span><br><span class="line">            left += <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> left &lt;= right <span class="keyword">and</span> nums[right] &gt; pivot:</span><br><span class="line">            right -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> left &lt;= right:</span><br><span class="line">            nums[left], nums[right] = nums[right], nums[left]</span><br><span class="line">            left += <span class="number">1</span></span><br><span class="line">            right -= <span class="number">1</span></span><br><span class="line">	</span><br><span class="line">    quickSort(nums, start, right)</span><br><span class="line">    quickSort(nums, left, end)</span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">quickSort</span><span class="hljs-params">(nums, start, end)</span>:</span>
+&#123;
+    <span class="hljs-keyword">if</span> start &gt;= end:
+        <span class="hljs-keyword">return</span>
+    
+    pivot = nums[random.randint(start, end)] 
+    
+    <span class="hljs-comment">#this is to partition the array </span>
+    left, right = start, end
+    <span class="hljs-keyword">while</span> left &lt;= right:
+		
+        <span class="hljs-keyword">while</span> left &lt;= right <span class="hljs-keyword">and</span> nums[left] &lt; pivot:
+            left += <span class="hljs-number">1</span>
+        <span class="hljs-keyword">while</span> left &lt;= right <span class="hljs-keyword">and</span> nums[right] &gt; pivot:
+            right -= <span class="hljs-number">1</span>
+        <span class="hljs-keyword">if</span> left &lt;= right:
+            nums[left], nums[right] = nums[right], nums[left]
+            left += <span class="hljs-number">1</span>
+            right -= <span class="hljs-number">1</span>
+	
+    quickSort(nums, start, right)
+    quickSort(nums, left, end)
+   
+&#125;</code></pre>
 <p>注意推出while loop的两个cases:</p>
 <ul>
 <li>left - right = 1</li>
@@ -337,7 +269,10 @@
 <p>第二，如果使用=， 在一些的特殊的case里pivot = max value或者pivot = min value. 例如： pivot为最大值, 我们会将left从左移动到右边, 然后导致right<strong>停留不动</strong>, 最终使得dead loop当我们再次调用 quickSort(nums, start, right)，因为right一直没动。</p>
 <p>具体的例子： </p>
 <p>从而导致 quickSort(nums, 0, r) 死循环。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#initial  0  1  3  2  3  x</span></span><br><span class="line"><span class="comment">#         l           r     </span></span><br><span class="line"><span class="comment">#final    0  1  3  2  3  x</span></span><br><span class="line"><span class="comment">#                     r  l</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-comment">#initial  0  1  3  2  3  x</span>
+<span class="hljs-comment">#         l           r     </span>
+<span class="hljs-comment">#final    0  1  3  2  3  x</span>
+<span class="hljs-comment">#                     r  l</span></code></pre>
 </li>
 <li><p>两个情况推出循环，需要记忆.</p>
 <ul>
@@ -348,7 +283,8 @@
 <p>具体的例子：</p>
 </li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#initial  0  1  3  2  3  x</span></span><br><span class="line"><span class="comment">#               r  p  l</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-comment">#initial  0  1  3  2  3  x</span>
+<span class="hljs-comment">#               r  p  l</span></code></pre>
 
 <p>  pivot一定在之间。</p>
 </li>
@@ -371,7 +307,18 @@
 </li>
 </ol>
 <h2 id="2-Quick-Select"><a href="#2-Quick-Select" class="headerlink" title="2 Quick Select"></a>2 Quick Select</h2><p>代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">partition</span><span class="params">(self, nums, start, end)</span>:</span></span><br><span class="line">  </span><br><span class="line">    left, right = start, end</span><br><span class="line">    pivot = nums[random.randint(start, end)]</span><br><span class="line">    <span class="keyword">while</span> left &lt;= right:</span><br><span class="line">        <span class="keyword">while</span> left &lt;= right <span class="keyword">and</span> nums[left] &lt; pivot:</span><br><span class="line">            left += <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> left &lt;= right <span class="keyword">and</span> nums[right] &gt; pivot:</span><br><span class="line">            right -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> left &lt;= right:</span><br><span class="line">            nums[left], nums[right] = nums[right], nums[left]</span><br><span class="line">            left, right = left + <span class="number">1</span>, right - <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">partition</span><span class="hljs-params">(self, nums, start, end)</span>:</span>
+  
+    left, right = start, end
+    pivot = nums[random.randint(start, end)]
+    <span class="hljs-keyword">while</span> left &lt;= right:
+        <span class="hljs-keyword">while</span> left &lt;= right <span class="hljs-keyword">and</span> nums[left] &lt; pivot:
+            left += <span class="hljs-number">1</span>
+        <span class="hljs-keyword">while</span> left &lt;= right <span class="hljs-keyword">and</span> nums[right] &gt; pivot:
+            right -= <span class="hljs-number">1</span>
+        <span class="hljs-keyword">if</span> left &lt;= right:
+            nums[left], nums[right] = nums[right], nums[left]
+            left, right = left + <span class="hljs-number">1</span>, right - <span class="hljs-number">1</span></code></pre>
 
 <p>快速选择，是将一个数组分成左右2或者3部分：</p>
 <ul>
@@ -382,11 +329,11 @@
 <h3 id="2-2-Important-observations"><a href="#2-2-Important-observations" class="headerlink" title="2.2 Important observations"></a>2.2 Important observations</h3><ol>
 <li><p>如果需要将数据分为两段：第一段 &lt;= target，第二段&gt;target:</p>
 <p>只需要修改比较pivot的代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> left &lt;= right <span class="keyword">and</span> nums[left] &lt;= pivot:</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-keyword">while</span> left &lt;= right <span class="hljs-keyword">and</span> nums[left] &lt;= pivot:</code></pre>
 
 <p>相应的，如果要分为：第一段&lt;target, 第二段&gt;=target:</p>
 <p>及只用修改如下</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> left &lt;= right <span class="keyword">and</span> nums[right] &gt; pivot:</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-keyword">while</span> left &lt;= right <span class="hljs-keyword">and</span> nums[right] &gt; pivot:</code></pre>
 
 
 
@@ -395,7 +342,34 @@
 </li>
 </ol>
 <h3 id="2-3-kth-largest-number"><a href="#2-3-kth-largest-number" class="headerlink" title="2.3 kth largest number"></a>2.3 kth largest number</h3><p>第k大的数，代码如下</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">kthLargestElement</span><span class="params">(self, k, A)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> A <span class="keyword">or</span> k &lt; <span class="number">1</span> <span class="keyword">or</span> k &gt; len(A):</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    <span class="keyword">return</span> self.partition(A, <span class="number">0</span>, len(A) - <span class="number">1</span>, len(A) - k)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">partition</span><span class="params">(self, nums, start, end, k)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">       Since it starts with start &lt;= k &lt;= end, it's guaranteed start &lt;= k &lt;= end</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> start == end:</span><br><span class="line">        <span class="keyword">return</span> nums[k]</span><br><span class="line"></span><br><span class="line">    left, right = start, end</span><br><span class="line">    pivot = nums[random.randint(start, end)]</span><br><span class="line">    <span class="keyword">while</span> left &lt;= right:</span><br><span class="line">        <span class="keyword">while</span> left &lt;= right <span class="keyword">and</span> nums[left] &lt; pivot:</span><br><span class="line">            left += <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> left &lt;= right <span class="keyword">and</span> nums[right] &gt; pivot:</span><br><span class="line">            right -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> left &lt;= right:</span><br><span class="line">            nums[left], nums[right] = nums[right], nums[left]</span><br><span class="line">            left, right = left + <span class="number">1</span>, right - <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">    <span class="keyword">if</span> k &lt;= right:</span><br><span class="line">        <span class="keyword">return</span> self.partition(nums, start, right, k)</span><br><span class="line">    <span class="keyword">if</span> k &gt;= left:</span><br><span class="line">        <span class="keyword">return</span> self.partition(nums, left, end, k)</span><br><span class="line">    <span class="keyword">return</span> nums[k]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">kthLargestElement</span><span class="hljs-params">(self, k, A)</span>:</span>
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> A <span class="hljs-keyword">or</span> k &lt; <span class="hljs-number">1</span> <span class="hljs-keyword">or</span> k &gt; len(A):
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span>
+    <span class="hljs-keyword">return</span> self.partition(A, <span class="hljs-number">0</span>, len(A) - <span class="hljs-number">1</span>, len(A) - k)
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">partition</span><span class="hljs-params">(self, nums, start, end, k)</span>:</span>
+    <span class="hljs-string">"""</span>
+<span class="hljs-string">       Since it starts with start &lt;= k &lt;= end, it's guaranteed start &lt;= k &lt;= end</span>
+<span class="hljs-string">    """</span>
+    <span class="hljs-keyword">if</span> start == end:
+        <span class="hljs-keyword">return</span> nums[k]
+
+    left, right = start, end
+    pivot = nums[random.randint(start, end)]
+    <span class="hljs-keyword">while</span> left &lt;= right:
+        <span class="hljs-keyword">while</span> left &lt;= right <span class="hljs-keyword">and</span> nums[left] &lt; pivot:
+            left += <span class="hljs-number">1</span>
+        <span class="hljs-keyword">while</span> left &lt;= right <span class="hljs-keyword">and</span> nums[right] &gt; pivot:
+            right -= <span class="hljs-number">1</span>
+        <span class="hljs-keyword">if</span> left &lt;= right:
+            nums[left], nums[right] = nums[right], nums[left]
+            left, right = left + <span class="hljs-number">1</span>, right - <span class="hljs-number">1</span>
+            
+    <span class="hljs-keyword">if</span> k &lt;= right:
+        <span class="hljs-keyword">return</span> self.partition(nums, start, right, k)
+    <span class="hljs-keyword">if</span> k &gt;= left:
+        <span class="hljs-keyword">return</span> self.partition(nums, left, end, k)
+    <span class="hljs-keyword">return</span> nums[k]</code></pre>
 
 <ol>
 <li><p>the kth largest number problem, 递归出口 “start == end” at the beginning, why?</p>
@@ -416,7 +390,18 @@
 <li>标准三色排序代码完成</li>
 </ul>
 <p>下面是标准三色排序代码</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_3_color_sort</span><span class="params">(A, pivot)</span>:</span></span><br><span class="line">    cur, left, right = <span class="number">0</span>, <span class="number">0</span>, len(A)<span class="number">-1</span></span><br><span class="line">    <span class="keyword">while</span> cur &lt;= right:</span><br><span class="line">        <span class="keyword">if</span> nums[cur] &lt; pivot:</span><br><span class="line">            nums[left], nums[cur] = nums[cur], nums[left]</span><br><span class="line">            cur += <span class="number">1</span></span><br><span class="line">            left += <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> nums[cur] &gt; pivot:</span><br><span class="line">            nums[right], nums[cur] = nums[cur], nums[right]</span><br><span class="line">        	right -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            cur += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">_3_color_sort</span><span class="hljs-params">(A, pivot)</span>:</span>
+    cur, left, right = <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, len(A)<span class="hljs-number">-1</span>
+    <span class="hljs-keyword">while</span> cur &lt;= right:
+        <span class="hljs-keyword">if</span> nums[cur] &lt; pivot:
+            nums[left], nums[cur] = nums[cur], nums[left]
+            cur += <span class="hljs-number">1</span>
+            left += <span class="hljs-number">1</span>
+        <span class="hljs-keyword">elif</span> nums[cur] &gt; pivot:
+            nums[right], nums[cur] = nums[cur], nums[right]
+        	right -= <span class="hljs-number">1</span>
+        <span class="hljs-keyword">else</span>:
+            cur += <span class="hljs-number">1</span></code></pre>
 
 
 
@@ -433,7 +418,46 @@
 </li>
 </ol>
 <h2 id="4-MergeSort"><a href="#4-MergeSort" class="headerlink" title="4 MergeSort"></a>4 MergeSort</h2><p>Then, we take a look at the mergeSort.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mergeSort</span><span class="params">(nums, start, end, temp)</span>:</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> start &gt;= end:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    </span><br><span class="line">    mid = (start + end) // <span class="number">2</span></span><br><span class="line">    mergeSort(nums, start, mid, temp)</span><br><span class="line">    mergeSort(nums, mid + <span class="number">1</span>, end, temp)</span><br><span class="line">    mergeArray(nums, start, mid, end, temp)</span><br><span class="line">   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mergeArray</span><span class="params">(nums, start, mid, end, tmp)</span>:</span></span><br><span class="line">&#123;</span><br><span class="line">    i = start </span><br><span class="line">    j = mid + <span class="number">1</span></span><br><span class="line">    index = start</span><br><span class="line">    <span class="keyword">while</span> i &lt;= mid <span class="keyword">and</span> j &lt;= end:</span><br><span class="line">        <span class="keyword">if</span> nums[i] &lt;= num[j]:</span><br><span class="line">            temp[index] = num[i]</span><br><span class="line">            index += <span class="number">1</span></span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            temp[index] = num[j]</span><br><span class="line">            index += <span class="number">1</span></span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">	</span><br><span class="line">    <span class="keyword">while</span> i &lt;= mid:</span><br><span class="line">        temp[index] = num[i]</span><br><span class="line">        index += <span class="number">1</span></span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> j &lt;= end:</span><br><span class="line">        temp[index] = num[j]</span><br><span class="line">        index += j</span><br><span class="line">        j += <span class="number">1</span></span><br><span class="line">	</span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(start, end + <span class="number">1</span>):</span><br><span class="line">        nums[k] = temp[k]</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">mergeSort</span><span class="hljs-params">(nums, start, end, temp)</span>:</span>
+&#123;
+    <span class="hljs-keyword">if</span> start &gt;= end:
+        <span class="hljs-keyword">return</span>
+    
+    mid = (start + end) // <span class="hljs-number">2</span>
+    mergeSort(nums, start, mid, temp)
+    mergeSort(nums, mid + <span class="hljs-number">1</span>, end, temp)
+    mergeArray(nums, start, mid, end, temp)
+   
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">mergeArray</span><span class="hljs-params">(nums, start, mid, end, tmp)</span>:</span>
+&#123;
+    i = start 
+    j = mid + <span class="hljs-number">1</span>
+    index = start
+    <span class="hljs-keyword">while</span> i &lt;= mid <span class="hljs-keyword">and</span> j &lt;= end:
+        <span class="hljs-keyword">if</span> nums[i] &lt;= num[j]:
+            temp[index] = num[i]
+            index += <span class="hljs-number">1</span>
+            i += <span class="hljs-number">1</span>
+        <span class="hljs-keyword">else</span>:
+            temp[index] = num[j]
+            index += <span class="hljs-number">1</span>
+            j += <span class="hljs-number">1</span>
+	
+    <span class="hljs-keyword">while</span> i &lt;= mid:
+        temp[index] = num[i]
+        index += <span class="hljs-number">1</span>
+        i += <span class="hljs-number">1</span>
+    <span class="hljs-keyword">while</span> j &lt;= end:
+        temp[index] = num[j]
+        index += j
+        j += <span class="hljs-number">1</span>
+	
+    <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(start, end + <span class="hljs-number">1</span>):
+        nums[k] = temp[k]
+	
+&#125;</code></pre>
 <p>MergeSort使用临时temp数组在初始化的时候，比在mergeArray里每次申请一个临时数组节约空间。</p>
 <p>MergeSort包含了一个很重要的思想：</p>
 <ul>
@@ -452,11 +476,39 @@
 <li>MergeSort稳定排序. QuickSort非稳定排序。</li>
 </ol>
 <h2 id="5-Counting-Sort"><a href="#5-Counting-Sort" class="headerlink" title="5 Counting Sort"></a>5 Counting Sort</h2><p>下面是代码</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">countingSort</span><span class="params">(A)</span>:</span></span><br><span class="line">    lo, hi = min(A), max(A)</span><br><span class="line">    buckets = [<span class="number">0</span>]*(hi-lo+<span class="number">1</span>)</span><br><span class="line">    offset = lo</span><br><span class="line">    <span class="keyword">for</span> e <span class="keyword">in</span> A:</span><br><span class="line">        buckets[e-offset] += <span class="number">1</span></span><br><span class="line">    i, res = <span class="number">0</span>, [<span class="number">0</span>]*len(A)</span><br><span class="line">    <span class="keyword">for</span> val, cnt <span class="keyword">in</span> enumerate(buckets):</span><br><span class="line">        <span class="keyword">if</span> cnt &gt; <span class="number">0</span>:</span><br><span class="line">        	res[i:i+cnt] = [val+offset]*cnt</span><br><span class="line">        	i += cnt</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">countingSort</span><span class="hljs-params">(A)</span>:</span>
+    lo, hi = min(A), max(A)
+    buckets = [<span class="hljs-number">0</span>]*(hi-lo+<span class="hljs-number">1</span>)
+    offset = lo
+    <span class="hljs-keyword">for</span> e <span class="hljs-keyword">in</span> A:
+        buckets[e-offset] += <span class="hljs-number">1</span>
+    i, res = <span class="hljs-number">0</span>, [<span class="hljs-number">0</span>]*len(A)
+    <span class="hljs-keyword">for</span> val, cnt <span class="hljs-keyword">in</span> enumerate(buckets):
+        <span class="hljs-keyword">if</span> cnt &gt; <span class="hljs-number">0</span>:
+        	res[i:i+cnt] = [val+offset]*cnt
+        	i += cnt
+    <span class="hljs-keyword">return</span> res</code></pre>
 
 <p>在给定范围的数据排序可以用，时间复杂度O(n+c)，这里c是整数范围。</p>
 <h2 id="6-Bucket-Sort"><a href="#6-Bucket-Sort" class="headerlink" title="6 Bucket Sort"></a>6 Bucket Sort</h2><p>下面代码是leetcode 164</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bucketSort</span><span class="params">(A)</span>:</span></span><br><span class="line">    </span><br><span class="line">    lo, hi = min(A), max(A)</span><br><span class="line">    buk_len = max(<span class="number">1</span>, (hi-lo)//(len(A)<span class="number">-1</span>))</span><br><span class="line">    buckets_size = (hi-lo)//buk_len + <span class="number">1</span></span><br><span class="line">    buckets = [[<span class="number">0</span>, sys.maxsize, -sys.maxsize] <span class="keyword">for</span> _ <span class="keyword">in</span> range(buckets_size)] </span><br><span class="line">    <span class="keyword">for</span> e <span class="keyword">in</span> A:</span><br><span class="line">        idx = (e-lo)//buk_len </span><br><span class="line">        buckets[idx][<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">        buckets[idx][<span class="number">1</span>] = min(buckets[idx][<span class="number">1</span>], e)</span><br><span class="line">        buckets[idx][<span class="number">2</span>] = max(buckets[idx][<span class="number">2</span>], e)</span><br><span class="line">        </span><br><span class="line">    max_gap, pre_max = <span class="number">0</span>, lo</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(buckets)):</span><br><span class="line">        <span class="keyword">if</span> buckets[i]:</span><br><span class="line">            max_gap = max(max_gap, buckets[i][<span class="number">1</span>] - pre_max)</span><br><span class="line">            pre_max = buckets[i][<span class="number">2</span>] </span><br><span class="line">    <span class="keyword">return</span> max_gap</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">bucketSort</span><span class="hljs-params">(A)</span>:</span>
+    
+    lo, hi = min(A), max(A)
+    buk_len = max(<span class="hljs-number">1</span>, (hi-lo)//(len(A)<span class="hljs-number">-1</span>))
+    buckets_size = (hi-lo)//buk_len + <span class="hljs-number">1</span>
+    buckets = [[<span class="hljs-number">0</span>, sys.maxsize, -sys.maxsize] <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(buckets_size)] 
+    <span class="hljs-keyword">for</span> e <span class="hljs-keyword">in</span> A:
+        idx = (e-lo)//buk_len 
+        buckets[idx][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>
+        buckets[idx][<span class="hljs-number">1</span>] = min(buckets[idx][<span class="hljs-number">1</span>], e)
+        buckets[idx][<span class="hljs-number">2</span>] = max(buckets[idx][<span class="hljs-number">2</span>], e)
+        
+    max_gap, pre_max = <span class="hljs-number">0</span>, lo
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(buckets)):
+        <span class="hljs-keyword">if</span> buckets[i]:
+            max_gap = max(max_gap, buckets[i][<span class="hljs-number">1</span>] - pre_max)
+            pre_max = buckets[i][<span class="hljs-number">2</span>] 
+    <span class="hljs-keyword">return</span> max_gap</code></pre>
 
 <p>使用了bucketSort和鸽巢原理，</p>
 <ol>
@@ -471,353 +523,198 @@
 <li></li>
 </ol>
 <p>例子1如下:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># min, max = 0, 9, buk_len = 3, A = [0, 1, 8, 9]</span></span><br><span class="line">    <span class="number">0</span>            <span class="number">1</span>            <span class="number">2</span>            <span class="number">3</span>(extra)</span><br><span class="line"> -------      -------      -------      -------     </span><br><span class="line">|       |    |       |    |       |    |       |  </span><br><span class="line">|  <span class="number">0</span>  <span class="number">1</span> |    |       |    |   <span class="number">8</span>   |    |   <span class="number">9</span>   |   </span><br><span class="line">|       |    |       |    |       |    |       |   </span><br><span class="line"> -------      -------      -------      -------   </span><br><span class="line">  [<span class="number">0</span>, <span class="number">3</span>)      [<span class="number">3</span>, <span class="number">6</span>)        [<span class="number">6</span>, <span class="number">9</span>)       [<span class="number">9</span>, <span class="number">12</span>)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-comment"># min, max = 0, 9, buk_len = 3, A = [0, 1, 8, 9]</span>
+    <span class="hljs-number">0</span>            <span class="hljs-number">1</span>            <span class="hljs-number">2</span>            <span class="hljs-number">3</span>(extra)
+ -------      -------      -------      -------     
+|       |    |       |    |       |    |       |  
+|  <span class="hljs-number">0</span>  <span class="hljs-number">1</span> |    |       |    |   <span class="hljs-number">8</span>   |    |   <span class="hljs-number">9</span>   |   
+|       |    |       |    |       |    |       |   
+ -------      -------      -------      -------   
+  [<span class="hljs-number">0</span>, <span class="hljs-number">3</span>)      [<span class="hljs-number">3</span>, <span class="hljs-number">6</span>)        [<span class="hljs-number">6</span>, <span class="hljs-number">9</span>)       [<span class="hljs-number">9</span>, <span class="hljs-number">12</span>)</code></pre>
 
 <p>例子2如下:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># min, max = 0, 8, buk_len = 2,  A = [0, 1, 3, 8]</span></span><br><span class="line">    <span class="number">0</span>            <span class="number">1</span>            <span class="number">2</span>            <span class="number">3</span>(extra)     <span class="number">4</span>(extra)</span><br><span class="line"> -------      -------      -------      -------      -------     </span><br><span class="line">|       |    |       |    |       |    |       |    |       |  </span><br><span class="line">|  <span class="number">0</span>  <span class="number">1</span> |    |   <span class="number">3</span>   |    |       |    |       |    |   <span class="number">8</span>   |   </span><br><span class="line">|       |    |       |    |       |    |       |    |       |   </span><br><span class="line"> -------      -------      -------      -------      -------   </span><br><span class="line">  [<span class="number">0</span>, <span class="number">2</span>)      [<span class="number">2</span>, <span class="number">4</span>)        [<span class="number">4</span>, <span class="number">6</span>)       [<span class="number">6</span>, <span class="number">8</span>)       [<span class="number">8</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-comment"># min, max = 0, 8, buk_len = 2,  A = [0, 1, 3, 8]</span>
+    <span class="hljs-number">0</span>            <span class="hljs-number">1</span>            <span class="hljs-number">2</span>            <span class="hljs-number">3</span>(extra)     <span class="hljs-number">4</span>(extra)
+ -------      -------      -------      -------      -------     
+|       |    |       |    |       |    |       |    |       |  
+|  <span class="hljs-number">0</span>  <span class="hljs-number">1</span> |    |   <span class="hljs-number">3</span>   |    |       |    |       |    |   <span class="hljs-number">8</span>   |   
+|       |    |       |    |       |    |       |    |       |   
+ -------      -------      -------      -------      -------   
+  [<span class="hljs-number">0</span>, <span class="hljs-number">2</span>)      [<span class="hljs-number">2</span>, <span class="hljs-number">4</span>)        [<span class="hljs-number">4</span>, <span class="hljs-number">6</span>)       [<span class="hljs-number">6</span>, <span class="hljs-number">8</span>)       [<span class="hljs-number">8</span>, <span class="hljs-number">10</span>)</code></pre>
 
 
 
 
 
 <h2 id="7-Radix-Sort"><a href="#7-Radix-Sort" class="headerlink" title="7 Radix Sort"></a>7 Radix Sort</h2><p>下面是代码</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">radixSort</span><span class="params">(A)</span>:</span></span><br><span class="line">    </span><br><span class="line">    exp = <span class="number">1</span></span><br><span class="line">    hi = max(A)</span><br><span class="line">    <span class="keyword">while</span> hi // exp &gt; <span class="number">0</span>:</span><br><span class="line">        buckets = [[] <span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">10</span>)]</span><br><span class="line">        <span class="keyword">for</span> e <span class="keyword">in</span> A:  </span><br><span class="line">            buckets[(e//exp)%<span class="number">10</span>].append(e)</span><br><span class="line">        A = [e <span class="keyword">for</span> buk <span class="keyword">in</span> buckets <span class="keyword">for</span> e <span class="keyword">in</span> buk]</span><br><span class="line">        exp *= <span class="number">10</span> </span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> A</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">radixSort</span><span class="hljs-params">(A)</span>:</span>
+    
+    exp = <span class="hljs-number">1</span>
+    hi = max(A)
+    <span class="hljs-keyword">while</span> hi // exp &gt; <span class="hljs-number">0</span>:
+        buckets = [[] <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>)]
+        <span class="hljs-keyword">for</span> e <span class="hljs-keyword">in</span> A:  
+            buckets[(e//exp)%<span class="hljs-number">10</span>].append(e)
+        A = [e <span class="hljs-keyword">for</span> buk <span class="hljs-keyword">in</span> buckets <span class="hljs-keyword">for</span> e <span class="hljs-keyword">in</span> buk]
+        exp *= <span class="hljs-number">10</span> 
+        
+    <span class="hljs-keyword">return</span> A</code></pre>
 
 <p>例子：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#  21 22 11 12</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#1:21 11 22 12</span></span><br><span class="line"><span class="comment">#2:11 12 21 22</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-comment">#  21 22 11 12</span>
+
+<span class="hljs-comment">#1:21 11 22 12</span>
+<span class="hljs-comment">#2:11 12 21 22</span></code></pre>
 
 <p>另一种实现：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">radixSort</span><span class="params">(A)</span>:</span></span><br><span class="line">    </span><br><span class="line">    exp, hi = <span class="number">1</span>, max(A)</span><br><span class="line">    <span class="keyword">while</span> hi // exp &gt; <span class="number">0</span>:</span><br><span class="line">        buckets = [<span class="number">0</span>] * <span class="number">10</span></span><br><span class="line">        <span class="keyword">for</span> e <span class="keyword">in</span> A:</span><br><span class="line">            buckets[e//exp%<span class="number">10</span>] += <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(buckets)):</span><br><span class="line">            buckets[i] = buckets[i<span class="number">-1</span>]</span><br><span class="line">        temp = [<span class="number">0</span>]*len(A)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(A)<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">-1</span>):</span><br><span class="line">            buckets[A[i]//exp%<span class="number">10</span>] -= <span class="number">1</span></span><br><span class="line">            temp[buckets[A[i]//exp%<span class="number">10</span>]] = A[i]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(A)):</span><br><span class="line">            A[i] = temp[i]</span><br><span class="line">        exp *= <span class="number">10</span></span><br><span class="line">    <span class="keyword">return</span> A</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">radixSort</span><span class="hljs-params">(A)</span>:</span>
+    
+    exp, hi = <span class="hljs-number">1</span>, max(A)
+    <span class="hljs-keyword">while</span> hi // exp &gt; <span class="hljs-number">0</span>:
+        buckets = [<span class="hljs-number">0</span>] * <span class="hljs-number">10</span>
+        <span class="hljs-keyword">for</span> e <span class="hljs-keyword">in</span> A:
+            buckets[e//exp%<span class="hljs-number">10</span>] += <span class="hljs-number">1</span>
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, len(buckets)):
+            buckets[i] = buckets[i<span class="hljs-number">-1</span>]
+        temp = [<span class="hljs-number">0</span>]*len(A)
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(A)<span class="hljs-number">-1</span>,<span class="hljs-number">-1</span>,<span class="hljs-number">-1</span>):
+            buckets[A[i]//exp%<span class="hljs-number">10</span>] -= <span class="hljs-number">1</span>
+            temp[buckets[A[i]//exp%<span class="hljs-number">10</span>]] = A[i]
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(A)):
+            A[i] = temp[i]
+        exp *= <span class="hljs-number">10</span>
+    <span class="hljs-keyword">return</span> A</code></pre>
 
 <p>如果第三个for loop不倒叙的话，例子：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#  21 22 11 12</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#1:11 21 12 22</span></span><br><span class="line"><span class="comment">#2:12 11 22 21</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-comment">#  21 22 11 12</span>
+
+<span class="hljs-comment">#1:11 21 12 22</span>
+<span class="hljs-comment">#2:12 11 22 21</span></code></pre>
 
 <p>是乱序的，因为我们是按照count倒数赋值，所以count–，必须降序赋值。</p>
 <p>复杂度为O(n+c)，c是bit位数</p>
 
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2020/04/04/new-chapter/" rel="next" title="new chapter">
-                <i class="fa fa-chevron-left"></i> new chapter
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/04/05/Binary-Search/" rel="prev" title="Binary Search">
-                Binary Search <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">Void Spirit</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-                <a href="/archives">
-                  <span class="site-state-item-count">30</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
               </div>
-            
-
-            
-
-            
-
-          </nav>
-
-          
-
-          
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
               
-            
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/04/05/Binary-Search/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Binary Search</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/04/04/new-chapter/">
+                        <span class="hidden-mobile">new chapter</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-QuickSort"><span class="nav-text">1 QuickSort</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-Important-observations"><span class="nav-text">1.1 Important observations</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Quick-Select"><span class="nav-text">2 Quick Select</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Important-observations"><span class="nav-text">2.2 Important observations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-kth-largest-number"><span class="nav-text">2.3 kth largest number</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-Medium-of-two-sorted-arrays"><span class="nav-text">2.4 Medium of two sorted arrays</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Three-Color-Sort"><span class="nav-text">3 Three Color Sort</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-Important-observations"><span class="nav-text">3.1 Important observations</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-MergeSort"><span class="nav-text">4 MergeSort</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Important-observations"><span class="nav-text">4.1 Important observations</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Counting-Sort"><span class="nav-text">5 Counting Sort</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Bucket-Sort"><span class="nav-text">6 Bucket Sort</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Radix-Sort"><span class="nav-text">7 Radix Sort</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
+          </article>
+        </div>
       </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Void Spirit</span>
-
-  
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
 </div>
 
-
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
       </div>
     
-
-    
-
   </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
 
   
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
   
 
   
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
   
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-  
-
 
   
 
+  
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+    
 
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
 
 
   
+    <script  src="/js/lazyload.js" ></script>
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
 
 
 
@@ -825,11 +722,8 @@
 
 
 
-
-
-  
-
-
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
 
 
 
@@ -837,52 +731,114 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
 
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
       });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
 
 
-  
 
-  
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Sorting Algorithm&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
 
-<script src="<%- config.root %>js/hexo_resize_image.js"></script>
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
