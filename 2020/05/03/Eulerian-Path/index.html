@@ -60,7 +60,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>Algs</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>Mastering Algorithm</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -177,7 +177,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      13 字
+      572 字
     </span>
   
 
@@ -187,7 +187,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      8
        分钟
     </span>
   
@@ -235,12 +235,60 @@
 
 
 
+<h1 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h1><h2 id="Eulerian-Cycle"><a href="#Eulerian-Cycle" class="headerlink" title="Eulerian Cycle"></a>Eulerian Cycle</h2><p>考虑一个有向图，欧拉环存在的条件如下:</p>
+<ul>
+<li>Condition 1: 任意一个节点的出度等于入度</li>
+</ul>
+<h2 id="Eulerian-Path"><a href="#Eulerian-Path" class="headerlink" title="Eulerian Path"></a>Eulerian Path</h2><p>考虑一个有向图，欧拉路径存在的条件如下:</p>
+<ul>
+<li>Condition 1: 任意一个节点的出度等于入度</li>
+<li>Condition 2: 仅存在一个节点(outdegree-indegree=1，<strong>起点</strong>)，和另一个节点(indegree-outdegree=1，<strong>终点</strong>)，其他节点(outdegree=indegree)。</li>
+</ul>
+<p>上述条件满足1个即可。</p>
+<p>如果存在欧拉路径，寻找欧拉路径的方式如下:</p>
+<ul>
+<li>dfs(每个节点访问一个其邻居，该节点出度减1)进行遍历</li>
+<li>dfs走到尽头的时候就是end node。然后会退到上一个节点，如果这个节点出度为0，其就定位倒数第二个点。</li>
+<li>如此以往，回退到头就可以得到欧拉路径。</li>
+</ul>
+<h1 id="Applications"><a href="#Applications" class="headerlink" title="Applications"></a>Applications</h1><h2 id="Reconstruct-Itinerary"><a href="#Reconstruct-Itinerary" class="headerlink" title="Reconstruct Itinerary"></a><a href="https://leetcode.com/problems/reconstruct-itinerary/" target="_blank" rel="noopener">Reconstruct Itinerary</a></h2><p>问题: Given a list of airline tickets represented by pairs of departure and arrival airports <code>[from, to]</code>, reconstruct the itinerary in order. All of the tickets belong to a man who departs from <code>JFK</code>. Thus, the itinerary must begin with <code>JFK</code>.</p>
+<p><strong>Note:</strong></p>
+<ol>
+<li>If there are multiple valid itineraries, you should return the itinerary that has the smallest lexical order when read as a single string. For example, the itinerary <code>[&quot;JFK&quot;, &quot;LGA&quot;]</code> has a smaller lexical order than <code>[&quot;JFK&quot;, &quot;LGB&quot;]</code>.</li>
+<li>All airports are represented by three capital letters (IATA code).</li>
+<li>You may assume all tickets form at least one valid itinerary.</li>
+<li>One must use all the tickets once and only once.</li>
+</ol>
+<p><strong>Example 1:</strong></p>
+<pre><code class="hljs prolog"><span class="hljs-symbol">Input</span>: [[<span class="hljs-string">"MUC"</span>, <span class="hljs-string">"LHR"</span>], [<span class="hljs-string">"JFK"</span>, <span class="hljs-string">"MUC"</span>], [<span class="hljs-string">"SFO"</span>, <span class="hljs-string">"SJC"</span>], [<span class="hljs-string">"LHR"</span>, <span class="hljs-string">"SFO"</span>]]
+<span class="hljs-symbol">Output</span>: [<span class="hljs-string">"JFK"</span>, <span class="hljs-string">"MUC"</span>, <span class="hljs-string">"LHR"</span>, <span class="hljs-string">"SFO"</span>, <span class="hljs-string">"SJC"</span>]</code></pre>
 
+<p><strong>Example 2:</strong></p>
+<pre><code class="hljs prolog"><span class="hljs-symbol">Input</span>: [[<span class="hljs-string">"JFK"</span>,<span class="hljs-string">"SFO"</span>],[<span class="hljs-string">"JFK"</span>,<span class="hljs-string">"ATL"</span>],[<span class="hljs-string">"SFO"</span>,<span class="hljs-string">"ATL"</span>],[<span class="hljs-string">"ATL"</span>,<span class="hljs-string">"JFK"</span>],[<span class="hljs-string">"ATL"</span>,<span class="hljs-string">"SFO"</span>]]
+<span class="hljs-symbol">Output</span>: [<span class="hljs-string">"JFK"</span>,<span class="hljs-string">"ATL"</span>,<span class="hljs-string">"JFK"</span>,<span class="hljs-string">"SFO"</span>,<span class="hljs-string">"ATL"</span>,<span class="hljs-string">"SFO"</span>]
+<span class="hljs-symbol">Explanation</span>: <span class="hljs-symbol">Another</span> possible reconstruction is [<span class="hljs-string">"JFK"</span>,<span class="hljs-string">"SFO"</span>,<span class="hljs-string">"ATL"</span>,<span class="hljs-string">"JFK"</span>,<span class="hljs-string">"ATL"</span>,<span class="hljs-string">"SFO"</span>].
+             <span class="hljs-symbol">But</span> it is larger in lexical order.</code></pre>
 
-<img src="https://brilliant-staff-media.s3-us-west-2.amazonaws.com/tiffany-wang/MJufJoRB0r.png" srcset="/img/loading.gif" width = "400" alt="" align=center />
+<p>分析: 应用欧拉路径的dfs遍历方法，且因为对于path序列有要求，我们需要进行字典序升序的dfs遍历。因此，每个节点的邻居先排序即可。</p>
+<p>对比不同的遍历序列方式:</p>
+<div class="group-image-container"><div class="group-image-row"><div class="group-image-wrap"><img src="image-20201004201417907.png" srcset="/img/loading.gif" alt="image-20201004201417907"></div><div class="group-image-wrap"><img src="image-20201004201446001.png" srcset="/img/loading.gif" alt="image-20201004201446001"></div></div></div>
 
+<p>图中说明，先遍历的的节点，最后成为先到的点。</p>
+<p>代码如下:</p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">findItinerary</span><span class="hljs-params">(self, tickets: List[List[str]])</span> -&gt; List[str]:</span>
+    graph, res = collections.defaultdict(list), []
+    <span class="hljs-keyword">for</span> a, b <span class="hljs-keyword">in</span> sorted(tickets)[::<span class="hljs-number">-1</span>]:
+        graph[a].append(b)
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">visit</span><span class="hljs-params">(node)</span>:</span>
+        <span class="hljs-keyword">while</span> graph[node]:
+            visit(graph[node].pop())
+        res.append(node)
+    visit(<span class="hljs-string">'JFK'</span>)
+    <span class="hljs-keyword">return</span> res[::<span class="hljs-number">-1</span>]</code></pre>
 
-
+<ul>
+<li>代码中，降序建立每个节点的邻居，这样在dfs的时候，利用pop邻居节点实现了先访问字典序小的节点。</li>
+</ul>
 
             </div>
             <hr>
