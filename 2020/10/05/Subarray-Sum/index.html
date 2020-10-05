@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Void Spirit">
   <meta name="keywords" content="">
-  <title>Morris Traversal - Make It Happen</title>
+  <title>Subarray Sum - Make It Happen</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -165,8 +165,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-10-03 14:51" pubdate>
-        October 3, 2020 pm
+      <time datetime="2020-10-05 12:05" pubdate>
+        October 5, 2020 pm
       </time>
     </span>
   
@@ -177,7 +177,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      8 字
+      568 字
     </span>
   
 
@@ -187,7 +187,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      9
        分钟
     </span>
   
@@ -225,13 +225,81 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">Morris Traversal</h1>
+            <h1 style="display: none">Subarray Sum</h1>
             
             <div class="markdown-body" id="post-body">
               <blockquote>
-<p>A constant space traversal algorithm, which is amazing.</p>
+<p>Interesting topics on subarray sum.</p>
 </blockquote>
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1>
+<a id="more"></a>
+
+<h1 id="Classical-Problems"><a href="#Classical-Problems" class="headerlink" title="Classical Problems"></a>Classical Problems</h1><p>We discuss basic problems based on subarray sum.</p>
+<h2 id="Maximum-Subarray"><a href="#Maximum-Subarray" class="headerlink" title="Maximum Subarray"></a><a href="https://leetcode.com/problems/maximum-subarray/" target="_blank" rel="noopener">Maximum Subarray</a></h2><p>题目: Given an integer array <code>nums</code>, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.</p>
+<p>分析: 两种做法，贪心和动态规划。</p>
+<ul>
+<li>贪心: 利用prefix sum的记录，找出之前的最低点，做差即可求current subarray sum，然后全局统计max_sum</li>
+<li>动态规划: 定义当前元素为结尾的最大值，递推关系为是否考虑当前元素。</li>
+</ul>
+<p>贪心的写法如下:</p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">maxSubArray</span><span class="hljs-params">(self, nums: List[int])</span> -&gt; int:</span>
+    cur, min_sum, max_sum = <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, -sys.maxsize
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(nums)):
+        cur += nums[i]
+        max_sum = max(max_sum, cur - min_sum)
+        min_sum = min(min_sum, cur)
+    <span class="hljs-keyword">return</span> max_sum <span class="hljs-keyword">if</span> max_sum != -sys.maxsize <span class="hljs-keyword">else</span> <span class="hljs-number">0</span></code></pre>
+
+<ul>
+<li>初始化的min_sum为0.</li>
+</ul>
+<p>动他规划如下:</p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">maxSubArray</span><span class="hljs-params">(self, nums: List[int])</span> -&gt; int:</span>
+    cur, max_sum = <span class="hljs-number">0</span>, -sys.maxsize
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(nums)):
+        cur = max(cur + nums[i], nums[i])
+        max_sum = max(max_sum, cur)
+    <span class="hljs-keyword">return</span> max_sum <span class="hljs-keyword">if</span> max_sum != -sys.maxsize <span class="hljs-keyword">else</span> <span class="hljs-number">0</span></code></pre>
+
+<ul>
+<li>关键的代码就是<code>cur_sum[i] = max(nums[i], nums[i]+cur_sum[i-1])</code></li>
+</ul>
+<h2 id="Subarray-Sum-Equals-K"><a href="#Subarray-Sum-Equals-K" class="headerlink" title="Subarray Sum Equals K"></a><a href="https://leetcode.com/problems/subarray-sum-equals-k/" target="_blank" rel="noopener">Subarray Sum Equals K</a></h2><p>问题: Given an array of integers and an integer <strong>k</strong>, you need to find the total number of continuous subarrays whose sum equals to <strong>k</strong>.</p>
+<p>分析: 利用贪心和hash表，可以查到总数，代码如下:</p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">subarraySum</span><span class="hljs-params">(self, nums: List[int], k: int)</span> -&gt; int:</span>
+    cur, preSum, cnt = <span class="hljs-number">0</span>, &#123;<span class="hljs-number">0</span>:<span class="hljs-number">1</span>&#125;, <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(nums)):
+        cur += nums[i]
+        <span class="hljs-keyword">if</span> cur - k <span class="hljs-keyword">in</span> preSum:
+            cnt += preSum[cur-k]
+        preSum[cur] = preSum.get(cur,<span class="hljs-number">0</span>) + <span class="hljs-number">1</span>
+    <span class="hljs-keyword">return</span> cnt</code></pre>
+
+
+
+<h2 id="Minimum-Size-Subarray-Sum"><a href="#Minimum-Size-Subarray-Sum" class="headerlink" title="Minimum Size Subarray Sum"></a><a href="https://leetcode.com/problems/minimum-size-subarray-sum/" target="_blank" rel="noopener">Minimum Size Subarray Sum</a></h2><p>问题: Given an array of <strong>n</strong> positive integers and a positive integer <strong>s</strong>, find the minimal length of a <strong>contiguous</strong> subarray of which the sum ≥ <strong>s</strong>. If there isn’t one, return 0 instead.</p>
+<p>分析: 利用sliding window和greedy的方式，求最短长度。代码如下:</p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">minSubArrayLen</span><span class="hljs-params">(self, s: int, nums: List[int])</span> -&gt; int:</span>
+    left, right, min_len, cur = <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, sys.maxsize, <span class="hljs-number">0</span>
+    <span class="hljs-keyword">while</span> right &lt; len(nums):
+        cur += nums[right]
+        right += <span class="hljs-number">1</span>
+        <span class="hljs-keyword">while</span> cur &gt;= s:
+            min_len = min(min_len, right-left)
+            cur -= nums[left]
+            left += <span class="hljs-number">1</span>
+    <span class="hljs-keyword">return</span> min_len <span class="hljs-keyword">if</span> min_len != sys.maxsize <span class="hljs-keyword">else</span> <span class="hljs-number">0</span></code></pre>
+
+
+
+
+
+<h1 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h1><p>接下来，主要讨论技巧性的subarray sum的问题:</p>
+<h2 id="Largest-Subarray-Having-Sum-Greater-Than-or-Equal-to-k"><a href="#Largest-Subarray-Having-Sum-Greater-Than-or-Equal-to-k" class="headerlink" title="Largest Subarray Having Sum Greater Than or Equal to k"></a><a href="https://www.geeksforgeeks.org/largest-subarray-having-sum-greater-than-k/" target="_blank" rel="noopener">Largest Subarray Having Sum Greater Than or Equal to k</a></h2><p>问题: Given an array of integers and a value k, find the length of largest subarray having a sum greater than k.</p>
+<p>分析: 因为要求最长，且sum有一个lower bound，画图如下:</p>
+<p><img src="image-20201005175755596.png" srcset="/img/loading.gif" alt="image-20201005175755596"></p>
+<h2 id="Longest-Subarray-Sum-Smaller-than-or-Equal-to-k"><a href="#Longest-Subarray-Sum-Smaller-than-or-Equal-to-k" class="headerlink" title="Longest Subarray Sum Smaller than or Equal to k"></a>Longest Subarray Sum Smaller than or Equal to k</h2><p>问题: 给定一个无序数组<code>arr</code>，其中元素可正、可负、可 0。 给定一个整数<code>k</code>  ，求<code>arr</code> 所有的子数组中累加和小于或等于<code>k</code>的最长子数组长度。</p>
+<p>分析: </p>
+
             </div>
             <hr>
             <div>
@@ -243,7 +311,9 @@
                     
                       <a class="hover-with-bg" href="/tags/Algorithm/">Algorithm</a>
                     
-                      <a class="hover-with-bg" href="/tags/Tree/">Tree</a>
+                      <a class="hover-with-bg" href="/tags/Greedy/">Greedy</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Dynamic-Programming/">Dynamic Programming</a>
                     
                   </div>
                 
@@ -256,18 +326,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/10/05/Subarray-Sum/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Subarray Sum</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/10/03/Monotonic-Queue/">
-                        <span class="hidden-mobile">Monotonic Queue</span>
+                      <a href="/2020/10/03/Morris-Traversal/">
+                        <span class="hidden-mobile">Morris Traversal</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -412,7 +476,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Morris Traversal&nbsp;",
+        "Subarray Sum&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
