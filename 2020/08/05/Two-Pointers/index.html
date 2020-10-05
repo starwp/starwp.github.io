@@ -177,7 +177,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      991 字
+      994 字
     </span>
   
 
@@ -280,18 +280,19 @@
 <span class="hljs-comment"># 退出循环，给出不同的位置。其中stored是左指针，用于存放重复元素的第一个</span>
 <span class="hljs-comment"># 退出循环时，nums[i]表示当前不重复的nums[stored]的元素了</span>
 <span class="hljs-keyword">pass</span>
-​</code></pre>
-<h1 id="other-pieces"><a href="#other-pieces" class="headerlink" title="other pieces"></a>other pieces</h1><p>​```<br>i += 1<br>cnt = 1 # cnt 置1，时因为之前nums[i]已经被存到了nums[stored],此时nums[i]变化到了nums[i+1]上面，所以默认计数为1。</p>
-<pre><code class="hljs delphi">
-- 达到重复的数量，进行彻底删除
+<span class="hljs-comment"># other pieces</span>
+i += <span class="hljs-number">1</span> 
+cnt = <span class="hljs-number">1</span> <span class="hljs-comment"># cnt 置1，时因为之前nums[i]已经被存到了nums[stored],此时nums[i]变化到了nums[i+1]上面，所以默认计数为1。</span></code></pre>
 
-```python
-<span class="hljs-keyword">if</span> cnt == k1:
+<ul>
+<li>达到重复的数量，进行彻底删除</li>
+</ul>
+<pre><code class="hljs python"><span class="hljs-keyword">if</span> cnt == k1:
     <span class="hljs-keyword">if</span> i &lt; len(A):
-        nums[<span class="hljs-keyword">stored</span>] = nums[i] # 因为是彻底删除，所以<span class="hljs-keyword">stored</span>不用加<span class="hljs-number">1</span>
+        nums[stored] = nums[i] <span class="hljs-comment"># 因为是彻底删除，所以stored不用加1</span>
     <span class="hljs-keyword">else</span>:
-    # 因为对于重复需要彻底删除，所以末尾的时候，<span class="hljs-keyword">stored</span>回退<span class="hljs-number">1</span>，才是正常的<span class="hljs-keyword">index</span>位置。
-        <span class="hljs-keyword">stored</span> -= <span class="hljs-number">1</span></code></pre>
+    <span class="hljs-comment"># 因为对于重复需要彻底删除，所以末尾的时候，stored回退1，才是正常的index位置。</span>
+        stored -= <span class="hljs-number">1</span></code></pre>
 
 <ul>
 <li>对于不满重复limit的元素，进行赋值保留。</li>
@@ -409,15 +410,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
+<h1 id="Opposite-Direction-Pattern"><a href="#Opposite-Direction-Pattern" class="headerlink" title="Opposite Direction Pattern"></a>Opposite Direction Pattern</h1>
             </div>
             <hr>
             <div>
