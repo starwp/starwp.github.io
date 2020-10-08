@@ -177,7 +177,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.8k 字
+      2.5k 字
     </span>
   
 
@@ -187,7 +187,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      27
+      39
        分钟
     </span>
   
@@ -291,10 +291,39 @@
 
 
 
+<h2 id="Maximum-sum-subarray-of-size-range-L-R"><a href="#Maximum-sum-subarray-of-size-range-L-R" class="headerlink" title="Maximum sum subarray of size range L, R] "></a><a href="https://www.geeksforgeeks.org/maximum-sum-subarray-of-size-range-l-r/" target="_blank" rel="noopener">Maximum sum subarray of size range L, R] </a></h2><p>问题: Given an integer array <strong>arr[]</strong> of size <strong>N</strong> and two integer <strong>L</strong> and <strong>R</strong>. The task is to find the maximum sum subarray of size between <strong>L</strong> and <strong>R</strong> (both inclusive).</p>
+<p>分析: 处理prefix Sum, 单调队列+推迟加入单调队列即可。代码如下:</p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sizeRangeSubarraySum</span><span class="hljs-params">(A, a, b)</span>:</span>
+    <span class="hljs-keyword">if</span> a &lt;= <span class="hljs-number">0</span>: a = <span class="hljs-number">1</span>
+    <span class="hljs-keyword">if</span> b &gt; len(A): b = len(A)
+    preSum, cur, max_sum = [<span class="hljs-number">0</span>], <span class="hljs-number">0</span>, -sys.maxsize 
+    q = collections.deque([])
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(A)):
+        cur += A[i]
+        <span class="hljs-keyword">while</span> q <span class="hljs-keyword">and</span> q[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] &lt; i - b:
+            q.popleft()
+        <span class="hljs-keyword">if</span> i - a + <span class="hljs-number">1</span> &gt;= <span class="hljs-number">0</span>:
+            <span class="hljs-keyword">while</span> q <span class="hljs-keyword">and</span> q[<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>] &gt; preSum[i-a+<span class="hljs-number">1</span>]:
+                q.pop()
+            q.append([preSum[i-a+<span class="hljs-number">1</span>], i - a])
+            max_sum = max(max_sum, cur - q[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]) 
+        preSum.append(cur)
+    <span class="hljs-keyword">return</span> max_sum    
 
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">brute_size</span><span class="hljs-params">(A, a, b)</span>:</span>
+    preSum, max_sum = [<span class="hljs-number">0</span>], -sys.maxsize
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(A)):
+        preSum.append(A[i] + preSum[<span class="hljs-number">-1</span>])
+        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(i+<span class="hljs-number">1</span>):
+            <span class="hljs-keyword">if</span> a &lt;= i+<span class="hljs-number">1</span>-j &lt;= b:
+                max_sum = max(max_sum, preSum[<span class="hljs-number">-1</span>] - preSum[j])
+    <span class="hljs-keyword">return</span> max_sum</code></pre>
 
+<ul>
+<li>注意: 代码中<code>i-a</code>是真实的index，但是由于preSum对应的index需要加1，所以推迟加入的判定变为，<code>i-a+1</code>，但是我们实际append，和popleft查询都使用的<code>i-a</code>和<code>i-b</code>.</li>
+</ul>
 <h1 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h1><p>接下来，主要讨论技巧性的subarray sum的问题:</p>
-<h2 id="Largest-Subarray-Having-Sum-Greater-Than-or-Equal-to-k"><a href="#Largest-Subarray-Having-Sum-Greater-Than-or-Equal-to-k" class="headerlink" title="Largest Subarray Having Sum Greater Than or Equal to k"></a><a href="https://www.geeksforgeeks.org/largest-subarray-having-sum-greater-than-k/" target="_blank" rel="noopener">Largest Subarray Having Sum Greater Than or Equal to k</a></h2><p>问题: Given an array of integers and a value k, find the length of largest subarray having a sum greater than k.</p>
+<h2 id="Largest-Subarray-Having-Sum-Greater-Than-or-Equal-to-k"><a href="#Largest-Subarray-Having-Sum-Greater-Than-or-Equal-to-k" class="headerlink" title="Largest Subarray Having Sum Greater Than or Equal to k"></a><a href="https://www.geeksforgeeks.org/largest-subarray-having-sum-greater-than-k/" target="_blank" rel="noopener">Largest Subarray Having Sum Greater Than or Equal to k</a></h2><p>问题: Given an array of integers and a value k, find the length of largest subarray having a sum greater than or equal to k.</p>
 <p>分析: 因为要求最长，且sum有一个lower bound，画图如下:</p>
 <p><img src="image-20201005175755596.png" srcset="/img/loading.gif" alt="image-20201005181055167"></p>
 <p>对于这个feasible区域的数据，我们只用求最找的一个，于是我们引入如下技巧处理prefix Sum。</p>
@@ -411,9 +440,68 @@ test(<span class="hljs-number">1000</span>)</code></pre>
     <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span></code></pre>
 
 <ul>
-<li>利用prefix Sum建立helper Sum具有单调递减特性，使得二分法可用</li>
-<li>因为递减特性，使得小于等于<code>preSum[i]-k</code>的index在helper Sum中，一定是最早的一个，满足贪心的性质。</li>
-<li>注意: <code>helperSum</code>存的元素的<code>index</code>(二分法求出来的<code>j</code>)，对比<code>A</code>是加1的，所以计数<code>max_len</code>的时候，需要再加上1。</li>
+<li><p>利用prefix Sum建立helper Sum具有单调递减特性，使得二分法可用</p>
+</li>
+<li><p>因为递减特性，使得小于等于<code>preSum[i]-k</code>的index在helper Sum中，一定是最早的一个，满足贪心的性质。</p>
+</li>
+<li><p>注意: <code>helperSum</code>存的元素的<code>index</code>(二分法求出来的<code>j</code>)，对比<code>A</code>是加1的，所以计数<code>max_len</code>的时候，需要再加上1。</p>
+</li>
+</ul>
+<h3 id="Technique-Subarray-Min-Max-Sum-Making-it-O-n-time"><a href="#Technique-Subarray-Min-Max-Sum-Making-it-O-n-time" class="headerlink" title="Technique: Subarray Min/Max Sum Making it O(n) time"></a>Technique: Subarray Min/Max Sum Making it O(n) time</h3><p>利用subarray max/min sum的单调特性:</p>
+<ul>
+<li>给定一个起点A[i]，以其为起点的subarray max sum代表最慢递减方式的一个subarray。</li>
+</ul>
+<p>考虑下面这个数据:</p>
+<pre><code class="hljs python">       A = [<span class="hljs-number">1</span>, <span class="hljs-number">-7</span>, <span class="hljs-number">3</span>, <span class="hljs-number">-3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">-6</span>, <span class="hljs-number">4</span>, <span class="hljs-number">-3</span>]
+
+subarray = [<span class="hljs-number">3</span>,  <span class="hljs-number">2</span>, <span class="hljs-number">9</span>,  <span class="hljs-number">6</span>, <span class="hljs-number">9</span>, <span class="hljs-number">5</span>, <span class="hljs-number">-2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">-3</span>] <span class="hljs-comment"># subarray max sum</span>
+<span class="hljs-comment">#单独看位置0</span>
+           [<span class="hljs-number">1</span>, <span class="hljs-number">-7</span>, <span class="hljs-number">3</span>, <span class="hljs-number">-3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>] = <span class="hljs-number">3</span>
+                               [<span class="hljs-number">-6</span>, <span class="hljs-number">4</span>] = <span class="hljs-number">-2</span>
+                                      [<span class="hljs-number">-3</span>] = <span class="hljs-number">-3</span></code></pre>
+
+<ul>
+<li>我们发现以subarray max sum形成了单调递减的特性，这样我们只要利用sliding window技巧进行窗口添加或者删除即可找到最长的长度。</li>
+</ul>
+<p>代码如下:</p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">longestIII</span><span class="hljs-params">(A, k)</span>:</span>
+    subMaxSums, subMaxEnds = [<span class="hljs-number">0</span>]*(len(A)<span class="hljs-number">-1</span>) + [A[<span class="hljs-number">-1</span>]], [<span class="hljs-number">0</span>]*(len(A)<span class="hljs-number">-1</span>) + [len(A)<span class="hljs-number">-1</span>] 
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(A)<span class="hljs-number">-2</span>,<span class="hljs-number">-1</span>,<span class="hljs-number">-1</span>):
+        <span class="hljs-keyword">if</span> subMaxSums[i+<span class="hljs-number">1</span>] + A[i] &gt;= A[i]:
+            subMaxSums[i] = subMaxSums[i+<span class="hljs-number">1</span>]+A[i]
+            subMaxEnds[i] = subMaxEnds[i+<span class="hljs-number">1</span>]
+        <span class="hljs-keyword">else</span>:
+            subMaxSums[i] = A[i]
+            subMaxEnds[i] = i
+    left = right = max_len = cur = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">while</span> right &lt; len(A):
+        cur += subMaxSums[right]
+        right = subMaxEnds[right] + <span class="hljs-number">1</span>
+        <span class="hljs-keyword">while</span> cur &lt; k <span class="hljs-keyword">and</span> left &lt; right:
+            cur -= A[left]
+            left += <span class="hljs-number">1</span>
+        max_len = max(max_len, right-left)
+    <span class="hljs-keyword">return</span> max_len</code></pre>
+
+<ul>
+<li>注意代码中，sliding window 部分需要检查<code>left&lt;right</code>因为给定的<code>k</code>可能会小于0。</li>
+</ul>
+<p>与此对应的，这里我们可以利用subarray min sum的特点:</p>
+<ul>
+<li>给定一个起点<code>A[i]</code>，以其为起点的的subarray min sum最慢增长的方式的一个subarray。</li>
+</ul>
+<p>考虑下面这个数据:</p>
+<pre><code class="hljs python">       A = [<span class="hljs-number">1</span>, <span class="hljs-number">-7</span>, <span class="hljs-number">3</span>, <span class="hljs-number">-3</span>, <span class="hljs-number">4</span>,  <span class="hljs-number">5</span>, <span class="hljs-number">-6</span>, <span class="hljs-number">4</span>]
+
+subarray = [<span class="hljs-number">-6</span>,<span class="hljs-number">-7</span>, <span class="hljs-number">0</span>, <span class="hljs-number">-3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">-6</span>, <span class="hljs-number">4</span>] <span class="hljs-comment"># subarray min sum</span>
+<span class="hljs-comment">#单独看位置0</span>
+                                    [<span class="hljs-number">4</span>] = <span class="hljs-number">4</span>
+                         [<span class="hljs-number">4</span>,  <span class="hljs-number">5</span>, <span class="hljs-number">-6</span>] = <span class="hljs-number">3</span>
+                  [<span class="hljs-number">3</span>, <span class="hljs-number">-3</span>] = <span class="hljs-number">0</span>
+           [<span class="hljs-number">1</span>, <span class="hljs-number">-7</span>] = <span class="hljs-number">-6</span></code></pre>
+
+<ul>
+<li>我们发现以subarray min sum形成了单调递增的特性，这样我们只要利用sliding window技巧进行窗口添加或者删除即可找到最长的长度。</li>
 </ul>
 <h2 id="Longest-Subarray-Sum-Smaller-than-or-Equal-to-k"><a href="#Longest-Subarray-Sum-Smaller-than-or-Equal-to-k" class="headerlink" title="Longest Subarray Sum Smaller than or Equal to k"></a>Longest Subarray Sum Smaller than or Equal to k</h2><p>问题: 给定一个无序数组<code>arr</code>，其中元素可正、可负、可 0。 给定一个整数<code>k</code>  ，求<code>arr</code> 所有的子数组中累加和小于或等于<code>k</code>的最长子数组长度。</p>
 <p>分析:  此题，通用可以使用上述两种形式的二分法。先考虑prefix Sum排序的方式，因为需要找到第一个大于<code>preSum[i]-k</code>的元素，所以这里我们依然对prefix Sum从排序，且对index倒叙做记录当前最小的处理，这样二分法只用查找第一个大于等于<code>preSum[i]-k</code>的元素即可，图如下:</p>
@@ -421,7 +509,7 @@ test(<span class="hljs-number">1000</span>)</code></pre>
 <p>处理后prefix Sum和index array.</p>
 <p><img src="image-20201005222225305.png" srcset="/img/loading.gif" alt="image-20201005222225305"></p>
 <p>代码如下:</p>
-<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">longestIII</span><span class="hljs-params">(A, k)</span>:</span>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">longestIV</span><span class="hljs-params">(A, k)</span>:</span>
     preSum, max_len, minIdx, cur = [[<span class="hljs-number">0</span>,<span class="hljs-number">-1</span>]], <span class="hljs-number">0</span>, [<span class="hljs-number">0</span>] * (len(A)+<span class="hljs-number">1</span>), <span class="hljs-number">0</span>
     <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(A)):
         preSum.append([preSum[<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>] + A[i], i])
@@ -457,7 +545,7 @@ test(<span class="hljs-number">1000</span>)</code></pre>
 <p>使用technique: Creating Monotonic Prefix Sum from Original Prefix Sum的图，处理如下:</p>
 <p><img src="image-20201005223425826.png" srcset="/img/loading.gif" alt="image-20201005223425826"></p>
 <p>代码如下:</p>
-<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">longestIV</span><span class="hljs-params">(A, k)</span>:</span>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">longestV</span><span class="hljs-params">(A, k)</span>:</span>
     max_len, preSum, helperSum = <span class="hljs-number">0</span>, [<span class="hljs-number">0</span>], [<span class="hljs-number">0</span>]
     <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(A)):
         preSum.append(A[i] + preSum[<span class="hljs-number">-1</span>])
@@ -469,12 +557,31 @@ test(<span class="hljs-number">1000</span>)</code></pre>
 
 
 
-<h3 id="Technique-Subarray-Min-Sum-Making-it-O-n-time"><a href="#Technique-Subarray-Min-Sum-Making-it-O-n-time" class="headerlink" title="Technique: Subarray Min Sum Making it O(n) time"></a>Technique: Subarray Min Sum Making it O(n) time</h3><p>这里我们可以利用subarray min sum的特点:</p>
-<ul>
-<li>给定一个起点<code>A[i]</code>，以其为起点的的subarray min sum最慢增长的方式的一个subarray。</li>
-</ul>
-<p>这样我们就建立一个逆序的subarray min sum的数组，且储存其对应右边结束的点。我们可以建立起</p>
+<p>根据Technique: Subarray Min/Max Sum Making it O(n) time的单调特性，代码如下:</p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">longestVI</span><span class="hljs-params">(A, k)</span>:</span>
+    subMinSums, subMinEnds = [<span class="hljs-number">0</span>]*(len(A)<span class="hljs-number">-1</span>) + [A[<span class="hljs-number">-1</span>]], [<span class="hljs-number">0</span>]*(len(A)<span class="hljs-number">-1</span>) + [len(A)<span class="hljs-number">-1</span>]
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(A)<span class="hljs-number">-2</span>,<span class="hljs-number">-1</span>,<span class="hljs-number">-1</span>):
+        <span class="hljs-keyword">if</span> subMinSums[i+<span class="hljs-number">1</span>] + A[i] &lt; A[i]:
+            subMinSums[i] = subMinSums[i+<span class="hljs-number">1</span>] + A[i]
+            subMinEnds[i] = subMinEnds[i+<span class="hljs-number">1</span>]
+        <span class="hljs-keyword">else</span>:
+            subMinSums[i] = A[i]
+            subMinEnds[i] = i
+    cur = max_len = right =left = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">while</span> right &lt; len(A):
+        cur += subMinSums[right]
+        right = subMinEnds[right] + <span class="hljs-number">1</span>
+        <span class="hljs-keyword">while</span> cur &gt; k <span class="hljs-keyword">and</span> left &lt; right:
+            cur -= A[left]
+            left += <span class="hljs-number">1</span>
+        max_len = max(max_len, right-left)
+    <span class="hljs-keyword">return</span> max_len</code></pre>
 
+
+
+
+
+<h2 id="Maximum-Average-Subarray-II"><a href="#Maximum-Average-Subarray-II" class="headerlink" title="Maximum Average Subarray II"></a><a href="https://www.lintcode.com/problem/maximum-average-subarray-ii/" target="_blank" rel="noopener">Maximum Average Subarray II</a></h2>
             </div>
             <hr>
             <div>
@@ -500,6 +607,12 @@ test(<span class="hljs-number">1000</span>)</code></pre>
                 <div class="post-prevnext row">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2020/10/08/Calculator/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Calculator</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
