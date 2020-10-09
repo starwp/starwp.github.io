@@ -177,7 +177,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      114 字
+      410 字
     </span>
   
 
@@ -187,7 +187,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      6
        分钟
     </span>
   
@@ -235,6 +235,39 @@
 
 <h1 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h1><p>这一类问题通常需要一部分优先级较高的需要处理，于是需要利用栈的原理。</p>
 <h1 id="Applications"><a href="#Applications" class="headerlink" title="Applications"></a>Applications</h1><h2 id="Basic-Calculator"><a href="#Basic-Calculator" class="headerlink" title="Basic Calculator"></a><a href="https://www.lintcode.com/problem/basic-calculator-iii/" target="_blank" rel="noopener">Basic Calculator</a></h2><p>问题: Implement a basic calculator to evaluate a simple expression string. The expression string may contain open <code>(</code> and closing parentheses <code>)</code>, the plus <code>+</code> or minus sign <code>-</code>, <code>non-negative</code> integers and empty spaces . The expression string contains only non-negative integers, <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code> operators , open <code>(</code> and closing parentheses <code>)</code> and empty spaces . The integer division should truncate toward zero. You may assume that the given expression is always valid. All intermediate results will be in the range of <code>[-2147483648, 2147483647]</code>.</p>
+<p>分析: 因为运算的优先级别需要处理，我们考虑这样一个方式，当遇到了一个符号<code>+-/*</code>后，认为这个符号前的数字<code>preNum</code>已经准备完毕，然后根据这个数字前的符号<code>preOp</code>进行计算，对于乘除法采用弹栈计算的处理方式，加减法直接放在stack里。此外，对于括号，我们发现这样一个现象，左括号前和又括号后，一定是符号。这样的话，我们就可以利用递归，将括号的计算看成一个数字<code>preNum</code>, 然后递归返回这个数字以及这个数字后的<code>index</code>，利于后续处理。代码如下:</p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">calculator</span><span class="hljs-params">(self, s)</span>:</span>
+    <span class="hljs-keyword">return</span> self.helper(s, <span class="hljs-number">0</span>)[<span class="hljs-number">0</span>]
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">helper</span><span class="hljs-params">(self, s, i)</span>:</span>
+    stack, preNum, preOp = [], <span class="hljs-number">0</span>, <span class="hljs-string">'+'</span>
+    <span class="hljs-keyword">while</span> i &lt; len(s) <span class="hljs-keyword">and</span> s[i] != <span class="hljs-string">')'</span>:
+        <span class="hljs-keyword">if</span> s[i].isdigit():
+            preNum = preNum * <span class="hljs-number">10</span> + int(s[i])
+            i += <span class="hljs-number">1</span>
+        <span class="hljs-keyword">elif</span> s[i] <span class="hljs-keyword">in</span> <span class="hljs-string">'+-/*'</span>:
+            self.saveNum(stack, preNum, preOp)
+            preNum, preOp = <span class="hljs-number">0</span>, s[i]
+            i += <span class="hljs-number">1</span>    
+        <span class="hljs-keyword">elif</span> s[i] == <span class="hljs-string">'('</span>:
+            preNum, i = self.helper(s, i + <span class="hljs-number">1</span>)
+        <span class="hljs-keyword">else</span>:
+            i += <span class="hljs-number">1</span> <span class="hljs-comment"># 处理其他无用的字符</span>
+    self.saveNum(stack, preNum, preOp)
+    <span class="hljs-keyword">return</span> sum(stack), i + <span class="hljs-number">1</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">saveNum</span><span class="hljs-params">(self, stack, num, op)</span>:</span>
+    <span class="hljs-keyword">if</span> op == <span class="hljs-string">'+'</span>:
+        stack.append(num)
+    <span class="hljs-keyword">elif</span> op == <span class="hljs-string">'-'</span>:
+        stack.append(-num)
+    <span class="hljs-keyword">elif</span> op == <span class="hljs-string">'*'</span>:
+        stack.append(stack.pop()*num)
+    <span class="hljs-keyword">elif</span> op == <span class="hljs-string">'/'</span>:
+        stack.append(int(stack.pop()/num))</code></pre>
+
+
+
 
             </div>
             <hr>
@@ -259,6 +292,12 @@
                 <div class="post-prevnext row">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2020/10/09/Josephus-Problem/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Josephus Problem</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
