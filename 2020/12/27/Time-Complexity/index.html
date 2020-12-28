@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Void Spirit">
   <meta name="keywords" content="">
-  <title>Divide Conquer - Make It Happen</title>
+  <title>Time Complexity - Make It Happen</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -165,8 +165,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-04-08 23:22" pubdate>
-        April 8, 2020 pm
+      <time datetime="2020-12-27 19:52" pubdate>
+        December 27, 2020 pm
       </time>
     </span>
   
@@ -177,7 +177,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      415 字
+      836 字
     </span>
   
 
@@ -187,7 +187,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8
+      14
        分钟
     </span>
   
@@ -225,87 +225,90 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">Divide Conquer</h1>
+            <h1 style="display: none">Time Complexity</h1>
             
             <div class="markdown-body" id="post-body">
-              <Contents>
+              <blockquote>
+<p>The key idea of time complexity.</p>
+</blockquote>
+<a id="more"></a>
 
 
-<h2 id="1-When-to-use-divide-and-conquer"><a href="#1-When-to-use-divide-and-conquer" class="headerlink" title="1 When to use divide and conquer?"></a>1 When to use divide and conquer?</h2><p>When the problem can be divided and the divided part can be solved based on the similar procedure, it is reasonable to use divide and conquer.  This also suggest that divide conquer can apply to some special data structures, like binary tree, which has the recursion structure. </p>
-<p>Typically, we can solve the following problems by employing divide and conquer.</p>
-<p>$$\begin{equation}\label{eq1}T(n) = 2T(n/2) + O(1) = O(n) \tag{1}<br>\end{equation}$$</p>
-<p>$$\begin{equation}\label{eq2}<br>T(n) = 2T(n/2) + O(n) = O(n \log n) \tag{2}<br>\end{equation}$$</p>
-<h2 id="2-Comparison-between-traverse-and-divide-conquer"><a href="#2-Comparison-between-traverse-and-divide-conquer" class="headerlink" title="2 Comparison between traverse and divide conquer"></a>2 Comparison between traverse and divide conquer</h2><ul>
-<li>2.1 both can be implemented by recursion</li>
-<li>2.2 result in parameter v.s. result in return value</li>
-<li>2.3 top down v.s. bottom up</li>
-</ul>
-<h2 id="3-How-to-solve-the-related-problems"><a href="#3-How-to-solve-the-related-problems" class="headerlink" title="3 How to solve the related problems?"></a>3 How to solve the related problems?</h2><h3 id="3-1-The-basic-application"><a href="#3-1-The-basic-application" class="headerlink" title="3.1 The basic application"></a>3.1 The basic application</h3><p>Suppose we define a problem $P(root)$ which computes a target value in a binary tree. The problem $P(root)$ can be solved by divide and conquer if we can employ the same function to solve the subproblem like $P(root.left)$ and $P(root.right)$ and then merge the results to get the target value for $P(root)$. The peusudo code is shown in below.</p>
-<pre><code class="hljs python">
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">Problem</span><span class="hljs-params">(root)</span>:</span>
-
-    <span class="hljs-comment"># boundary conditions</span>
-    left = Problem(root.left)
-    right = Problem(root.right)
-    <span class="hljs-keyword">return</span> Merge(left, right)</code></pre>
-
-<h3 id="3-2-The-advanced-version"><a href="#3-2-The-advanced-version" class="headerlink" title="3.2 The advanced version"></a>3.2 The advanced version</h3><p>Similarly, suppose we define a problem $P(root)$ which computes a target value in a binary tree. The problem $P(root)$ actually can be solved by employing a different auxiliary function $P’(root.left)$ and $P’(root.right)$. This indicates that we should combine two problems $P(\cdot)$ and $P’(\cdot)$ together to solve the problem. The peusudo code is shown in below.</p>
-<pre><code class="hljs python">
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">Problem</span><span class="hljs-params">(root)</span>:</span>
-
-    <span class="hljs-comment"># boundary conditions</span>
-    left0, left1 = Problem(root.left)
-    right0, right1 = Problem(root.right)
-    <span class="hljs-keyword">return</span> Merge0(left0, right0), Merge1(left1, right1)</code></pre>
-
-<h3 id="3-3-The-boundary-conditions"><a href="#3-3-The-boundary-conditions" class="headerlink" title="3.3 The boundary conditions"></a>3.3 The boundary conditions</h3><p>This needs a precise design. According to my experience so far, we summarize a few examples. </p>
-<pre><code>      root
-      /
-    node1
-    /
- node2
-  /
-None</code></pre><p>​      </p>
+<h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><h2 id="Formula-1"><a href="#Formula-1" class="headerlink" title="Formula 1"></a>Formula 1</h2><p>时间复杂度的描述如下：</p>
+<p>$$\begin{equation}\label{eq1}<br>T(n) = T(n/2) + O(1) = O(\log n) \tag{1}<br>\end{equation}$$</p>
+<p>一个size为n的问题T(n), 可以被拆分为一个size为n/2的问题T(n/2)，拆分时间为O(1)。由此，上式的公式推导如下：</p>
+<p>$$\begin{equation}\label{eq2}<br>\begin{aligned}<br>T(n) &amp;= T(\frac{n}{2}) + O(1)\\<br>T(\frac{n}{2}) &amp;= T(\frac{n}{4}) + O(1) \\<br>T(\frac{n}{4}) &amp;= T(\frac{n}{8}) + O(1) \\<br>&amp;…\\<br>T(1) &amp;= T(\frac{n}{2^{\log n}}) + O(1)<br>\end{aligned}<br>\end{equation}$$</p>
+<p>左右相消可得，T(n) = O(1)*log n</p>
+<p><span style="color:red"><strong>注意：整个推导过程中，因为O(1)为最小unit，所以一直未变.</strong></span></p>
+<h2 id="Formula-2"><a href="#Formula-2" class="headerlink" title="Formula 2"></a>Formula 2</h2><p>$$\begin{equation}\label{eq3}<br>T(n) = T(n/2) + O(n) = O(2n) \tag{2}<br>\end{equation}$$</p>
+<p>一个size为n的问题T(n), 可以被拆分为一个size为n/2的问题T(n/2)，拆分时间为O(1)。由此，上式的公式推导如下：</p>
+<p>$$\begin{equation}\label{eq4}<br>\begin{aligned}<br>T(n) &amp;= T(\frac{n}{2}) + O(n)\\<br>T(\frac{n}{2}) &amp;= T(\frac{n}{4}) + O(n/2) \\<br>T(\frac{n}{4}) &amp;= T(\frac{n}{8}) + O(n/4) \\<br>&amp;…\\<br>T(1) &amp;= T(\frac{n}{2^{\log n}}) + O(1)<br>\end{aligned}<br>\end{equation}$$</p>
+<p>进行变形，可得</p>
+<p>$$\begin{equation}\label{eq5}<br>T(n) = O(n) + O(\frac{n}{2})+ O(\frac{n}{4})+O(\frac{n}{8})…+O(1) = O(2n)<br>\end{equation}$$</p>
+<p>参考：<a href="https://en.wikipedia.org/wiki/1/2_%2B_1/4_%2B_1/8_%2B_1/16_%2B_%E2%8B%AF" target="_blank" rel="noopener">wiki</a></p>
+<p><span style="color:red"><strong>注意：整个推导过程中，每一个公式对应的O(n)size一直在变化.</strong></span></p>
+<h2 id="Formula-3"><a href="#Formula-3" class="headerlink" title="Formula 3"></a>Formula 3</h2><p>$$\begin{equation}\label{eq6}<br>T(n) = 2T(n/2) + O(1) = O(n) \tag{3}<br>\end{equation}$$</p>
+<p>一个size为n的问题T(n), 可以被拆分为2个size为n/2的问题T(n/2)，拆分时间为O(1)。由此，上式的公式推导如下：</p>
+<p>$$\begin{equation}\label{eq7}<br>\begin{aligned}<br>T(n) &amp;= 2T(\frac{n}{2}) + O(1)\\<br>2T(\frac{n}{2}) &amp;= 4T(\frac{n}{4}) + 2O(1) \\<br>&amp;…\\<br>2^{\log n -1}T(1) &amp;= 2^{\log n}T(\frac{n}{2^{\log n}}) + 2^{\log n -1}O(1)<br>\end{aligned}<br>\end{equation}$$</p>
+<p>进行变形，可得</p>
+<p>$$\begin{equation}\label{eq8}<br>T(n) = O(1) + 2^1O(1)+ 2^2O(1)+ 2^3O(1) +  2^{\log n -1}O(1) = O(2n)<br>\end{equation}$$</p>
+<p>参考：<a href="https://en.wikipedia.org/wiki/1_%2B_2_%2B_4_%2B_8_%2B_%E2%8B%AF" target="_blank" rel="noopener">wiki</a></p>
+<p>左右相消可得，T(n) = O(n)*log n</p>
+<h2 id="Formula-4"><a href="#Formula-4" class="headerlink" title="Formula 4"></a>Formula 4</h2><p>$$\begin{equation}\label{eq9}<br>T(n) = 2T(n/2) + O(n) = O(n\log n) \tag{4}<br>\end{equation}$$</p>
+<p>一个size为n的问题T(n), 可以被拆分为2个size为n/2的问题T(n/2)，拆分时间为O(1)。由此，上式的公式推导如下：</p>
+<p>$$\begin{equation}\label{eq10}<br>\begin{aligned}<br>T(n) &amp;= 2T(\frac{n}{2}) + O(n)\\<br>2T(\frac{n}{2}) &amp;= 4T(\frac{n}{4}) + 2O(n/2) \\<br>2^2T(\frac{n}{2^2}) &amp;= 2^3T(\frac{n}{2^3}) + 2^2O(n/2^2) \\<br>&amp;…\\<br>2^{\log n -1}T(1) &amp;= 2^{\log n}T(\frac{n}{2^{\log n}}) + 2^{\log n -1}O(1)<br>\end{aligned}<br>\end{equation}$$</p>
+<p>进行变形，可得</p>
+<p>$$\begin{equation}\label{eq11}<br>T(n) = O(n) + 2^1O(\frac{n}{2})+ 2^2O(\frac{n}{2^2})+ 2^3O(\frac{n}{2^3}) +  2^{\log n -1}O(1) = O(n*\log n)<br>\end{equation}$$</p>
+<p>左右相消可得，T(n) = O(n)*log n</p>
+<h2 id="General-Formula"><a href="#General-Formula" class="headerlink" title="General Formula"></a>General Formula</h2><p>$$\begin{equation}\label{eq12}<br>T(n) = aT(\frac{n}{b}) + O(n^d) \tag{5}<br>\end{equation}$$</p>
+<p>这个通用公式的解为：</p>
 <ul>
-<li>Case 1: If the $P(root)$ needs to return a value 3, the boundary condition is designed as: </li>
+<li>case1: If $\log_b^a &gt; d$, then $O(n^{\log_b ^a})$</li>
+<li>case2: If $\log_b^a = d$, then $O(n^d*\log n)$</li>
+<li>case3: If $\log_b^a &lt; d$, then $O(n^d)$</li>
 </ul>
-<pre><code class="hljs python">
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">Problem</span><span class="hljs-params">(root)</span>:</span>
-
-    <span class="hljs-comment"># boundary condition</span>
-    <span class="hljs-keyword">if</span> root <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:
-        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
-		
-    <span class="hljs-comment"># return condition</span>
-    <span class="hljs-keyword">return</span> Merge(left, right) + <span class="hljs-number">1</span></code></pre>
-
-<ul>
-<li>Case 2: If the $P(root)$ needs to return a value 2, the boundary condition is designed as:</li>
-</ul>
-<pre><code class="hljs python">
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">Problem</span><span class="hljs-params">(root)</span>:</span>
-
-    <span class="hljs-comment"># boundary condition</span>
-    <span class="hljs-keyword">if</span> root <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:
-        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>
-		
-    <span class="hljs-comment"># return condition</span>
-    <span class="hljs-keyword">return</span> Merge(left, right) + <span class="hljs-number">1</span></code></pre>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<p>因此，如果考虑如下公式，因为$\log_b^a = \log_2^2 &lt; 2=d$</p>
+<p>$$\begin{equation}\label{eq13}<br>T(n) = 2T(n/2) + O(n^2) = O(n^2) \tag{6}<br>\end{equation}$$</p>
+<h1 id="2-Time-complexity-to-different-problems"><a href="#2-Time-complexity-to-different-problems" class="headerlink" title="2. Time complexity to different problems"></a>2. Time complexity to different problems</h1><table>
+<thead>
+<tr>
+<th>time complexity</th>
+<th>possible problems</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$O(1)$</td>
+<td>rare</td>
+</tr>
+<tr>
+<td>$O(\log n)$</td>
+<td>almost binary search</td>
+</tr>
+<tr>
+<td>$O(\sqrt n)$</td>
+<td>factorization</td>
+</tr>
+<tr>
+<td>$O(n)$</td>
+<td>all</td>
+</tr>
+<tr>
+<td>$O(n^2)$</td>
+<td>array, enumerate, DP</td>
+</tr>
+<tr>
+<td>$O(n^3)$</td>
+<td>array, enumerate, DP</td>
+</tr>
+<tr>
+<td>$O(2^n)$</td>
+<td>combination</td>
+</tr>
+<tr>
+<td>$O(n!)$</td>
+<td>permutation</td>
+</tr>
+</tbody></table>
 
             </div>
             <hr>
@@ -329,18 +332,12 @@ None</code></pre><p>​      </p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/04/13/Breadth-First-Search/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Breadth First Search</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/04/08/Selenium-WebDriver/">
-                        <span class="hidden-mobile">Selenium WebDriver</span>
+                      <a href="/2020/10/28/Permutation-DP/">
+                        <span class="hidden-mobile">Permutation DP</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -485,7 +482,7 @@ None</code></pre><p>​      </p>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Divide Conquer&nbsp;",
+        "Time Complexity&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
