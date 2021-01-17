@@ -177,7 +177,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      836 字
+      1k 字
     </span>
   
 
@@ -187,7 +187,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      14
+      17
        分钟
     </span>
   
@@ -251,9 +251,9 @@
 <p>一个size为n的问题T(n), 可以被拆分为2个size为n/2的问题T(n/2)，拆分时间为O(1)。由此，上式的公式推导如下：</p>
 <p>$$\begin{equation}\label{eq7}<br>\begin{aligned}<br>T(n) &amp;= 2T(\frac{n}{2}) + O(1)\\<br>2T(\frac{n}{2}) &amp;= 4T(\frac{n}{4}) + 2O(1) \\<br>&amp;…\\<br>2^{\log n -1}T(1) &amp;= 2^{\log n}T(\frac{n}{2^{\log n}}) + 2^{\log n -1}O(1)<br>\end{aligned}<br>\end{equation}$$</p>
 <p>进行变形，可得</p>
-<p>$$\begin{equation}\label{eq8}<br>T(n) = O(1) + 2^1O(1)+ 2^2O(1)+ 2^3O(1) +  2^{\log n -1}O(1) = O(2n)<br>\end{equation}$$</p>
+<p>$$\begin{equation}\label{eq8}<br>T(n) = (2^0 + 2^1+ 2^2+ 2^3 +  2^{\log n -1})O(1) = O(n)<br>\end{equation}$$</p>
 <p>参考：<a href="https://en.wikipedia.org/wiki/1_%2B_2_%2B_4_%2B_8_%2B_%E2%8B%AF" target="_blank" rel="noopener">wiki</a></p>
-<p>左右相消可得，T(n) = O(n)*log n</p>
+<p>左右相消可得，T(n) = O(n)</p>
 <h2 id="Formula-4"><a href="#Formula-4" class="headerlink" title="Formula 4"></a>Formula 4</h2><p>$$\begin{equation}\label{eq9}<br>T(n) = 2T(n/2) + O(n) = O(n\log n) \tag{4}<br>\end{equation}$$</p>
 <p>一个size为n的问题T(n), 可以被拆分为2个size为n/2的问题T(n/2)，拆分时间为O(1)。由此，上式的公式推导如下：</p>
 <p>$$\begin{equation}\label{eq10}<br>\begin{aligned}<br>T(n) &amp;= 2T(\frac{n}{2}) + O(n)\\<br>2T(\frac{n}{2}) &amp;= 4T(\frac{n}{4}) + 2O(n/2) \\<br>2^2T(\frac{n}{2^2}) &amp;= 2^3T(\frac{n}{2^3}) + 2^2O(n/2^2) \\<br>&amp;…\\<br>2^{\log n -1}T(1) &amp;= 2^{\log n}T(\frac{n}{2^{\log n}}) + 2^{\log n -1}O(1)<br>\end{aligned}<br>\end{equation}$$</p>
@@ -309,6 +309,47 @@
 <td>permutation</td>
 </tr>
 </tbody></table>
+<table>
+<thead>
+<tr>
+<th>range</th>
+<th>possible problems</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$n \leq 30$</td>
+<td>指数级别, dfs+剪枝, 状态压缩dp</td>
+</tr>
+<tr>
+<td>$n\leq 100 $</td>
+<td>$O(n^3)$, floyd, dp, 高斯消元</td>
+</tr>
+<tr>
+<td>$n\leq 1000$</td>
+<td>$O(n^2), O(n^2 \log n)$, dp, 二分, 朴素版Dijkstra, 朴素版Prim, Bellman-Ford</td>
+</tr>
+<tr>
+<td>$n\leq 10^4$</td>
+<td>$O(n∗n^{0.5}$, 块状链表, 分块, 莫队</td>
+</tr>
+<tr>
+<td>$n\leq 10^5$</td>
+<td>$O(n\log n)$, 各种sort，线段树, 树状数组, set/map, heap, 拓扑排序, dijkstra+heap, prim+heap, spfa, 求凸包, 求半平面交, 二分, CDQ分治, 整体二分</td>
+</tr>
+<tr>
+<td>$n\leq 10^6$</td>
+<td>$O(n)$, 以及常数较小的$O(n\log n)$ 算法, 单调队列、 hash、双指针扫描、并查集，kmp、AC自动机，常数比较小的$O(n\log n)$的做法：sort、树状数组、heap、dijkstra、spfa</td>
+</tr>
+<tr>
+<td>$n\leq 10^7$</td>
+<td>$O(n)$，双指针扫描、kmp、AC自动机、线性筛素数</td>
+</tr>
+<tr>
+<td>$n\leq 10^9$</td>
+<td>$O(n^{0.5})$, 判断质数</td>
+</tr>
+</tbody></table>
+<p><a href="https://www.acwing.com/blog/content/32/" target="_blank" rel="noopener">https://www.acwing.com/blog/content/32/</a></p>
 
             </div>
             <hr>
