@@ -177,7 +177,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.9k 字
+      2.1k 字
     </span>
   
 
@@ -187,7 +187,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      26
+      29
        分钟
     </span>
   
@@ -241,16 +241,18 @@
 
 
 <h2 id="Important-observations"><a href="#Important-observations" class="headerlink" title="Important observations:"></a>Important observations:</h2><ul>
-<li><p>单调栈维护区域最小(最大)值。</p>
-<ul>
-<li>单调递增栈: 区域最小值</li>
-<li>单调递减栈: 区域最大值</li>
+<li>单调栈维护区域最小(最大)值。设当前元素为A[i]<ul>
+<li>单调递增栈: 区域最小值, 即为stack[0]为数组[0, i]的最小值</li>
+<li>单调递减栈: 区域最大值, 即为stack[0]为数组[0, i]的最大值</li>
 </ul>
 </li>
-<li><p>弹栈能找到当前元素的在栈元素区间的次大(次小)值</p>
+<li>弹栈能找到当前元素的在范围内的次大(次小)值。设当前元素为A[i]<ul>
+<li>单调递增栈: 若A[i]&lt;stack[-1], 连续弹栈后, 设最后弹出元素A[k], 在范围[stack[-1]+1, i]中次小值为A[k], 最小为A[i]</li>
+<li>单调递减栈: 若A[i]&gt;stack[-1], 连续弹栈后, 设最后弹出元素A[k], 在范围[stack[-1]+1, i]中次大值为A[k], 最大为A[i]</li>
+</ul>
 </li>
-<li><p>单调栈快速定位比当前元素大的最近的左右两个元素。如图所示</p>
-</li>
+<li>单调递减栈快速定位比A[i]大的最近的左右两个元素。也可以, 定位到连续比A[i]小的最左最右两个元素，如图所示</li>
+<li>单调递增栈快速定位比A[i]小的最近的左右两个元素。也可以, 定位到连续比A[i]大的最左最右两个元素，</li>
 </ul>
 <p><img src="image-20201003164019321.png" srcset="/img/loading.gif" alt="image-20201003164019321"></p>
 <ul>
@@ -262,7 +264,7 @@
 </ul>
 <p><img src="image-20201003223632570.png" srcset="/img/loading.gif" alt="image-20201003223632570"></p>
 <ul>
-<li>维护距离当前元素最近的差距值为x的元素</li>
+<li>维护距离当前元素最近的差距值为x的元素，滑动窗口的性质</li>
 </ul>
 <p><img src="image-20201003175501817.png" srcset="/img/loading.gif" alt="image-20201003175501817"></p>
 <ul>

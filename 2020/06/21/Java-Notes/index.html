@@ -177,7 +177,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      401 字
+      1.7k 字
     </span>
   
 
@@ -187,7 +187,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8
+      26
        分钟
     </span>
   
@@ -230,7 +230,15 @@
             <div class="markdown-body" id="post-body">
               <Contents>
 
-<h2 id="1-basic-operation"><a href="#1-basic-operation" class="headerlink" title="1. basic operation"></a>1. basic operation</h2><p>The first snippet is about the type of math operation.</p>
+<h1 id="1-Basic-Operation"><a href="#1-Basic-Operation" class="headerlink" title="1. Basic Operation"></a>1. Basic Operation</h1><h3 id="1-1-Basic-Type"><a href="#1-1-Basic-Type" class="headerlink" title="1. 1  Basic Type"></a>1. 1  Basic Type</h3><ul>
+<li><p>八大类型: long, int, boolean, short, byte, float, double, char</p>
+</li>
+<li><p>数组获的长度是a.length</p>
+</li>
+<li><p>string获得长度是s.length(), 获得字符是，s.charAt(i), i是index</p>
+</li>
+</ul>
+<p>The first snippet is about the type of math operation.</p>
 <pre><code class="hljs java"><span class="hljs-keyword">long</span> a = <span class="hljs-number">100000000L</span>;
 <span class="hljs-keyword">short</span> b = <span class="hljs-number">10</span>;
 <span class="hljs-keyword">byte</span> c = <span class="hljs-number">8</span>;
@@ -250,6 +258,162 @@ System.out.print(c);<span class="hljs-comment">// should output 3</span></code><
 System.out.print(<span class="hljs-string">''</span> + a + b);<span class="hljs-comment">// should output string 1020 </span>
 System.out.print(a + b + <span class="hljs-string">''</span>);<span class="hljs-comment">// should output string 30</span></code></pre>
 
+
+
+<h3 id="1-2-Class-and-Object"><a href="#1-2-Class-and-Object" class="headerlink" title="1.2 Class and Object"></a>1.2 Class and Object</h3><p>对象和类的概念</p>
+<ul>
+<li>成员变量(member variable), 又叫域field, 对象的属性</li>
+<li>成员函数(member function), 又叫方法method, 对象的行为, 命名第一个必为动词</li>
+<li>构造函数Constructor, 默认构造函数(default), 带参数的构造函数(parameterized)</li>
+</ul>
+<p>field和method的关键字，修饰符</p>
+<ul>
+<li>public, private, 对象外内被访问的区别</li>
+<li>protected, 可以在对象或者子类的对象内部被访问 ???</li>
+<li>static, 静态，不属于对象，属于这个类共享</li>
+<li>final, 常量不可变化</li>
+</ul>
+<p>一个.java文件里只能有一个public的类</p>
+<pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> </span>&#123;
+    <span class="hljs-keyword">public</span> Sting name;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> score;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Student</span><span class="hljs-params">()</span></span>&#123; <span class="hljs-comment">//默认不写，就是这样空的</span>
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Student</span><span class="hljs-params">(String name)</span></span>&#123; <span class="hljs-comment">//默认不写，就是这样空的</span>
+    	<span class="hljs-keyword">this</span>.name = name; <span class="hljs-comment">//this表示这个类的</span>
+    &#125;
+&#125;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        Student s1 = <span class="hljs-keyword">new</span> Student();
+        String str = <span class="hljs-keyword">new</span> String(<span class="hljs-string">"Hello"</span>)
+    &#125;
+&#125;</code></pre>
+
+
+
+<p>继承的关键字，extends</p>
+<pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Animal</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">type</span><span class="hljs-params">()</span></span>&#123; 
+    	System.out.println(<span class="hljs-string">"Animal!"</span>);
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">speak</span><span class="hljs-params">()</span></span>&#123; 
+    	System.out.println(<span class="hljs-string">"LoL"</span>);
+    &#125;
+&#125;
+                           
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dog</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Animal</span> </span>&#123;
+    <span class="hljs-meta">@Override</span> <span class="hljs-comment">//装饰器，最好加上</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">speak</span><span class="hljs-params">()</span> </span>&#123;  <span class="hljs-comment">//重写</span>
+        System.out.println(<span class="hljs-string">"Wow"</span>);
+    &#125;
+&#125;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        Animal dog = <span class="hljs-keyword">new</span> Dog(); <span class="hljs-comment">//用父类去接子类</span>
+        
+    &#125;
+&#125;</code></pre>
+
+
+
+<p>方法重载</p>
+<p>With <strong>method overloading</strong>, multiple methods can have the same name with different parameters:</p>
+<p>override的作用: 如果加了override, 一定是重写父类的方法。</p>
+<p>new: 调用谁的方法，取决于new谁的类。</p>
+<p>为什么要用animal去申请?  自己查阅</p>
+<p>abstract 抽象类:  必须要实现。继承只能从一个类。半成品。</p>
+<p><img src="C:%5Cblog%5Csource_posts%5CSubarray-Sum%5Cimage-20210131160536316.png" srcset="/img/loading.gif" alt="image-20210131160536316"></p>
+<p>抽象类中不一定有抽象方法。但是抽象方法必须出现在抽象类。</p>
+<p>interface: 是类的蓝图 (契约)。多个interface, interface实现方法，</p>
+<p>接口支持多继承，接口只包括两部分内容，一部分：常量。一部分：抽象方法 (abstract method， 因此可以省略public abstract关键字)。接口中的方法，不能带有方法体。</p>
+<p>接口是完全抽象的。</p>
+<p>java 向上转型，向下转型 java upcasting， java down casting</p>
+<p>编辑阶段：base class type 静态绑定method， static binding</p>
+<p>运行阶段：derived class type动态绑定，dynamic binding method, 所以引入overriding.</p>
+<ul>
+<li>At compile time, usually the base class type is used to reference an object, </li>
+<li>though at run time this object could be of a derived type, so when an overridden method is called, the implementation that is called is dependent on what kind of object is doing the calling (base vs. a derived type) which is unknown at compile time.</li>
+</ul>
+<p>Overridden functions are functions that have the same signature, but are implemented in different derived classes</p>
+<p>Overloading (not really polymorphism) is simply multiple functions which have the same name but different signatures (think multiple constructors for an object taking different numbers of arguments). Which method is called is known at compile time, because the arguments are specified at this time.</p>
+<p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210212222747128.png" srcset="/img/loading.gif" alt="image-20210212222747128"></p>
+<p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210212232211104.png" srcset="/img/loading.gif" alt="image-20210212232211104"></p>
+<p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210212232256136.png" srcset="/img/loading.gif" alt="image-20210212232256136"></p>
+<p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210212232813723.png" srcset="/img/loading.gif" alt="image-20210212232813723"></p>
+<p>私有方法无法override, 覆盖</p>
+<p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210212233622032.png" srcset="/img/loading.gif" alt="image-20210212233622032"></p>
+<p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210212233754876.png" srcset="/img/loading.gif" alt="image-20210212233754876"></p>
+<p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210212233410098.png" srcset="/img/loading.gif" alt="image-20210212233410098"></p>
+<p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210212233924142.png" srcset="/img/loading.gif" alt="image-20210212233924142"></p>
+<p>虽然有接口，但是抽象类的作用是其中可以写非抽象方法，以达到代码复用的目的，所以抽象类不可或缺。</p>
+<p><strong>一句话OOP</strong>:</p>
+<p>把一组数据结构和处理他们的方法组成对象（object），把相同行为的对象归纳为类（class），通过封装（encapsulation）隐藏细节，通过继承（inheritance）实现类的generalization, 通过多态（polymorphism）实现动态分派dynamic dispatch</p>
+<h3 id="1-3-Reference"><a href="#1-3-Reference" class="headerlink" title="1.3 Reference"></a>1.3 Reference</h3><p>ArrayList<Integer> 类似python list</p>
+<p>ArrayList<Integer>  intList = new ArrayList<Integer>();</p>
+<p>intList是引用，不是对象。new出来的对象是在heap space.</p>
+<p>函数里修改，传引用。</p>
+<p>书记推荐： 深入来理解计算机系统，csapp</p>
+<h3 id="1-4-Visit-Right"><a href="#1-4-Visit-Right" class="headerlink" title="1.4 Visit Right"></a>1.4 Visit Right</h3><p>默认只能在本类以及同package下访问</p>
+<p>protected只能在本类, or 同package下， or非同pack的子类中访问访问</p>
+<p><img src="C:%5Cblog%5Csource_posts%5CSubarray-Sum%5Cimage-20210131164316651.png" srcset="/img/loading.gif" alt="image-20210131164316651"></p>
+<h3 id="1-5-Array-and-String"><a href="#1-5-Array-and-String" class="headerlink" title="1.5 Array and String"></a>1.5 Array and String</h3><p>java.util.Arrays所有方法都是静态的，直接用类名调用。</p>
+<p>主要用排序，二分。</p>
+<p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210131220145341.png" srcset="/img/loading.gif" alt="image-20210131220145341"></p>
+<p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210131220308831.png" srcset="/img/loading.gif" alt="image-20210131220308831"></p>
+<p>System.out.println() 输出引用默认调用toString()方法。</p>
+<p>Stringbuffer有关键字synchronized.</p>
+<p>Stringbuilder没有这个关键字是非线程安全的。里面纯的是byte数组，可以用append</p>
+<h3 id="1-6-Collection"><a href="#1-6-Collection" class="headerlink" title="1.6 Collection"></a>1.6 Collection</h3><p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210201104018540.png" srcset="/img/loading.gif" alt="image-20210201104018540"></p>
+<p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210201143400319.png" srcset="/img/loading.gif" alt="image-20210201143400319"></p>
+<p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210201144221616.png" srcset="/img/loading.gif" alt="image-20210201144221616"></p>
+<ol>
+<li><p>HashMap, 最重要的原理，结合数组array和链表linked list的有点。</p>
+<ul>
+<li><p>array查询好，增删弱</p>
+</li>
+<li><p>linked list查询弱，增删强</p>
+<p>hashMap查询的能力in the mid, 增删的能力in the mid</p>
+</li>
+</ul>
+</li>
+<li><p>HashMap </p>
+<ul>
+<li>初始化数组capacity为2的次幂(默认16)，make it even for storing and deleting，在JDK 8中，new HashMap()的时候，并没有生成16的长度的Node[], 而是在首次put的时候初始化的16的capacity。 </li>
+<li>Max Capacity is 2^30</li>
+<li>load factor 0.75, 数组使用率使用超过0.75，开始扩容resize为原容量的2倍. (0.75 poisson 分布)</li>
+<li>扩容后(resize)，hash值可能变化，导致不在同一个linked list上面</li>
+</ul>
+</li>
+<li><p>HashCode function 和equals 需要重写， 对于class的key.</p>
+<ul>
+<li>hashcode function 最简单的重写方式，将变量连成string，然后使用 ((31<em>s[i])%prime + s[i+1])\</em>31%prime…. </li>
+<li>hashcode function只能尽量减少conflict, 无法消除，这也是为什么引入linked list 原因。</li>
+</ul>
+</li>
+<li><p>Hash链表上，且数组的capacity大于64，某个linked list size大于8，变红黑树，size回缩至6，退回链表。</p>
+<ul>
+<li><p>数组的capacity小于64，即使linked list size大于8，执行数组的resize操作。</p>
+</li>
+<li><p>Treeify threshold : 8</p>
+</li>
+<li><p>Untreeify threshold : 6 </p>
+</li>
+<li><p>Min Treeify threshold : 64</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="1-7-HTTP-Get-and-Post"><a href="#1-7-HTTP-Get-and-Post" class="headerlink" title="1.7 HTTP Get and Post"></a>1.7 HTTP Get and Post</h2><p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210211153129690.png" srcset="/img/loading.gif" alt="image-20210211153129690"></p>
+<p><a href="https://www.youtube.com/watch?v=K8HJ6DN23zI" target="_blank" rel="noopener">https://www.youtube.com/watch?v=K8HJ6DN23zI</a></p>
+<p><a href="https://www.youtube.com/watch?v=qriL9Qe8pJc" target="_blank" rel="noopener">https://www.youtube.com/watch?v=qriL9Qe8pJc</a></p>
+<h2 id="1-8-Thread-and-Process"><a href="#1-8-Thread-and-Process" class="headerlink" title="1.8 Thread and Process"></a>1.8 Thread and Process</h2><p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210211174531968.png" srcset="/img/loading.gif" alt="image-20210211174531968"></p>
+<p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210211174752342.png" srcset="/img/loading.gif" alt="image-20210211174752342"></p>
+<p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210211175325971.png" srcset="/img/loading.gif" alt="image-20210211175325971"></p>
+<p>cocurrency:   使得threads (tasks) 没有priority, 只要空了就可以执行其他的，提高utilization.</p>
+<p>parralle: multiprocessor, 真真的parrallel.</p>
 <h1 id="2-Memory-Management"><a href="#2-Memory-Management" class="headerlink" title="2 Memory Management"></a>2 Memory Management</h1><p>The local primitive data type including int, float, char and others (8 in total) are stored in the stack memory. For example,</p>
 <pre><code class="hljs java"><span class="hljs-keyword">int</span> a = <span class="hljs-number">10</span>; <span class="hljs-comment">// the type, name, value of the variable is stored in the stack memory.</span></code></pre>
 

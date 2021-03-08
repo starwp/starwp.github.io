@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Void Spirit">
   <meta name="keywords" content="">
-  <title>Cycle Detection - Make It Happen</title>
+  <title>Trapping Water - Make It Happen</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -165,8 +165,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-05-03 02:43" pubdate>
-        May 3, 2020 am
+      <time datetime="2021-03-07 01:24" pubdate>
+        March 7, 2021 am
       </time>
     </span>
   
@@ -177,7 +177,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      607 字
+      39 字
     </span>
   
 
@@ -187,7 +187,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10
+      1
        分钟
     </span>
   
@@ -225,102 +225,29 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">Cycle Detection</h1>
+            <h1 style="display: none">Trapping Water</h1>
             
             <div class="markdown-body" id="post-body">
               <blockquote>
-<p><a href="https://en.wikipedia.org/wiki/Cycle_detection" target="_blank" rel="noopener">Cycle detection algorithms</a>. Given an array of n + 1 integers with each in [1, n], can you detect duplicates in O(1) space and O(n) time?</p>
+<p>Interesting water trapping problem.</p>
 </blockquote>
 <a id="more"></a>
 
-<h2 id="1-Find-the-element-that-appear-once"><a href="#1-Find-the-element-that-appear-once" class="headerlink" title="1 Find the element that appear once"></a>1 Find the element that appear once</h2><h3 id="1-1-Problem-statement"><a href="#1-1-Problem-statement" class="headerlink" title="1.1 Problem statement:"></a>1.1 Problem statement:</h3><p>Given an array of n + 1 integers with each in [1, n], can you detect duplicates in O(1) space and O(n) time?</p>
-<h3 id="1-2-Solution"><a href="#1-2-Solution" class="headerlink" title="1.2 Solution:"></a>1.2 Solution:</h3><p>As all the integers are ranged in [1, n], there must be at least one duplicate due to the pigeonhole principle. The trick is to treat each integer as an index of the input array, such that it points to another integer in the input i.e. treat it as a <strong>pointer</strong>. </p>
-<p>Then, we need to locate a starting point. In this case, if we consider the index starts from 0, the 1st integer cannot have any pointers going to it, since its position is smaller than any integers in the array. Of course, if the index starts from 1, it is intuitive to find the nth integer as the starting point as it is larger than any integer in the array. </p>
-<p>After that, we can use Floyd&#39;s cycle-finding algorithm (Floyd&#39;s Tortoise and Hare).  </p>
- <img src="https://pic.leetcode-cn.com/9c5b49fc4678549f703bb997a9254e99a4d66f5ec0909f4aa2d88f14261673cc-file_1587171752327" srcset="/img/loading.gif" width="800" alt="" align=center />
-
-
-
-<p>L: the distance between the starting point and the cycle start.<br>C: cycle length<br>C’: distance between where hare stays in the cycle and the cycle start.</p>
-<p>It holds that<br>$$\begin{equation}\label{eq1}<br>L = (N - 1) * C + (C - C’)<br>\end{equation}$$</p>
-<p><img src="image-20200714174341849.png" srcset="/img/loading.gif" alt="image-20200714174341849"></p>
-<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">findDuplicate</span><span class="hljs-params">(nums)</span>:</span>
-    
-    slow = <span class="hljs-number">0</span>
-    slow = nums[slow]
-    fast = nums[slow]
-    <span class="hljs-keyword">while</span> slow != fast:
-        slow = nums[slow]
-        fast = nums[nums[fast]]
-
-    fast = <span class="hljs-number">0</span>
-    <span class="hljs-keyword">while</span> slow != fast:
-        fast = nums[fast]
-        slow = nums[slow]
-    
-    <span class="hljs-keyword">return</span> slow</code></pre>
-
-<h3 id="1-3-Add-the-offset"><a href="#1-3-Add-the-offset" class="headerlink" title="1.3 Add the offset."></a>1.3 Add the offset.</h3><p>We can add the offset to this array, for example:</p>
-<p>Given an array of n integers with each in [1 + offset, n + offset], can you detect duplicates in O(1) space and O(n) time?</p>
-<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">findDuplicate_offset</span><span class="hljs-params">(nums, offset)</span>:</span>
-    
-    slow = <span class="hljs-number">0</span> + offset
-    slow = nums[slow - offset]
-    fast = nums[slow - offset]
-    <span class="hljs-keyword">while</span> slow != fast:
-        slow = nums[slow - offset]
-        fast = nums[nums[fast - offset] - offset]
-
-    fast = <span class="hljs-number">0</span> + offset
-    <span class="hljs-keyword">while</span> slow != fast:
-        fast = nums[fast - offset]
-        slow = nums[slow - offset]
-    
-    <span class="hljs-keyword">return</span> slow</code></pre>
-
-<p>reference: <a href="https://www.jasondavies.com/duplicates/" target="_blank" rel="noopener">https://www.jasondavies.com/duplicates/</a></p>
-<h2 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h2><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">findDuplicate</span><span class="hljs-params">(nums)</span>:</span>
-    
-    start = nums[<span class="hljs-number">0</span>] <span class="hljs-comment"># we can fix the start point</span>
-    slow = nums[start]
-    find = nums[nums[start]]
-    <span class="hljs-keyword">while</span> slow != fast:
-        slow = nums[slow]
-        fast = nums[nums[fast]]
-
-    fast = start <span class="hljs-comment"># equal to start point</span>
-    <span class="hljs-keyword">while</span> slow != fast:
-        fast = nums[fast]
-        slow = nums[slow]
-    
-    <span class="hljs-keyword">return</span> slow</code></pre>
-
-<p>For the duplicate problem, the start point can be that “start = nums[0]” or “start = 0”. If it is “start = nums[0]”, it indicates this is the second point along the path. Since the start point “0” has indegree equal to 0, the second point is also acceptable as the start point.</p>
-<h2 id="Cycle-for-graph"><a href="#Cycle-for-graph" class="headerlink" title="Cycle for graph"></a>Cycle for graph</h2><ol>
-<li><p>无向图：</p>
-<ul>
-<li>如果给的是edge set, 预先判定，edge数量为点的n-1，然后利用bfs确定是否能访问到n个点。（保证判定了连通性，无环的特性）</li>
-<li>如果给的是一个点，那就忽略连通性，可以直接用bfs，或者dfs，如果遇到neighbor出现在seen中，说明有环</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li>union-find, 两两节点union, 如果出现u, v的parents相同，则说明已经有环。</li>
-</ul>
-<ol start="2">
-<li><p>有向图：</p>
-<ul>
-<li>灰色和黑色DFS法</li>
-<li>拓扑排序判定是否访问所有节点数量为|n|个。</li>
-</ul>
-</li>
-</ol>
+<h1 id="One-Dimension-Problem"><a href="#One-Dimension-Problem" class="headerlink" title="One Dimension Problem"></a>One Dimension Problem</h1><p>这里就不讨论了，贪心，dp，都可以做。</p>
+<p>核心的思想是，当前位置的水的高度，有zuo’you</p>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Algorithm/">Algorithm</a>
+                    
+                  </div>
                 
               </div>
               
@@ -331,9 +258,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/05/03/Eulerian-Path/">
+                      <a href="/2021/03/07/Rain-Forest/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Eulerian Path</span>
+                        <span class="hidden-mobile">Rain Forest</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -341,8 +268,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/05/02/bitwise-operation/">
-                        <span class="hidden-mobile">Bitwise Operation</span>
+                      <a href="/2020/12/27/Time-Complexity/">
+                        <span class="hidden-mobile">Time Complexity</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -487,7 +414,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Cycle Detection&nbsp;",
+        "Trapping Water&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
