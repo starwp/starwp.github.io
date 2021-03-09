@@ -1,0 +1,750 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Void Spirit">
+  <meta name="keywords" content="">
+  <title>Java Notes - Make It Happen</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Mastering Algorithm</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://rmt.dogedoge.com/fetch/fluid/storage/post.png?w=1280&fmt=webp') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-06-21 10:21" pubdate>
+        June 21, 2020 am
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      26
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">Java Notes</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <Contents>
+
+<h1 id="1-Basic-Operation"><a href="#1-Basic-Operation" class="headerlink" title="1. Basic Operation"></a>1. Basic Operation</h1><h3 id="1-1-Basic-Type"><a href="#1-1-Basic-Type" class="headerlink" title="1. 1  Basic Type"></a>1. 1  Basic Type</h3><ul>
+<li><p>八大类型: long, int, boolean, short, byte, float, double, char</p>
+</li>
+<li><p>数组获的长度是a.length</p>
+</li>
+<li><p>string获得长度是s.length(), 获得字符是，s.charAt(i), i是index</p>
+</li>
+</ul>
+<p>The first snippet is about the type of math operation.</p>
+<pre><code class="hljs java"><span class="hljs-keyword">long</span> a = <span class="hljs-number">100000000L</span>;
+<span class="hljs-keyword">short</span> b = <span class="hljs-number">10</span>;
+<span class="hljs-keyword">byte</span> c = <span class="hljs-number">8</span>;
+System.out.print(a + b);<span class="hljs-comment">// should be a long type</span>
+System.out.print(b + c);<span class="hljs-comment">// should be an int type</span></code></pre>
+
+<p>Then, we take a look at the operation i++ and ++i.</p>
+<pre><code class="hljs java"><span class="hljs-keyword">int</span> a = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">int</span> b = a++;
+<span class="hljs-keyword">int</span> c = ++a;
+System.out.print(b);<span class="hljs-comment">// should output 1  </span>
+System.out.print(c);<span class="hljs-comment">// should output 3</span></code></pre>
+
+<p>For the string, it has a difference depends where we put it.</p>
+<pre><code class="hljs java"><span class="hljs-keyword">int</span> a = <span class="hljs-number">10</span>;
+<span class="hljs-keyword">int</span> b = <span class="hljs-number">20</span>;
+System.out.print(<span class="hljs-string">''</span> + a + b);<span class="hljs-comment">// should output string 1020 </span>
+System.out.print(a + b + <span class="hljs-string">''</span>);<span class="hljs-comment">// should output string 30</span></code></pre>
+
+
+
+<h3 id="1-2-Class-and-Object"><a href="#1-2-Class-and-Object" class="headerlink" title="1.2 Class and Object"></a>1.2 Class and Object</h3><p>对象和类的概念</p>
+<ul>
+<li>成员变量(member variable), 又叫域field, 对象的属性</li>
+<li>成员函数(member function), 又叫方法method, 对象的行为, 命名第一个必为动词</li>
+<li>构造函数Constructor, 默认构造函数(default), 带参数的构造函数(parameterized)</li>
+</ul>
+<p>field和method的关键字，修饰符</p>
+<ul>
+<li>public, private, 对象外内被访问的区别</li>
+<li>protected, 可以在对象或者子类的对象内部被访问 ???</li>
+<li>static, 静态，不属于对象，属于这个类共享</li>
+<li>final, 常量不可变化</li>
+</ul>
+<p>一个.java文件里只能有一个public的类</p>
+<pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> </span>&#123;
+    <span class="hljs-keyword">public</span> Sting name;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> score;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Student</span><span class="hljs-params">()</span></span>&#123; <span class="hljs-comment">//默认不写，就是这样空的</span>
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Student</span><span class="hljs-params">(String name)</span></span>&#123; <span class="hljs-comment">//默认不写，就是这样空的</span>
+    	<span class="hljs-keyword">this</span>.name = name; <span class="hljs-comment">//this表示这个类的</span>
+    &#125;
+&#125;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        Student s1 = <span class="hljs-keyword">new</span> Student();
+        String str = <span class="hljs-keyword">new</span> String(<span class="hljs-string">"Hello"</span>)
+    &#125;
+&#125;</code></pre>
+
+
+
+<p>继承的关键字，extends</p>
+<pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Animal</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">type</span><span class="hljs-params">()</span></span>&#123; 
+    	System.out.println(<span class="hljs-string">"Animal!"</span>);
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">speak</span><span class="hljs-params">()</span></span>&#123; 
+    	System.out.println(<span class="hljs-string">"LoL"</span>);
+    &#125;
+&#125;
+                           
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dog</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Animal</span> </span>&#123;
+    <span class="hljs-meta">@Override</span> <span class="hljs-comment">//装饰器，最好加上</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">speak</span><span class="hljs-params">()</span> </span>&#123;  <span class="hljs-comment">//重写</span>
+        System.out.println(<span class="hljs-string">"Wow"</span>);
+    &#125;
+&#125;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        Animal dog = <span class="hljs-keyword">new</span> Dog(); <span class="hljs-comment">//用父类去接子类</span>
+        
+    &#125;
+&#125;</code></pre>
+
+
+
+<p>方法重载</p>
+<p>With <strong>method overloading</strong>, multiple methods can have the same name with different parameters:</p>
+<p>override的作用: 如果加了override, 一定是重写父类的方法。</p>
+<p>new: 调用谁的方法，取决于new谁的类。</p>
+<p>为什么要用animal去申请?  自己查阅</p>
+<p>abstract 抽象类:  必须要实现。继承只能从一个类。半成品。</p>
+<p><img src="C:%5Cblog%5Csource_posts%5CSubarray-Sum%5Cimage-20210131160536316.png" srcset="/img/loading.gif" alt="image-20210131160536316"></p>
+<p>抽象类中不一定有抽象方法。但是抽象方法必须出现在抽象类。</p>
+<p>interface: 是类的蓝图 (契约)。多个interface, interface实现方法，</p>
+<p>接口支持多继承，接口只包括两部分内容，一部分：常量。一部分：抽象方法 (abstract method， 因此可以省略public abstract关键字)。接口中的方法，不能带有方法体。</p>
+<p>接口是完全抽象的。</p>
+<p>java 向上转型，向下转型 java upcasting， java down casting</p>
+<p>编辑阶段：base class type 静态绑定method， static binding</p>
+<p>运行阶段：derived class type动态绑定，dynamic binding method, 所以引入overriding.</p>
+<ul>
+<li>At compile time, usually the base class type is used to reference an object, </li>
+<li>though at run time this object could be of a derived type, so when an overridden method is called, the implementation that is called is dependent on what kind of object is doing the calling (base vs. a derived type) which is unknown at compile time.</li>
+</ul>
+<p>Overridden functions are functions that have the same signature, but are implemented in different derived classes</p>
+<p>Overloading (not really polymorphism) is simply multiple functions which have the same name but different signatures (think multiple constructors for an object taking different numbers of arguments). Which method is called is known at compile time, because the arguments are specified at this time.</p>
+<p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210212222747128.png" srcset="/img/loading.gif" alt="image-20210212222747128"></p>
+<p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210212232211104.png" srcset="/img/loading.gif" alt="image-20210212232211104"></p>
+<p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210212232256136.png" srcset="/img/loading.gif" alt="image-20210212232256136"></p>
+<p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210212232813723.png" srcset="/img/loading.gif" alt="image-20210212232813723"></p>
+<p>私有方法无法override, 覆盖</p>
+<p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210212233622032.png" srcset="/img/loading.gif" alt="image-20210212233622032"></p>
+<p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210212233754876.png" srcset="/img/loading.gif" alt="image-20210212233754876"></p>
+<p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210212233410098.png" srcset="/img/loading.gif" alt="image-20210212233410098"></p>
+<p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210212233924142.png" srcset="/img/loading.gif" alt="image-20210212233924142"></p>
+<p>虽然有接口，但是抽象类的作用是其中可以写非抽象方法，以达到代码复用的目的，所以抽象类不可或缺。</p>
+<p><strong>一句话OOP</strong>:</p>
+<p>把一组数据结构和处理他们的方法组成对象（object），把相同行为的对象归纳为类（class），通过封装（encapsulation）隐藏细节，通过继承（inheritance）实现类的generalization, 通过多态（polymorphism）实现动态分派dynamic dispatch</p>
+<h3 id="1-3-Reference"><a href="#1-3-Reference" class="headerlink" title="1.3 Reference"></a>1.3 Reference</h3><p>ArrayList<Integer> 类似python list</p>
+<p>ArrayList<Integer>  intList = new ArrayList<Integer>();</p>
+<p>intList是引用，不是对象。new出来的对象是在heap space.</p>
+<p>函数里修改，传引用。</p>
+<p>书记推荐： 深入来理解计算机系统，csapp</p>
+<h3 id="1-4-Visit-Right"><a href="#1-4-Visit-Right" class="headerlink" title="1.4 Visit Right"></a>1.4 Visit Right</h3><p>默认只能在本类以及同package下访问</p>
+<p>protected只能在本类, or 同package下， or非同pack的子类中访问访问</p>
+<p><img src="C:%5Cblog%5Csource_posts%5CSubarray-Sum%5Cimage-20210131164316651.png" srcset="/img/loading.gif" alt="image-20210131164316651"></p>
+<h3 id="1-5-Array-and-String"><a href="#1-5-Array-and-String" class="headerlink" title="1.5 Array and String"></a>1.5 Array and String</h3><p>java.util.Arrays所有方法都是静态的，直接用类名调用。</p>
+<p>主要用排序，二分。</p>
+<p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210131220145341.png" srcset="/img/loading.gif" alt="image-20210131220145341"></p>
+<p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210131220308831.png" srcset="/img/loading.gif" alt="image-20210131220308831"></p>
+<p>System.out.println() 输出引用默认调用toString()方法。</p>
+<p>Stringbuffer有关键字synchronized.</p>
+<p>Stringbuilder没有这个关键字是非线程安全的。里面纯的是byte数组，可以用append</p>
+<h3 id="1-6-Collection"><a href="#1-6-Collection" class="headerlink" title="1.6 Collection"></a>1.6 Collection</h3><p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210201104018540.png" srcset="/img/loading.gif" alt="image-20210201104018540"></p>
+<p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210201143400319.png" srcset="/img/loading.gif" alt="image-20210201143400319"></p>
+<p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210201144221616.png" srcset="/img/loading.gif" alt="image-20210201144221616"></p>
+<ol>
+<li><p>HashMap, 最重要的原理，结合数组array和链表linked list的有点。</p>
+<ul>
+<li><p>array查询好，增删弱</p>
+</li>
+<li><p>linked list查询弱，增删强</p>
+<p>hashMap查询的能力in the mid, 增删的能力in the mid</p>
+</li>
+</ul>
+</li>
+<li><p>HashMap </p>
+<ul>
+<li>初始化数组capacity为2的次幂(默认16)，make it even for storing and deleting，在JDK 8中，new HashMap()的时候，并没有生成16的长度的Node[], 而是在首次put的时候初始化的16的capacity。 </li>
+<li>Max Capacity is 2^30</li>
+<li>load factor 0.75, 数组使用率使用超过0.75，开始扩容resize为原容量的2倍. (0.75 poisson 分布)</li>
+<li>扩容后(resize)，hash值可能变化，导致不在同一个linked list上面</li>
+</ul>
+</li>
+<li><p>HashCode function 和equals 需要重写， 对于class的key.</p>
+<ul>
+<li>hashcode function 最简单的重写方式，将变量连成string，然后使用 ((31<em>s[i])%prime + s[i+1])\</em>31%prime…. </li>
+<li>hashcode function只能尽量减少conflict, 无法消除，这也是为什么引入linked list 原因。</li>
+</ul>
+</li>
+<li><p>Hash链表上，且数组的capacity大于64，某个linked list size大于8，变红黑树，size回缩至6，退回链表。</p>
+<ul>
+<li><p>数组的capacity小于64，即使linked list size大于8，执行数组的resize操作。</p>
+</li>
+<li><p>Treeify threshold : 8</p>
+</li>
+<li><p>Untreeify threshold : 6 </p>
+</li>
+<li><p>Min Treeify threshold : 64</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="1-7-HTTP-Get-and-Post"><a href="#1-7-HTTP-Get-and-Post" class="headerlink" title="1.7 HTTP Get and Post"></a>1.7 HTTP Get and Post</h2><p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210211153129690.png" srcset="/img/loading.gif" alt="image-20210211153129690"></p>
+<p><a href="https://www.youtube.com/watch?v=K8HJ6DN23zI" target="_blank" rel="noopener">https://www.youtube.com/watch?v=K8HJ6DN23zI</a></p>
+<p><a href="https://www.youtube.com/watch?v=qriL9Qe8pJc" target="_blank" rel="noopener">https://www.youtube.com/watch?v=qriL9Qe8pJc</a></p>
+<h2 id="1-8-Thread-and-Process"><a href="#1-8-Thread-and-Process" class="headerlink" title="1.8 Thread and Process"></a>1.8 Thread and Process</h2><p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210211174531968.png" srcset="/img/loading.gif" alt="image-20210211174531968"></p>
+<p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210211174752342.png" srcset="/img/loading.gif" alt="image-20210211174752342"></p>
+<p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210211175325971.png" srcset="/img/loading.gif" alt="image-20210211175325971"></p>
+<p>cocurrency:   使得threads (tasks) 没有priority, 只要空了就可以执行其他的，提高utilization.</p>
+<p>parralle: multiprocessor, 真真的parrallel.</p>
+<h1 id="2-Memory-Management"><a href="#2-Memory-Management" class="headerlink" title="2 Memory Management"></a>2 Memory Management</h1><p>The local primitive data type including int, float, char and others (8 in total) are stored in the stack memory. For example,</p>
+<pre><code class="hljs java"><span class="hljs-keyword">int</span> a = <span class="hljs-number">10</span>; <span class="hljs-comment">// the type, name, value of the variable is stored in the stack memory.</span></code></pre>
+
+<p>In addition, the local variables which are all used to store the references of the objects. These variables are also stored in the stack memory. However, the objects are stored in the heap memory. For instance,</p>
+<pre><code class="hljs java">Integer a = <span class="hljs-keyword">new</span> Integer();<span class="hljs-comment">// the type, name, represented reference of the variable a is stored in the stack memory, but key word new makes the oject Integer() in the heap memory.</span></code></pre>
+
+<p>In addition, for the heap memory, there exists</p>
+<ol>
+<li>Young Generation</li>
+<li>Old Generation</li>
+<li>Permanent Generation</li>
+</ol>
+<p><img src="https://i.stack.imgur.com/eP0SJ.png" srcset="/img/loading.gif" alt=""></p>
+<p>Notice that the string objects (if not declared by new) should be stored in the string pool in the permanent memory in the heap, which causes the following:</p>
+<pre><code class="hljs java">String a = <span class="hljs-string">'abc'</span>;
+String b = <span class="hljs-string">'abc'</span>;
+System.out.println(a==b);<span class="hljs-comment">//should return True</span>
+
+String c = <span class="hljs-keyword">new</span> String(<span class="hljs-string">'abc'</span>);
+String d = <span class="hljs-keyword">new</span> String(<span class="hljs-string">'abc'</span>);
+System.out.println(a==b);<span class="hljs-comment">//should return False</span></code></pre>
+
+<p>Please be careful that ‘’==’’ is a reference matching operator if the variables are not primitive data types.</p>
+<p>Reference:</p>
+<ol>
+<li><a href="https://www.sololearn.com/Discuss/482015/why-is-the-output-show-false" target="_blank" rel="noopener">https://www.sololearn.com/Discuss/482015/why-is-the-output-show-false</a></li>
+<li>[<a href="https://www.quora.com/Where-is-a-Java-string-stored#:~:text=The%20variables%20in%20the%20Java,reference%20variable%20in%20the%20stack.]" target="_blank" rel="noopener">https://www.quora.com/Where-is-a-Java-string-stored#:~:text=The%20variables%20in%20the%20Java,reference%20variable%20in%20the%20stack.]</a>(<a href="https://www.quora.com/Where-is-a-Java-string-stored#:~:text=The" target="_blank" rel="noopener">https://www.quora.com/Where-is-a-Java-string-stored#:~:text=The</a> variables in the Java,reference variable in the stack.)</li>
+<li><a href="https://stackoverflow.com/questions/22779145/java-primitive-data-type-on-stack-or-heap" target="_blank" rel="noopener">https://stackoverflow.com/questions/22779145/java-primitive-data-type-on-stack-or-heap</a></li>
+<li><a href="https://stackoverflow.com/questions/2129044/java-heap-terminology-young-old-and-permanent-generations" target="_blank" rel="noopener">https://stackoverflow.com/questions/2129044/java-heap-terminology-young-old-and-permanent-generations</a></li>
+<li><a href="https://stackoverflow.com/questions/41120129/java-stack-and-heap-memory-management" target="_blank" rel="noopener">https://stackoverflow.com/questions/41120129/java-stack-and-heap-memory-management</a></li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/06/25/Python-Note/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Python Note</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/06/18/MarkDown-Sheet/">
+                        <span class="hidden-mobile">MarkDown Sheet</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Java Notes&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

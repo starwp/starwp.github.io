@@ -1,0 +1,707 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Void Spirit">
+  <meta name="keywords" content="">
+  <title>Monotonic Queue - Make It Happen</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Mastering Algorithm</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://rmt.dogedoge.com/fetch/fluid/storage/post.png?w=1280&fmt=webp') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-10-03 14:51" pubdate>
+        October 3, 2020 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      29
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">Monotonic Queue</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <blockquote>
+<p>A very strong data structure.</p>
+</blockquote>
+<a id="more"></a>
+
+<h1 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h1><p>数据按照单调的方式加入，对于新加入的不满足单调形式的数据，踢除队列中原有的数据，使得当前的数据能满足单调性。其操作如下图:</p>
+<p align="center">
+  <img width="600" src="https://miro.medium.com/max/6638/1*xFvh11sgRi0hf662wAAhkQ.jpeg" srcset="/img/loading.gif">
+</p>
+
+
+
+<h2 id="Important-observations"><a href="#Important-observations" class="headerlink" title="Important observations:"></a>Important observations:</h2><ul>
+<li>单调栈维护区域最小(最大)值。设当前元素为A[i]<ul>
+<li>单调递增栈: 区域最小值, 即为stack[0]为数组[0, i]的最小值</li>
+<li>单调递减栈: 区域最大值, 即为stack[0]为数组[0, i]的最大值</li>
+</ul>
+</li>
+<li>弹栈能找到当前元素的在范围内的次大(次小)值。设当前元素为A[i]<ul>
+<li>单调递增栈: 若A[i]&lt;stack[-1], 连续弹栈后, 设最后弹出元素A[k], 在范围[stack[-1]+1, i]中次小值为A[k], 最小为A[i]</li>
+<li>单调递减栈: 若A[i]&gt;stack[-1], 连续弹栈后, 设最后弹出元素A[k], 在范围[stack[-1]+1, i]中次大值为A[k], 最大为A[i]</li>
+</ul>
+</li>
+<li>单调递减栈快速定位比A[i]大的最近的左右两个元素。也可以, 定位到连续比A[i]小的最左最右两个元素，如图所示</li>
+<li>单调递增栈快速定位比A[i]小的最近的左右两个元素。也可以, 定位到连续比A[i]大的最左最右两个元素，</li>
+</ul>
+<p><img src="image-20201003164019321.png" srcset="/img/loading.gif" alt="image-20201003164019321"></p>
+<ul>
+<li>维护最慢增长(减少)的数字序列(字典序列)</li>
+</ul>
+<p><img src="image-20201003175326373.png" srcset="/img/loading.gif" alt="image-20201003175326373"></p>
+<ul>
+<li>维护最慢增长(减少)的不重复数字的序列(字典序列，利用hash判断存在就不进栈了)</li>
+</ul>
+<p><img src="image-20201003223632570.png" srcset="/img/loading.gif" alt="image-20201003223632570"></p>
+<ul>
+<li>维护距离当前元素最近的差距值为x的元素，滑动窗口的性质</li>
+</ul>
+<p><img src="image-20201003175501817.png" srcset="/img/loading.gif" alt="image-20201003175501817"></p>
+<ul>
+<li><p>单调递减栈: 两两栈元素A[i]和A[j]区间的元素大于max(A[i], A[j])</p>
+</li>
+<li><p>单调递增栈: 两两栈元素A[i]和A[j]区间的元素小于min(A[i], A[j])</p>
+</li>
+</ul>
+<h1 id="Applications"><a href="#Applications" class="headerlink" title="Applications"></a>Applications</h1><p>基于这些特性，我们可以解决如下的问题。</p>
+<h2 id="Largest-Rectangle-in-Histogram"><a href="#Largest-Rectangle-in-Histogram" class="headerlink" title="Largest Rectangle in Histogram"></a><a href="https://leetcode.com/problems/largest-rectangle-in-histogram/" target="_blank" rel="noopener">Largest Rectangle in Histogram</a></h2><p>问题:  Given n non-negative integers representing the histogram’s bar height where the width of each bar is <code>1</code>, find the area of largest rectangle in the histogram.</p>
+<p>分析: 对于每一个柱体来说，我们需要找出左右第一个比其矮的数字，这样就可以确定包含当前柱体最大矩形面积。于是单调递增栈正好具备这个用法。虽然知道了使用单调栈的大方向，但是需要注意的细节有:</p>
+<ul>
+<li>如果一个柱体左右没有比其矮的柱子，我们需要默认添加0的柱子</li>
+<li>单调栈遇到相同的柱子并不能踢除</li>
+</ul>
+<p>代码如下:</p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">largestRectangleArea</span><span class="hljs-params">(self, heights: List[int])</span> -&gt; int:</span>
+    heights.append(<span class="hljs-number">0</span>)
+    max_gram, stack = <span class="hljs-number">0</span>, [<span class="hljs-number">-1</span>]
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(heights)): 
+        <span class="hljs-keyword">while</span> stack <span class="hljs-keyword">and</span> heights[stack[<span class="hljs-number">-1</span>]] &gt; heights[i]:
+            idx = stack.pop()
+            max_gram = max(max_gram, heights[idx]*(i-stack[<span class="hljs-number">-1</span>]<span class="hljs-number">-1</span>))
+        stack.append(i)
+    <span class="hljs-keyword">return</span> max_gram</code></pre>
+
+<p>这里的代码设计，我们再heights中添加一个0的好处是，确保末尾有一个高度为0的柱子，能弹出单调栈所有的东西。其次，我们需要开始有一个位置-1高度为0的柱子，我们在stack初始化的时候添加[-1]，便确保了这个最初的高度为0的柱子可以被调用(利用最后一个为0，复用他们)</p>
+<h2 id="Remove-K-Digits"><a href="#Remove-K-Digits" class="headerlink" title="Remove K Digits"></a><a href="https://leetcode.com/problems/remove-k-digits/" target="_blank" rel="noopener">Remove K Digits</a></h2><p>问题: Given a non-negative integer <code>num</code> represented as a string, remove <code>k</code> digits from the number so that the new number is the smallest possible.</p>
+<p>分析: 实现单调栈的过程就已经删除了元素且形成最小的数字，所以直接应用单调递增栈。但是，需要注意的细节有:</p>
+<ul>
+<li>如果删除元素的数量k超过数组长度，则直接反回0</li>
+<li>如果删除元素的数量k大于单调栈形成最小数删除的数量，需要对形成的单调栈的进行尾部(栈顶)删除。</li>
+<li>单调栈保留相同的元素。</li>
+</ul>
+<p>代码如下:</p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">removeKdigits</span><span class="hljs-params">(self, num: str, k: int)</span> -&gt; str:</span>
+    <span class="hljs-keyword">if</span> k &gt;= len(num): <span class="hljs-keyword">return</span> <span class="hljs-string">'0'</span>
+    stack, cnt = [], <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(num)):
+        <span class="hljs-keyword">while</span> stack <span class="hljs-keyword">and</span> stack[<span class="hljs-number">-1</span>] &gt; num[i] <span class="hljs-keyword">and</span> cnt &lt; k:
+            stack.pop()
+            cnt += <span class="hljs-number">1</span>    
+        stack.append(num[i])
+    <span class="hljs-keyword">return</span> str(int(<span class="hljs-string">''</span>.join(stack[:len(stack)-(k-cnt)])))</code></pre>
+
+<p>这里利用cnt计数，实现了对需要删除的数量统计。</p>
+<h2 id="Remove-Duplicate-Letters"><a href="#Remove-Duplicate-Letters" class="headerlink" title="Remove Duplicate Letters"></a><a href="https://leetcode.com/problems/remove-duplicate-letters/" target="_blank" rel="noopener">Remove Duplicate Letters</a></h2><p>问题: Given a string s, remove duplicate letters so that every letter appears once and only once. You must make sure your result is the smallest in lexicographical order among all possible results.</p>
+<p>分析:  利用单调栈求最慢增长序列的性质。 由于没有重复元素，于是需要对于已经出现的元素进行保留，利用hash查询。</p>
+<ul>
+<li>当前元素可以被踢除的必要条件是，其在后续会出现</li>
+</ul>
+<p>代码如下:</p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">removeDuplicateLetters</span><span class="hljs-params">(self, s: str)</span> -&gt; str:</span>
+    pos = &#123;s[i]:i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(s))&#125;
+    stack, stored = [], set([])
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(s)):
+        <span class="hljs-keyword">if</span> s[i] <span class="hljs-keyword">in</span> stored:
+            <span class="hljs-keyword">continue</span>
+        <span class="hljs-keyword">while</span> stack <span class="hljs-keyword">and</span> ord(stack[<span class="hljs-number">-1</span>]) &gt;= ord(s[i]) <span class="hljs-keyword">and</span> pos[stack[<span class="hljs-number">-1</span>]] &gt;= i:
+            stored.remove(stack.pop())  
+        stack.append(s[i])
+        stored.add(s[i])
+    <span class="hljs-keyword">return</span> <span class="hljs-string">''</span>.join(stack)</code></pre>
+
+
+
+<h2 id="132-Pattern"><a href="#132-Pattern" class="headerlink" title="132 Pattern"></a><a href="https://leetcode.com/problems/132-pattern/" target="_blank" rel="noopener">132 Pattern</a></h2><p>问题: Given an array of <code>n</code> integers <code>nums</code>, a <strong>132 pattern</strong> is a subsequence of three integers <code>nums[i]</code>, <code>nums[j]</code> and <code>nums[k]</code> such that <code>i &lt; j &lt; k</code> and <code>nums[i] &lt; nums[k] &lt; nums[j]</code>. Return <code>true</code> if there is a <strong>132 pattern</strong> in <code>nums</code>, otherwise return <code>false</code>.</p>
+<p>分析:  两种思路，一般会先想到，遍历3，定1再找2，对于每一个<code>i</code>元素13很好找，因为3可以认为是最大的元素，但是2就需要遍历了。这样无法做到线性时间。所以，转而回到另一种思路，遍历3，定2再找1。其中对于每一个3来说，其最好的2就是次大元素，然而如何快速找到次大元素，而不是O(n)的遍历。这里的关键是，利用逆序单调递减栈的弹栈特点，弹栈元素必有次大，接下来的问题就是分析，这个local次大是否能代替global次大的作用。假设当前为<code>nums[i]</code>，栈顶元素为<code>s[-1]</code>，讨论如下:</p>
+<ul>
+<li><code>nums[i]&lt;s[-1]</code>， 入栈。这是由于单调递减栈，两两元素间隔的元素一定大于其最大，<code>nums[i]</code>左边的元素一定没有小它的。</li>
+<li><code>nums[i]&gt;=s[-1]</code> ，能在弹栈的时候找到一个次大<code>nums[i]</code>的数，定为其对应的2。<ul>
+<li>反证: 对于<code>nums[i]</code>的次大数来说，假设在<code>s[-1]</code>之左边还有比其大的次大值<code>s[-1]&#39;</code>。那么，<code>s[-1]</code>， <code>s[0]</code>， <code>s[-1]&#39;</code>，已经构成132pattern.</li>
+</ul>
+</li>
+</ul>
+<p>这样我们就确定了，单调栈弹栈的local次大能代替global次大，代码如下。</p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">find132pattern</span><span class="hljs-params">(self, nums: List[int])</span> -&gt; bool:</span>
+    stack, _2nd_largest = [], -sys.maxsize
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(nums)<span class="hljs-number">-1</span>,<span class="hljs-number">-1</span>,<span class="hljs-number">-1</span>):
+        <span class="hljs-keyword">if</span> nums[i] &lt; _2nd_largest:
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+        <span class="hljs-keyword">while</span> stack <span class="hljs-keyword">and</span> stack[<span class="hljs-number">-1</span>] &lt; nums[i]:
+            _2nd_largest = stack.pop()
+        stack.append(nums[i])
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span></code></pre>
+
+<p>代码的细节中，因为每次次大找到，所以只用判定新元素是否小于次大则return True。</p>
+<h2 id="Shortest-Subarray-with-Sum-at-Least-K"><a href="#Shortest-Subarray-with-Sum-at-Least-K" class="headerlink" title="Shortest Subarray with Sum at Least K"></a><a href="https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/" target="_blank" rel="noopener">Shortest Subarray with Sum at Least K</a></h2><p>问题: Return the <strong>length</strong> of the shortest, non-empty, contiguous subarray of <code>A</code> with sum at least <code>K</code>. If there is no non-empty subarray with sum at least <code>K</code>, return <code>-1</code>.</p>
+<p>分析: 因为是nearest的differecen至少为K，直接利用单调栈的性质，这里我们维护一个单调队列即可。细想一下，对于每一个元素，其最近距离至少为k的值就是单调队列维护的元素。注意点就是，因为求最短，需要实时踢除队列头部元素即可。</p>
+<p>代码如下:</p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">shortestSubarray</span><span class="hljs-params">(self, A: List[int], K: int)</span> -&gt; int:</span>
+    preSum, min_len, q = [<span class="hljs-number">0</span>], sys.maxsize, collections.deque([])
+    <span class="hljs-keyword">for</span> e <span class="hljs-keyword">in</span> A:
+        preSum.append(preSum[<span class="hljs-number">-1</span>] + e)
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(preSum)):
+        <span class="hljs-keyword">while</span> q <span class="hljs-keyword">and</span> preSum[q[<span class="hljs-number">-1</span>]] &gt; preSum[i]:
+            q.pop()
+        <span class="hljs-keyword">while</span> q <span class="hljs-keyword">and</span> preSum[i] - K &gt;= preSum[q[<span class="hljs-number">0</span>]]:
+            min_len = min(min_len, i-q.popleft())       
+        q.append(i)
+    <span class="hljs-keyword">return</span> min_len <span class="hljs-keyword">if</span> min_len != sys.maxsize <span class="hljs-keyword">else</span> <span class="hljs-number">-1</span></code></pre>
+
+
+
+<h2 id="Longest-Continuous-Subarray-With-Absolute-Diff"><a href="#Longest-Continuous-Subarray-With-Absolute-Diff" class="headerlink" title="Longest Continuous Subarray With Absolute Diff"></a><a href="https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/" target="_blank" rel="noopener">Longest Continuous Subarray With Absolute Diff</a></h2><p>问题: Given an array of integers <code>nums</code> and an integer <code>limit</code>, return the size of the longest <strong>non-empty</strong> subarray such that the absolute difference between any two elements of this subarray is less than or equal to <code>limit</code><em>.</em></p>
+<p>分析: 利用单调栈能记录区间最大，最小值的性质。维护两个单调队列，且当队列头的diff超过limit的时候，踢除队头元素。这里第二个运用单调队列的性质是，单调递增，任意队列两元素之间的值必然大于其俩最大值，于是左指针停留在最后一个被踢的位置加1。</p>
+<p>代码如下:</p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">longestSubarray</span><span class="hljs-params">(self, nums: List[int], limit: int)</span> -&gt; int:</span>
+    ascend, descend, max_len, j = collections.deque(), collections.deque(), <span class="hljs-number">0</span>, <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(nums)):
+        <span class="hljs-keyword">while</span> ascend <span class="hljs-keyword">and</span> nums[ascend[<span class="hljs-number">-1</span>]] &gt; nums[i]:
+            ascend.pop()
+        <span class="hljs-keyword">while</span> descend <span class="hljs-keyword">and</span> nums[descend[<span class="hljs-number">-1</span>]] &lt; nums[i]:
+            descend.pop()
+        ascend.append(i)
+        descend.append(i)
+
+        <span class="hljs-keyword">while</span> abs(nums[ascend[<span class="hljs-number">0</span>]]-nums[descend[<span class="hljs-number">0</span>]]) &gt; limit: 
+            j = min(ascend[<span class="hljs-number">0</span>], descend[<span class="hljs-number">0</span>]) + <span class="hljs-number">1</span>
+            <span class="hljs-keyword">if</span> ascend[<span class="hljs-number">0</span>] &gt; descend[<span class="hljs-number">0</span>]:
+                descend.popleft()
+            <span class="hljs-keyword">else</span>:
+                ascend.popleft()
+        max_len = max(max_len, i-j+<span class="hljs-number">1</span>)
+    <span class="hljs-keyword">return</span> max_len</code></pre>
+
+
+
+<h2 id="烽火-https-blog-csdn-net-zxzxzx0119-article-details-81662792"><a href="#烽火-https-blog-csdn-net-zxzxzx0119-article-details-81662792" class="headerlink" title="[烽火]https://blog.csdn.net/zxzxzx0119/article/details/81662792"></a>[烽火]<a href="https://blog.csdn.net/zxzxzx0119/article/details/81662792" target="_blank" rel="noopener">https://blog.csdn.net/zxzxzx0119/article/details/81662792</a></h2>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Algorithm/">Algorithm</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Data-Structure/">Data Structure</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/10/03/Morris-Traversal/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Morris Traversal</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/10/03/KMP-Algorithm/">
+                        <span class="hidden-mobile">KMP Algorithm</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Monotonic Queue&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>
