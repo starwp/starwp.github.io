@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>Graph Theory</title>
+    <link href="/2021/08/25/Graph-Theory/"/>
+    <url>/2021/08/25/Graph-Theory/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>Interesting graph concepts.</p></blockquote><a id="more"></a><h1 id="One-Dimension-Problem"><a href="#One-Dimension-Problem" class="headerlink" title="One Dimension Problem"></a>One Dimension Problem</h1><p>这里就不讨论了，贪心，dp，都可以做。</p><p>核心的思想是，当前位置的水的高度，有zuo’you</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Graph</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>OOD Notes</title>
     <link href="/2021/03/23/OOD-Notes/"/>
     <url>/2021/03/23/OOD-Notes/</url>
