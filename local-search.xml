@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>OOD Notes</title>
+    <link href="/2021/03/23/OOD-Notes/"/>
+    <url>/2021/03/23/OOD-Notes/</url>
+    
+    <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <div class="hbe-input-container">  <input type="password" id="hbePass" placeholder="" />    <label for="hbePass">Hey, password is required here.</label>    <div class="bottom-line"></div>  </div>  <script id="hbeData" type="hbeData" data-hmacdigest="de99c23f28938427fa929cf61e91cde03a1619fd656b969a5bca43a8fe80ce03">0c042a2ae1edc26c7c5c9c92f6c8b788567b878562e47cc87a3dca552dce21046d60092972401f7dca01148ef890a411f9f117ab90dd016fc52461232ae82049226e36049a5850d42a20a8f9acb81e61e2a048d0a2b3a0e1e361ef4b6a1e836a99e1cb25a8696e2999c9be8c9b53e6917dcafffd1e50ae6639efa2a048efbb1f62afff7176ab60639f0846a7a8b114144b57da50cdb6d506bb8de443b69fa7bd9529080be893d1262f0000224b74423ea1100dd7e6b8975d055050c7e5f274c57d01acdba987ae7ea40655e65cbded5198769d3111d48e6e6de699c1e24edd4a64a62cbe1acd621e1189475232d306cb87b92552c252950a875df9338e6baf99b9b2949860cf48170bf366a1b1a2e85040428a36841ae665c42d72208b12015d2a9ece57109e7024bbf5c2a8116d9262a2065fe8d5bc824454f270b754c390af7a3b2b97699d1bd91f30130752e7882adbe083997a6801e830db9c988b4166d205b298fe30b2529b8331f0493832ab36cadf390f4bcd1cb320283778bac790ef88d138f59a955e3d22f1d4453e7c7ad568ec061d6a77787af40f4dee79fa4a89e593fb798c52b214be5e0bf6e36db217efa242aa422204e7c1fcfe1df3f0a7f0f94ad746eca9ac7a5270660a4262893b716a7ba55eea8b675a76dda8a092285737ff83e80e8712ce92bf889301f32ad705d41c272be5f7d23854a2191c096cf47d7014f14ca428eed233c0d663dbc7b18f9a9096ff02115816c299e475bb7cce04aa69a65cb4e11b1dd65ad4227cb294f6589c483c4b31931fed636e59f3ec2e39988b0bead83787eb8cc59716bea59b7a3854dc2d47f1ac4adc66d08abe42e451c0344a97c96c2947e64f1452cb81488b98e6f775e1f8fba9ae912d20d52c05</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Summary</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Rain Forest</title>
     <link href="/2021/03/07/Rain-Forest/"/>
     <url>/2021/03/07/Rain-Forest/</url>
@@ -280,7 +299,7 @@
     <link href="/2020/08/02/Catalan-Number/"/>
     <url>/2020/08/02/Catalan-Number/</url>
     
-    <content type="html"><![CDATA[<blockquote><p>Do you know what the Catalan number is?</p></blockquote><a id="more"></a><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>The introduction problem is to find the number of paths from bottom left to top right withouting crossing the diagnal line as it shown in the figure above.</p><h1 id="Applications"><a href="#Applications" class="headerlink" title="Applications"></a>Applications</h1><h2 id="Problem-1-Buy-the-tickets"><a href="#Problem-1-Buy-the-tickets" class="headerlink" title="Problem 1: Buy the tickets"></a>Problem 1: Buy the tickets</h2><h2 id="Problem-2-Stand-in-two-lines"><a href="#Problem-2-Stand-in-two-lines" class="headerlink" title="Problem 2: Stand in two lines"></a>Problem 2: Stand in two lines</h2><h2 id="Problem-3-Correct-combo-of-parenthesis"><a href="#Problem-3-Correct-combo-of-parenthesis" class="headerlink" title="Problem 3: Correct combo of parenthesis"></a>Problem 3: Correct combo of parenthesis</h2><h2 id="Problem-4-Stack-Operation"><a href="#Problem-4-Stack-Operation" class="headerlink" title="Problem 4: Stack Operation"></a>Problem 4: Stack Operation</h2><h2 id="Problem-5-BST"><a href="#Problem-5-BST" class="headerlink" title="Problem 5: BST"></a>Problem 5: BST</h2>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>Do you know what the Catalan number is?</p></blockquote><a id="more"></a><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>The introduction problem is to find the number of paths from bottom left to top right without crossing the digonal line as it shown in the figure above.</p><p><a href="https://www.youtube.com/watch?v=i5V21WCHTVo" target="_blank" rel="noopener">https://www.youtube.com/watch?v=i5V21WCHTVo</a></p><p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210430175340151.png" srcset="/img/loading.gif" alt="image-20210430175340151"></p><p>首先经典卡特兰数的问题，不穿过对角线的走法有多少种问题。</p><p>分析：问题要求，n个up，n个right的走法。</p><ul><li>实际上不考虑穿过对角线约束的走法有 C_2n^n的走法</li><li>由上图分析任何一种失败的走法，例如RRURUUU|RUU，将第一步出现非法的位置U之后的走法进行翻转，我们一定回到达(4，6).<ul><li>充分的证明：失败的走法一定是C_2n^(n-1)的走法</li><li>必要的证明：到C_2n^(n-1)的走法一定会转化为C_2n^n的失败走法。转化方式即位第一步跨过对角线后，进行翻转</li></ul></li><li>这样证明了证明的走法为<ul><li>C_2n^n - C_2n^(n-1)</li></ul></li></ul><p>而<em>对角线问题</em>，可以直接转化为<em>括号匹配问题</em>，即给定n对括号，要求左括号少于右括号。</p><ul><li>另一种重要的结论： f(n) = f(0)<em>f(n-1) + f(1)</em>f(n-2) + … + f(n-1)*f(0)   </li><li>假设n对括号的答案是f(n)，那么我们考虑第n对括号，其中排在第n对括号里，和括号外的问题分别对应 f(0)*f(n-1)</li></ul><p><img src="C:%5CUsers%5Cpeng%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210430181350319.png" srcset="/img/loading.gif" alt="image-20210430181350319"></p><p>这样的话, 回到BST问题；</p><ul><li>假设第n个节点被选中，放在左边节点的可能性，和右边依然满足 f(0)<em>f(n-1) + f(1)</em>f(n-2) + … + f(n-1)*f(0)  公式。</li><li>可以类比括号的放在里面和放在外面的问题</li></ul><h3 id="BST问题"><a href="#BST问题" class="headerlink" title="BST问题"></a>BST问题</h3><p><a href="https://leetcode.com/problems/unique-binary-search-trees-ii/" target="_blank" rel="noopener">https://leetcode.com/problems/unique-binary-search-trees-ii/</a></p><ul><li>这个问题要求找出所有BST的组合的答案。实际上也是在递归树上，求解出所有答案。</li><li>递归树的叶子节点的个数最多为卡特兰数G(n), 构造一棵树的时间复杂度为O(n)。因此递归的时间复杂度为O(G(n)n)</li><li>而那种基于DP的做法，因为需要对于整个subtree进行copy，所以并没有做到任何的优化，所以具有相同的时间复杂度。</li></ul><h1 id="Applications"><a href="#Applications" class="headerlink" title="Applications"></a>Applications</h1><ul><li>Problem 1: Buy the tickets</li><li>Problem 2: Stand in two lines</li><li>Problem 3: Correct combo of parenthesis</li><li>Problem 4: Stack Operation</li><li>Problem 5: BST</li></ul><h1 id="Deranged-Problem"><a href="#Deranged-Problem" class="headerlink" title="Deranged Problem"></a>Deranged Problem</h1><p>错排问题，n个邮件，放入n给信封，要求第i个邮件不能给第i个信封</p><ul><li>假设size为n的问题：有f(n)个答案<ul><li>第n个邮件放在第i个信封，第i个邮件放在第n个信封：<ul><li>余下的问题为size-2, 为f(n-2)</li></ul></li><li>第n个邮件放在第i个信封，第i个邮件不放在第n个信封<ul><li>余下的问题为size-1, 为f(n-2)</li></ul></li><li>由于i的可能性为1至n-1</li></ul></li><li>所以递推式为：f(n) = (n-1) * (f(n-2) + f(n-1))</li></ul>]]></content>
     
     
     
